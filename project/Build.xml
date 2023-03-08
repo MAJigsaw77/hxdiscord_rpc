@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+	<files id="discord-rpc">
+		<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/discord-rpc.cpp" />
+		<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/rpc_connection.cpp" />
+		<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/serialization.cpp" />
+
+		<section if="windows">
+			<compilerflag value="-DDISCORD_WINDOWS" />
+
+			<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/connection_win.cpp" />
+			<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/discord_register_win.cpp" />
+		</section>
+
+		<section if="linux">
+			<compilerflag value="-DDISCORD_LINUX" />
+
+			<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/connection_unix.cpp" />
+			<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/discord_register_linux.cpp" />
+		</section>
+
+		<section if="mac">
+			<compilerflag value="-DDISCORD_OSX" />
+
+			<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/connection_unix.cpp" />
+			<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/discord_register_osx.m" />
+		</section>
+	</files>
+
+	<files id="haxe">
+		<compilervalue name="-I" value="${haxelib:hxdiscord-rpc}/project/discord-rpc/include/" />
+	</files>
+
+	<target id="haxe">
+		<files id="discord-rpc" />
+	</target>
+</xml>
