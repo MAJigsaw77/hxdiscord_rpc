@@ -12,18 +12,18 @@
 			<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/discord_register_win.cpp" />
 		</section>
 
-		<section if="linux">
-			<compilerflag value="-DDISCORD_LINUX" />
-
-			<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/connection_unix.cpp" />
-			<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/discord_register_linux.cpp" />
-		</section>
-
 		<section if="mac">
 			<compilerflag value="-DDISCORD_OSX" />
 
 			<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/connection_unix.cpp" />
 			<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/discord_register_osx.m" />
+		</section>
+
+		<section if="linux">
+			<compilerflag value="-DDISCORD_LINUX" />
+
+			<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/connection_unix.cpp" />
+			<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/discord_register_linux.cpp" />
 		</section>
 	</files>
 
