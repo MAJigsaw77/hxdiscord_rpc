@@ -1,4 +1,4 @@
-package hxlua;
+package hxdiscord;
 
 #if (!(desktop && cpp) && macro)
 #error 'Discord RPC supports only C++ desktop target.'
