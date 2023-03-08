@@ -29,6 +29,7 @@
 
 	<files id="haxe">
 		<compilervalue name="-I" value="${haxelib:hxdiscord-rpc}/project/discord-rpc/include/" />
+		<compilervalue name="-I" value="${haxelib:hxdiscord-rpc}/project/rapidjson/include/" />
 	</files>
 
 	<target id="haxe">
