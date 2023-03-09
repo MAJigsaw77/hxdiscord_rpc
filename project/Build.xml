@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xml>
 	<files id="discord-rpc">
+		<compilervalue value="-I${haxelib:hxdiscord-rpc}/project/discord-rpc/include/" />
+		<compilervalue value="-I${haxelib:hxdiscord-rpc}/project/rapidjson/include/" />
+
 		<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/discord-rpc.cpp" />
 		<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/rpc_connection.cpp" />
 		<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/serialization.cpp" />
