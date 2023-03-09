@@ -48,7 +48,7 @@ jobs:
 
       - name: Compiling 
         run: |
-           haxelib --quiet git hxdiscord-rpc https://github.com/MAJigsaw77/hxdiscord-rpc.git
+          haxelib --quiet git hxdiscord-rpc https://github.com/MAJigsaw77/hxdiscord-rpc.git
           haxe -cp ./test -D analyzer-optimize --library hxdiscord-rpc -main Main --cpp bin
   Windows:
     runs-on: windows-latest
