@@ -12,7 +12,7 @@
 			<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/discord_register_win.cpp" />
 		</section>
 
-		<section if="mac">
+		<section if="macos">
 			<compilerflag value="-DDISCORD_OSX" />
 
 			<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/connection_unix.cpp" />
