@@ -32,17 +32,17 @@ class Main
 		Sys.println('Discord: connected to user ' + requestRef.username + '#' + requestRef.discriminator + '\n' + requestRef.userId);
 	}
 
-	static function onDisconnected(errcode:Int, message:String):Void
-		Sys.println('Discord: disconnected (' + errcode + ': ' + message + ')');
+	static function onDisconnected(errorCode:Int, message:String):Void
+		Sys.println('Discord: disconnected (' + errorCode + ': ' + message + ')');
 
-	static function onError(errcode:Int, message:String):Void
-		Sys.println('Discord: error (' + errcode + ': ' + message + ')');
+	static function onError(errorCode:Int, message:String):Void
+		Sys.println('Discord: error (' + errorCode + ': ' + message + ')');
 
-	static function onJoin(secret:String):Void
-		Sys.println('Discord: join (' + secret + ')');
+	static function onJoin(joinSecret:String):Void
+		Sys.println('Discord: join (' + joinSecret + ')');
 
-	static function onSpectate(secret:String):Void
-		Sys.println('Discord: spectate (' + secret + ')');
+	static function onSpectate(spectateSecret:String):Void
+		Sys.println('Discord: spectate (' + spectateSecret + ')');
 
 	static function onJoinRequest(request:cpp.RawConstPointer<DiscordUser>):Void
 	{
