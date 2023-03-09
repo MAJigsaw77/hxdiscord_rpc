@@ -13,7 +13,7 @@ class Main
 		handlers.errored = cpp.Function.fromStaticFunction(onError);
 		handlers.joinGame = cpp.Function.fromStaticFunction(onJoin);
 		handlers.spectateGame = cpp.Function.fromStaticFunction(onSpectate);
-		handlers.joinRequest = cpp.Function.fromStaticFunction(onReady);
+		handlers.joinRequest = cpp.Function.fromStaticFunction(onJoinRequest);
 
 		Discord.Initialize("345229890980937739", cpp.RawPointer.addressOf(handlers), 1, null);
 
