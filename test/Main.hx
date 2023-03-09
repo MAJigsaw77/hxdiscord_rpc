@@ -19,7 +19,7 @@ class Main
 
 		while (true)
 		{
-                	Discord.UpdateConnection();
+                	// Discord.UpdateConnection();
 			Discord.RunCallbacks();
 		}
 
