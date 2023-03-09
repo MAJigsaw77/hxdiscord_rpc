@@ -7,7 +7,7 @@ class Main
 {
 	public static function main():Void
 	{
-		var handlers:cpp.Struct<DiscordEventHandlers> = new cpp.Struct<DiscordEventHandlers>; // ???
+		var handlers:cpp.Struct<DiscordEventHandlers> = new cpp.Struct<DiscordEventHandlers>(); // ???
 		handlers.ready = cpp.Function.fromStaticFunction(onReady);
 		handlers.disconnected = cpp.Function.fromStaticFunction(onDisconnected);
 		handlers.errored = cpp.Function.fromStaticFunction(onError);
