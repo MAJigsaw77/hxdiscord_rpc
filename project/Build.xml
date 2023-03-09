@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xml>
 	<files id="discord-rpc">
-		<compilerflag value="-I${haxelib:hxdiscord-rpc}/project/discord-rpc/include/" />
 		<compilerflag value="-I${haxelib:hxdiscord-rpc}/project/rapidjson/include/" />
 
 		<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/discord_rpc.cpp" />
@@ -32,7 +31,6 @@
 
 	<files id="haxe">
 		<compilervalue name="-I" value="${haxelib:hxdiscord-rpc}/project/discord-rpc/include/" />
-		<compilervalue name="-I" value="${haxelib:hxdiscord-rpc}/project/rapidjson/include/" />
 	</files>
 
 	<target id="haxe">
