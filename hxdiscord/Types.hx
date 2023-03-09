@@ -12,6 +12,9 @@ class Types {} // blank
 @:native("DiscordRichPresence")
 extern class DiscordRichPresence
 {
+	@:native('DiscordRichPresence')
+	static function create():DiscordRichPresence;
+
 	var state:String; /* max 128 bytes */
 	var details:String; /* max 128 bytes */
 	var startTimestamp:cpp.Int64;
@@ -36,6 +39,9 @@ extern class DiscordRichPresence
 @:native("DiscordUser")
 extern class DiscordUser
 {
+	@:native('DiscordUser')
+	static function create():DiscordUser;
+
 	var userId:String;
 	var username:String;
 	var discriminator:String;
@@ -48,6 +54,9 @@ extern class DiscordUser
 @:native("DiscordEventHandlers")
 extern class DiscordEventHandlers
 {
+	@:native('DiscordEventHandlers')
+	static function create():DiscordEventHandlers;
+
 	var ready:cpp.Callable<(request:cpp.RawConstPointer<DiscordUser>) -> Void>;
 	var disconnected:cpp.Callable<(errorCode:Int, message:String) -> Void>;
 	var errored:cpp.Callable<(errorCode:Int, message:String) -> Void>;
