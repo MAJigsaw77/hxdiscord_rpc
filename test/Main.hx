@@ -7,13 +7,14 @@ class Main
 {
 	public static function main():Void
 	{
-		/*var handlers:DiscordEventHandlers = DiscordEventHandlers.create(); // ???
+		var handlers:DiscordEventHandlers = DiscordEventHandlers.create(); // ???
 		handlers.ready = cpp.Function.fromStaticFunction(onReady);
 		handlers.disconnected = cpp.Function.fromStaticFunction(onDisconnected);
 		handlers.errored = cpp.Function.fromStaticFunction(onError);
 		handlers.joinGame = cpp.Function.fromStaticFunction(onJoin);
 		handlers.spectateGame = cpp.Function.fromStaticFunction(onSpectate);
 		handlers.joinRequest = cpp.Function.fromStaticFunction(onReady);
+
 		Discord.Initialize("345229890980937739", cpp.RawPointer.addressOf(handlers), 1, null);
 
 		while (true)
@@ -22,10 +23,10 @@ class Main
 			Discord.RunCallbacks();
 		}
 
-		Discord.Shutdown();*/
+		Discord.Shutdown();
 	}
 
-	/*static function onReady(request:cpp.RawConstPointer<DiscordUser>):Void
+	static function onReady(request:cpp.RawConstPointer<DiscordUser>):Void
 	{
 		var requestRef:cpp.Star<DiscordUser> = cast request;
 		Sys.println('Discord: connected to user ' + requestRef.username + '#' + requestRef.discriminator + '\n' + requestRef.userId);
@@ -48,5 +49,5 @@ class Main
 		var requestRef:cpp.Star<DiscordUser> = cast request;
 		Sys.println('Discord: join request from ' + requestRef.username + '#' + requestRef.discriminator + '\n' + requestRef.userId);
 		Discord.Respond(requestRef.userId, Discord.REPLY_NO);
-	}*/
+	}
 }
