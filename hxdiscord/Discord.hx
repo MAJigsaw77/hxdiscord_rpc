@@ -3,6 +3,7 @@ package hxdiscord;
 #if (!cpp && macro)
 #error 'Discord RPC supports only C++ target.'
 #end
+
 import hxdiscord.Types;
 
 @:buildXml("<include name='${haxelib:hxdiscord-rpc}/project/Build.xml' />")
