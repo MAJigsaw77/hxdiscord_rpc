@@ -1,7 +1,7 @@
 package hxdiscord;
 
-#if (!(desktop && cpp) && macro)
-#error 'Discord RPC supports only C++ desktop target.'
+#if (!cpp && macro)
+#error 'Discord RPC supports only C++ target.'
 #end
 import hxdiscord.Types;
 
