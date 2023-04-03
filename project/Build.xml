@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xml>
+	<pragma once="true" />
+
+	<files id="haxe">
+		<compilervalue name="-I" value="${haxelib:hxdiscord-rpc}/project/discord-rpc/include/" />
+	</files>
+
+	<files id="__main__">
+		<compilervalue name="-I" value="${haxelib:hxdiscord-rpc}/project/discord-rpc/include/" />
+	</files>
+
 	<files id="discord-rpc">
 		<compilerflag value="-I${haxelib:hxdiscord-rpc}/project/discord-rpc/include/" />
 		<compilerflag value="-I${haxelib:hxdiscord-rpc}/project/rapidjson/include/" />
@@ -28,10 +38,6 @@
 			<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/connection_unix.cpp" />
 			<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/discord_register_linux.cpp" />
 		</section>
-	</files>
-
-	<files id="haxe">
-		<compilervalue name="-I" value="${haxelib:hxdiscord-rpc}/project/discord-rpc/include/" />
 	</files>
 
 	<target id="haxe">
