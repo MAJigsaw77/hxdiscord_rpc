@@ -9,8 +9,8 @@ class Main
 	{
 		var handlers:DiscordEventHandlers = DiscordEventHandlers.create(); // ???
 		handlers.ready = cpp.Function.fromStaticFunction(onReady);
-		handlers.disconnected = cpp.Function.fromStaticFunction(onDisconnected);
-		handlers.errored = cpp.Function.fromStaticFunction(onError);
+		// handlers.disconnected = cpp.Function.fromStaticFunction(onDisconnected);
+		// handlers.errored = cpp.Function.fromStaticFunction(onError);
 		handlers.joinGame = cpp.Function.fromStaticFunction(onJoin);
 		handlers.spectateGame = cpp.Function.fromStaticFunction(onSpectate);
 		handlers.joinRequest = cpp.Function.fromStaticFunction(onJoinRequest);
