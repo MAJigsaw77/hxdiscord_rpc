@@ -1,17 +1,16 @@
 package hxdiscord;
 
 #if (!cpp && macro)
-#error 'Discord RPC supports only C++ target.'
+#error 'Discord RPC supports only C++ target platforms.'
 #end
 
 import hxdiscord.Types;
 
 @:buildXml("<include name='${haxelib:hxdiscord-rpc}/project/Build.xml' />")
-@:include("discord_register.h")
 @:include("discord_rpc.h")
 @:keep
 @:unreflective
-extern class Discord
+extern class DiscordRPC
 {
 	@:native('Discord_Register')
 	static function Register(applicationId:String, command:String):Void;
