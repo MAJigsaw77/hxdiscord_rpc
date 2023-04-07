@@ -9,8 +9,8 @@ class Main
 	{
 		var handlers:DiscordEventHandlers = DiscordEventHandlers.create(); // ???
 		handlers.ready = cpp.Function.fromStaticFunction(onReady);
-		// handlers.disconnected = cpp.Function.fromStaticFunction(onDisconnected);
-		// handlers.errored = cpp.Function.fromStaticFunction(onError);
+		handlers.disconnected = cpp.Function.fromStaticFunction(onDisconnected);
+		handlers.errored = cpp.Function.fromStaticFunction(onError);
 		handlers.joinGame = cpp.Function.fromStaticFunction(onJoin);
 		handlers.spectateGame = cpp.Function.fromStaticFunction(onSpectate);
 		handlers.joinRequest = cpp.Function.fromStaticFunction(onJoinRequest);
@@ -19,7 +19,9 @@ class Main
 
 		while (true)
 		{
-                	// Discord.UpdateConnection();
+#if DISCORD_DISABLE_IO_THREAD
+                	Discord.UpdateConnection();
+#end
 			Discord.RunCallbacks();
 		}
 
@@ -32,16 +34,16 @@ class Main
 		Sys.println('Discord: connected to user ' + requestRef.username + '#' + requestRef.discriminator + '\n' + requestRef.userId);
 	}
 
-	static function onDisconnected(errorCode:Int, message:String):Void
+	static function onDisconnected(errorCode:Int, message:cpp.ConstCharStar):Void
 		Sys.println('Discord: disconnected (' + errorCode + ': ' + message + ')');
 
-	static function onError(errorCode:Int, message:String):Void
+	static function onError(errorCode:Int, message:cpp.ConstCharStar):Void
 		Sys.println('Discord: error (' + errorCode + ': ' + message + ')');
 
-	static function onJoin(joinSecret:String):Void
+	static function onJoin(joinSecret:cpp.ConstCharStar):Void
 		Sys.println('Discord: join (' + joinSecret + ')');
 
-	static function onSpectate(spectateSecret:String):Void
+	static function onSpectate(spectateSecret:cpp.ConstCharStar):Void
 		Sys.println('Discord: spectate (' + spectateSecret + ')');
 
 	static function onJoinRequest(request:cpp.RawConstPointer<DiscordUser>):Void
