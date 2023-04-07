@@ -44,9 +44,11 @@ extern class Discord
 	@:native('Discord_RunCallbacks')
 	static function RunCallbacks():Void;
 
+	#if DISCORD_DISABLE_IO_THREAD
 	/* If you disable the lib starting its own io thread, you'll need to call this from your own */
 	@:native('Discord_UpdateConnection')
 	static function UpdateConnection():Void;
+	#end
 
 	@:native('Discord_UpdatePresence')
 	static function UpdatePresence(presence:cpp.RawConstPointer<DiscordRichPresence>):Void;
