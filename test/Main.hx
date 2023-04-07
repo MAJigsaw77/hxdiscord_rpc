@@ -19,9 +19,9 @@ class Main
 
 		while (true)
 		{
-#if DISCORD_DISABLE_IO_THREAD
+			#if DISCORD_DISABLE_IO_THREAD
                 	Discord.UpdateConnection();
-#end
+			#end
 			Discord.RunCallbacks();
 		}
 
