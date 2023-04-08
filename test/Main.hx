@@ -35,14 +35,6 @@ class Main
         	discordPresence.details = "Frustration";
         	discordPresence.largeImageKey = "canary-large";
         	discordPresence.smallImageKey = "ptb-small";
-        	discordPresence.partyId = "party1234";
-        	discordPresence.partySize = 1;
-        	discordPresence.partyMax = 6;
-        	discordPresence.partyPrivacy = Discord.PARTY_PUBLIC;
-        	discordPresence.matchSecret = "xyzzy";
-        	discordPresence.joinSecret = "join";
-        	discordPresence.spectateSecret = "look";
-        	discordPresence.instance = 0;
         	Discord.UpdatePresence(cpp.RawPointer.addressOf(discordPresence));
 	}
 
