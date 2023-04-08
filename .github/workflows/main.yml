@@ -30,8 +30,8 @@ jobs:
 
       - name: Compiling 
         run: |
-          haxelib --quiet git hxdiscord-rpc https://github.com/MAJigsaw77/hxdiscord-rpc.git
-          haxe -cp ./test -D analyzer-optimize -D DISCORD_DISABLE_IO_THREAD --library hxdiscord-rpc -main Main --cpp bin
+          haxelib --quiet git hxdiscord_rpc https://github.com/MAJigsaw77/hxdiscord_rpc.git
+          haxe -cp ./test -D analyzer-optimize -D DISCORD_DISABLE_IO_THREAD --library hxdiscord_rpc -main Main --cpp bin
   MacOS:
     runs-on: macos-latest
 
@@ -48,8 +48,8 @@ jobs:
 
       - name: Compiling 
         run: |
-          haxelib --quiet git hxdiscord-rpc https://github.com/MAJigsaw77/hxdiscord-rpc.git
-          haxe -cp ./test -D analyzer-optimize -D DISCORD_DISABLE_IO_THREAD --library hxdiscord-rpc -main Main --cpp bin
+          haxelib --quiet git hxdiscord_rpc https://github.com/MAJigsaw77/hxdiscord_rpc.git
+          haxe -cp ./test -D analyzer-optimize -D DISCORD_DISABLE_IO_THREAD --library hxdiscord_rpc -main Main --cpp bin
   Windows:
     runs-on: windows-latest
 
@@ -66,5 +66,5 @@ jobs:
 
       - name: Compiling 
         run: |
-          haxelib --quiet git hxdiscord-rpc https://github.com/MAJigsaw77/hxdiscord-rpc.git
-          haxe -cp ./test -D analyzer-optimize -D DISCORD_DISABLE_IO_THREAD --library hxdiscord-rpc -main Main --cpp bin
+          haxelib --quiet git hxdiscord_rpc https://github.com/MAJigsaw77/hxdiscord_rpc.git
+          haxe -cp ./test -D analyzer-optimize -D DISCORD_DISABLE_IO_THREAD --library hxdiscord_rpc -main Main --cpp bin

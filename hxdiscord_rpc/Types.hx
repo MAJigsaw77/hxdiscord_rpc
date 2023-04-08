@@ -6,7 +6,7 @@ package hxdiscord_rpc;
 
 class Types {} // blank
 
-@:buildXml("<include name='${haxelib:hxdiscord-rpc}/project/Build.xml' />")
+@:buildXml("<include name='${haxelib:hxdiscord_rpc}/project/Build.xml' />")
 @:include("discord_rpc.h")
 @:keep
 @:structAccess
@@ -34,7 +34,7 @@ extern class DiscordRichPresence
 	var instance:cpp.Int8;
 }
 
-@:buildXml("<include name='${haxelib:hxdiscord-rpc}/project/Build.xml' />")
+@:buildXml("<include name='${haxelib:hxdiscord_rpc}/project/Build.xml' />")
 @:include("discord_rpc.h")
 @:keep
 @:structAccess
@@ -50,7 +50,7 @@ extern class DiscordUser
 	var avatar:String;
 }
 
-@:buildXml("<include name='${haxelib:hxdiscord-rpc}/project/Build.xml' />")
+@:buildXml("<include name='${haxelib:hxdiscord_rpc}/project/Build.xml' />")
 @:include("discord_rpc.h")
 @:keep
 @:structAccess

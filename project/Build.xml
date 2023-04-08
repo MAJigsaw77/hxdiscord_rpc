@@ -4,41 +4,41 @@
 
 	<files id="haxe">
 		<compilervalue name="-D" value="DISCORD_DISABLE_IO_THREAD" if="DISCORD_DISABLE_IO_THREAD" />
-		<compilervalue name="-I" value="${haxelib:hxdiscord-rpc}/project/discord-rpc/include/" />
+		<compilervalue name="-I" value="${haxelib:hxdiscord_rpc}/project/discord-rpc/include/" />
 	</files>
 
 	<files id="__main__">
 		<compilervalue name="-D" value="DISCORD_DISABLE_IO_THREAD" if="DISCORD_DISABLE_IO_THREAD" />
-		<compilervalue name="-I" value="${haxelib:hxdiscord-rpc}/project/discord-rpc/include/" />
+		<compilervalue name="-I" value="${haxelib:hxdiscord_rpc}/project/discord-rpc/include/" />
 	</files>
 
 	<files id="discord-rpc">
-		<compilerflag value="-I${haxelib:hxdiscord-rpc}/project/discord-rpc/include/" />
-		<compilerflag value="-I${haxelib:hxdiscord-rpc}/project/rapidjson/include/" />
+		<compilerflag value="-I${haxelib:hxdiscord_rpc}/project/discord-rpc/include/" />
+		<compilerflag value="-I${haxelib:hxdiscord_rpc}/project/rapidjson/include/" />
 
-		<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/discord_rpc.cpp" />
-		<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/rpc_connection.cpp" />
-		<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/serialization.cpp" />
+		<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/discord_rpc.cpp" />
+		<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/rpc_connection.cpp" />
+		<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/serialization.cpp" />
 
 		<section if="windows">
 			<compilerflag value="-DDISCORD_WINDOWS" />
 
-			<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/connection_win.cpp" />
-			<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/discord_register_win.cpp" />
+			<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/connection_win.cpp" />
+			<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/discord_register_win.cpp" />
 		</section>
 
 		<section if="macos">
 			<compilerflag value="-DDISCORD_OSX" />
 
-			<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/connection_unix.cpp" />
-			<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/discord_register_osx.m" />
+			<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/connection_unix.cpp" />
+			<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/discord_register_osx.m" />
 		</section>
 
 		<section if="linux">
 			<compilerflag value="-DDISCORD_LINUX" />
 
-			<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/connection_unix.cpp" />
-			<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/discord_register_linux.cpp" />
+			<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/connection_unix.cpp" />
+			<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/discord_register_linux.cpp" />
 		</section>
 
 		<compilerflag value="-DDISCORD_DISABLE_IO_THREAD" if="DISCORD_DISABLE_IO_THREAD" />

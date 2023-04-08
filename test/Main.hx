@@ -1,7 +1,7 @@
 package;
 
-import hxdiscord.Discord;
-import hxdiscord.Types;
+import hxdiscord_rpc.Discord;
+import hxdiscord_rpc.Types;
 
 class Main
 {
