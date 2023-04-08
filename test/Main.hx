@@ -16,7 +16,7 @@ class Main
 		while (true)
 		{
 			updatePresent();
-			#if DISCORD_DISABLE_IO_THREAD
+			#if HXDISCORD_RPC_DISABLE_IO_THREAD
                 	Discord.UpdateConnection();
 			#end
 			Discord.RunCallbacks();
