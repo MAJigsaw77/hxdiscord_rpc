@@ -13,8 +13,6 @@
 	</files>
 
 	<files id="discord-rpc">
-		<compilerflag value="-DDISCORD_DISABLE_IO_THREAD" if="DISCORD_DISABLE_IO_THREAD" />
-
 		<compilerflag value="-I${haxelib:hxdiscord-rpc}/project/discord-rpc/include/" />
 		<compilerflag value="-I${haxelib:hxdiscord-rpc}/project/rapidjson/include/" />
 
@@ -42,6 +40,8 @@
 			<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/connection_unix.cpp" />
 			<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/discord_register_linux.cpp" />
 		</section>
+
+		<compilerflag value="-DDISCORD_DISABLE_IO_THREAD" if="DISCORD_DISABLE_IO_THREAD" />
 	</files>
 
 	<target id="haxe">
