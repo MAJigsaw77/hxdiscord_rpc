@@ -15,7 +15,6 @@ class Main
 
 		while (true)
 		{
-			updatePresent();
 			#if HXDISCORD_RPC_DISABLE_IO_THREAD
                 	Discord.UpdateConnection();
 			#end
@@ -25,8 +24,12 @@ class Main
 		Discord.Shutdown();
 	}
 
-	static function updatePresent():Void
+	static function onReady(request:cpp.RawConstPointer<DiscordUser>):Void
 	{
+		var requestPtr:cpp.Star<DiscordUser> = cpp.ConstPointer.fromRaw(request).ptr;
+
+		Sys.println('Discord: connected to user ${requestPtr.username}#${requestPtr.discriminator}');
+
 		var discordPresence:DiscordRichPresence = DiscordRichPresence.create();
         	discordPresence.state = "West of House";
         	discordPresence.details = "Frustration";
@@ -43,15 +46,13 @@ class Main
         	Discord.UpdatePresence(cpp.RawPointer.addressOf(discordPresence));
 	}
 
-	static function onReady(request:cpp.RawConstPointer<DiscordUser>):Void
+	static function onDisconnected(errorCode:Int, message:cpp.ConstCharStar):Void
 	{
-		var requestPtr:cpp.Star<DiscordUser> = cpp.ConstPointer.fromRaw(request).ptr;
-		Sys.println('Discord: connected to user ' + requestPtr.username + '#' + requestPtr.discriminator + ' ' + requestPtr.userId);
+		Sys.println('Discord: disconnected (' + errorCode + ': ' + message + ')');
 	}
 
-	static function onDisconnected(errorCode:Int, message:cpp.ConstCharStar):Void
-		Sys.println('Discord: disconnected (' + errorCode + ': ' + message + ')');
-
 	static function onError(errorCode:Int, message:cpp.ConstCharStar):Void
+	{
 		Sys.println('Discord: error (' + errorCode + ': ' + message + ')');
+	}
 }
