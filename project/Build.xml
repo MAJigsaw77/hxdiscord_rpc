@@ -3,13 +3,13 @@
 	<pragma once="true" />
 
 	<files id="haxe">
-		<compilervalue name="-D" value="DISCORD_DISABLE_IO_THREAD" if="DISCORD_DISABLE_IO_THREAD" />
 		<compilervalue name="-I" value="${haxelib:hxdiscord_rpc}/project/discord-rpc/include/" />
+		<compilervalue name="-D" value="DISCORD_DISABLE_IO_THREAD" if="DISCORD_DISABLE_IO_THREAD" />
 	</files>
 
 	<files id="__main__">
-		<compilervalue name="-D" value="DISCORD_DISABLE_IO_THREAD" if="DISCORD_DISABLE_IO_THREAD" />
 		<compilervalue name="-I" value="${haxelib:hxdiscord_rpc}/project/discord-rpc/include/" />
+		<compilervalue name="-D" value="DISCORD_DISABLE_IO_THREAD" if="DISCORD_DISABLE_IO_THREAD" />
 	</files>
 
 	<files id="discord-rpc">
