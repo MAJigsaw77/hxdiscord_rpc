@@ -2,17 +2,19 @@
 <xml>
 	<pragma once="true" />
 
-	<compilervalue name="-D" value="DISCORD_DISABLE_IO_THREAD" if="DISCORD_DISABLE_IO_THREAD" />
-
 	<files id="haxe">
+		<compilervalue name="-D" value="DISCORD_DISABLE_IO_THREAD" if="DISCORD_DISABLE_IO_THREAD" />
 		<compilervalue name="-I" value="${haxelib:hxdiscord-rpc}/project/discord-rpc/include/" />
 	</files>
 
 	<files id="__main__">
+		<compilervalue name="-D" value="DISCORD_DISABLE_IO_THREAD" if="DISCORD_DISABLE_IO_THREAD" />
 		<compilervalue name="-I" value="${haxelib:hxdiscord-rpc}/project/discord-rpc/include/" />
 	</files>
 
 	<files id="discord-rpc">
+		<compilerflag value="-DDISCORD_DISABLE_IO_THREAD" if="DISCORD_DISABLE_IO_THREAD" />
+
 		<compilerflag value="-I${haxelib:hxdiscord-rpc}/project/discord-rpc/include/" />
 		<compilerflag value="-I${haxelib:hxdiscord-rpc}/project/rapidjson/include/" />
 
