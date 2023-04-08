@@ -3,9 +3,9 @@
 	"url":"https://github.com/MAJigsaw77/hxdiscord-rpc",
 	"license":"MIT",
 	"tags":[
-		"discord-rpc",
 		"cpp",
-		"haxe"
+		"haxe",
+		"discord-rpc"
 	],
 	"description":"Haxe/hxcpp @:native bindings for Discord RPC.",
 	"version":"1.0.0",
