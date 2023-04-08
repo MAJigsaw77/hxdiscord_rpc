@@ -7,7 +7,7 @@ class Main
 {
 	public static function main():Void
 	{
-		var handlers:DiscordEventHandlers = DiscordEventHandlers.create(); // ???
+		var handlers:DiscordEventHandlers = DiscordEventHandlers.create();
 		handlers.ready = cpp.Function.fromStaticFunction(onReady);
 		handlers.disconnected = cpp.Function.fromStaticFunction(onDisconnected);
 		handlers.errored = cpp.Function.fromStaticFunction(onError);
@@ -15,6 +15,7 @@ class Main
 
 		while (true)
 		{
+			updatePresent();
 			#if DISCORD_DISABLE_IO_THREAD
                 	Discord.UpdateConnection();
 			#end
@@ -22,6 +23,24 @@ class Main
 		}
 
 		Discord.Shutdown();
+	}
+
+	static function updatePresent():Void
+	{
+		var discordPresence:DiscordRichPresence = DiscordRichPresence.create();
+        	discordPresence.state = "West of House";
+        	discordPresence.details = "Frustration";
+        	discordPresence.largeImageKey = "canary-large";
+        	discordPresence.smallImageKey = "ptb-small";
+        	discordPresence.partyId = "party1234";
+        	discordPresence.partySize = 1;
+        	discordPresence.partyMax = 6;
+        	discordPresence.partyPrivacy = Discord.PARTY_PUBLIC;
+        	discordPresence.matchSecret = "xyzzy";
+        	discordPresence.joinSecret = "join";
+        	discordPresence.spectateSecret = "look";
+        	discordPresence.instance = 0;
+        	Discord.UpdatePresence(cpp.RawPointer.addressOf(discordPresence));
 	}
 
 	static function onReady(request:cpp.RawConstPointer<DiscordUser>):Void
