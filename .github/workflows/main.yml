@@ -32,39 +32,3 @@ jobs:
         run: |
           haxelib --quiet git hxdiscord_rpc https://github.com/MAJigsaw77/hxdiscord_rpc.git
           haxe -cp ./test -D analyzer-optimize -D HXDISCORD_RPC_DISABLE_IO_THREAD --library hxdiscord_rpc -main Main --cpp bin
-  MacOS:
-    runs-on: macos-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@main
-        with:
-          submodules: true
-
-      - name: Setup Haxe
-        uses: krdlab/setup-haxe@master
-        with:
-          haxe-version: 4.2.5
-
-      - name: Compiling 
-        run: |
-          haxelib --quiet git hxdiscord_rpc https://github.com/MAJigsaw77/hxdiscord_rpc.git
-          haxe -cp ./test -D analyzer-optimize -D HXDISCORD_RPC_DISABLE_IO_THREAD --library hxdiscord_rpc -main Main --cpp bin
-  Windows:
-    runs-on: windows-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@main
-        with:
-          submodules: true
-
-      - name: Setup Haxe
-        uses: krdlab/setup-haxe@master
-        with:
-          haxe-version: 4.2.5
-
-      - name: Compiling 
-        run: |
-          haxelib --quiet git hxdiscord_rpc https://github.com/MAJigsaw77/hxdiscord_rpc.git
-          haxe -cp ./test -D analyzer-optimize -D HXDISCORD_RPC_DISABLE_IO_THREAD --library hxdiscord_rpc -main Main --cpp bin
