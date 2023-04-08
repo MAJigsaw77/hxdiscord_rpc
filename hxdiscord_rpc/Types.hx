@@ -1,4 +1,4 @@
-package hxdiscord;
+package hxdiscord_rpc;
 
 #if (!cpp && macro)
 #error 'Discord RPC supports only C++ target.'
