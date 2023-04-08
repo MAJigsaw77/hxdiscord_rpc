@@ -7,18 +7,12 @@ package hxdiscord_rpc;
 import hxdiscord_rpc.Types;
 
 @:buildXml("<include name='${haxelib:hxdiscord_rpc}/project/Build.xml' />")
-@:include("discord_register.h")
 @:include("discord_rpc.h")
+@:include("discord_register.h")
 @:keep
 @:unreflective
 extern class Discord
 {
-	@:native('Discord_Register')
-	static function Register(applicationId:String, command:String):Void;
-
-	@:native('Discord_RegisterSteamGame')
-	static function RegisterSteamGame(applicationId:String, steamId:String):Void;
-
 	@:native('DISCORD_REPLY_NO')
 	static var REPLY_NO:Int;
 
@@ -61,4 +55,10 @@ extern class Discord
 
 	@:native('Discord_UpdateHandlers')
 	static function UpdateHandlers(handlers:cpp.RawPointer<DiscordEventHandlers>):Void;
+
+	@:native('Discord_Register')
+	static function Register(applicationId:String, command:String):Void;
+
+	@:native('Discord_RegisterSteamGame')
+	static function RegisterSteamGame(applicationId:String, steamId:String):Void;
 }
