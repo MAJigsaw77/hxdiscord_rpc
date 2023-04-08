@@ -2,6 +2,8 @@
 <xml>
 	<pragma once="true" />
 
+	<flag value="-DDISCORD_DISABLE_IO_THREAD" if="DISCORD_DISABLE_IO_THREAD" />
+
 	<files id="haxe">
 		<compilervalue name="-I" value="${haxelib:hxdiscord-rpc}/project/discord-rpc/include/" />
 	</files>
