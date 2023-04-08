@@ -7,7 +7,7 @@
 		"cpp",
 		"haxe"
 	],
-	"description":"Haxe/hxcpp @:native bindings for Discord-RPC.",
+	"description":"Haxe/hxcpp @:native bindings for Discord RPC.",
 	"version":"1.0.0",
 	"releasenote":"First Release.",
 	"contributors":[
