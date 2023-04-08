@@ -24,8 +24,8 @@
 			<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/connection_win.cpp" />
 			<file name="${haxelib:hxdiscord-rpc}/project/discord-rpc/src/discord_register_win.cpp" />
 
-			<lib name="psapi.lib" />
-			<lib name="advapi32.lib" />
+			<compilerflag value="-lpsapi" />
+			<compilerflag value="-ladvapi32" />
 		</section>
 
 		<section if="macos">
