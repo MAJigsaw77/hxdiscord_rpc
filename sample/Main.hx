@@ -35,7 +35,7 @@ class Main
         	discordPresence.details = "Frustration";
         	discordPresence.largeImageKey = "canary-large";
         	discordPresence.smallImageKey = "ptb-small";
-        	Discord.UpdatePresence(cpp.RawPointer.addressOf(discordPresence));
+        	Discord.UpdatePresence(cpp.RawConstPointer.addressOf(discordPresence));
 	}
 
 	private static function onDisconnected(errorCode:Int, message:cpp.ConstCharStar):Void
