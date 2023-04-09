@@ -16,21 +16,21 @@ extern class DiscordRichPresence
 	@:native('DiscordRichPresence')
 	static function create():DiscordRichPresence;
 
-	var state:String; /* max 128 bytes */
-	var details:String; /* max 128 bytes */
+	var state:ConstCharStar; /* max 128 bytes */
+	var details:ConstCharStar; /* max 128 bytes */
 	var startTimestamp:cpp.Int64;
 	var endTimestamp:cpp.Int64;
-	var largeImageKey:String; /* max 32 bytes */
-	var largeImageText:String; /* max 128 bytes */
-	var smallImageKey:String; /* max 32 bytes */
-	var smallImageText:String; /* max 128 bytes */
-	var partyId:String; /* max 128 bytes */
+	var largeImageKey:ConstCharStar; /* max 32 bytes */
+	var largeImageText:ConstCharStar; /* max 128 bytes */
+	var smallImageKey:ConstCharStar; /* max 32 bytes */
+	var smallImageText:ConstCharStar; /* max 128 bytes */
+	var partyId:ConstCharStar; /* max 128 bytes */
 	var partySize:Int;
 	var partyMax:Int;
 	var partyPrivacy:Int;
-	var matchSecret:String; /* max 128 bytes */
-	var joinSecret:String; /* max 128 bytes */
-	var spectateSecret:String; /* max 128 bytes */
+	var matchSecret:ConstCharStar; /* max 128 bytes */
+	var joinSecret:ConstCharStar; /* max 128 bytes */
+	var spectateSecret:ConstCharStar; /* max 128 bytes */
 	var instance:cpp.Int8;
 }
 
@@ -44,10 +44,10 @@ extern class DiscordUser
 	@:native('DiscordUser')
 	static function create():DiscordUser;
 
-	var userId:String;
-	var username:String;
-	var discriminator:String;
-	var avatar:String;
+	var userId:ConstCharStar;
+	var username:ConstCharStar;
+	var discriminator:ConstCharStar;
+	var avatar:ConstCharStar;
 }
 
 @:buildXml("<include name='${haxelib:hxdiscord_rpc}/project/Build.xml' />")

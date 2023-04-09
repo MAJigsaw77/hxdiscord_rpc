@@ -29,7 +29,7 @@ extern class Discord
 	static var PARTY_PUBLIC:Int;
 
 	@:native('Discord_Initialize')
-	static function Initialize(applicationId:String, handlers:cpp.RawPointer<DiscordEventHandlers>, autoRegister:Int, optionalSteamId:String):Void;
+	static function Initialize(applicationId:ConstCharStar, handlers:cpp.RawPointer<DiscordEventHandlers>, autoRegister:Int, optionalSteamId:ConstCharStar):Void;
 
 	@:native('Discord_Shutdown')
 	static function Shutdown():Void;
@@ -51,14 +51,14 @@ extern class Discord
 	static function ClearPresence():Void;
 
 	@:native('Discord_Respond')
-	static function Respond(userid:String, reply:Int):Void;
+	static function Respond(userid:ConstCharStar, reply:Int):Void;
 
 	@:native('Discord_UpdateHandlers')
 	static function UpdateHandlers(handlers:cpp.RawPointer<DiscordEventHandlers>):Void;
 
 	@:native('Discord_Register')
-	static function Register(applicationId:String, command:String):Void;
+	static function Register(applicationId:ConstCharStar, command:ConstCharStar):Void;
 
 	@:native('Discord_RegisterSteamGame')
-	static function RegisterSteamGame(applicationId:String, steamId:String):Void;
+	static function RegisterSteamGame(applicationId:ConstCharStar, steamId:ConstCharStar):Void;
 }
