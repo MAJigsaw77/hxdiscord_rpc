@@ -4,11 +4,13 @@
 
 	<files id="haxe">
 		<compilerflag value="-I${haxelib:hxdiscord_rpc}/project/discord-rpc/include" />
+
 		<compilerflag value="-DDISCORD_DISABLE_IO_THREAD" if="HXDISCORD_RPC_DISABLE_IO_THREAD" />
 	</files>
 
 	<files id="__main__">
 		<compilerflag value="-I${haxelib:hxdiscord_rpc}/project/discord-rpc/include" />
+
 		<compilerflag value="-DDISCORD_DISABLE_IO_THREAD" if="HXDISCORD_RPC_DISABLE_IO_THREAD" />
 	</files>
 
