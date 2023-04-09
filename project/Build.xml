@@ -52,6 +52,10 @@
 			<lib name="advapi32.lib" />
 		</section>
 
+		<section if="macos || linux">
+			<lib name="-lpthread" />
+		</section>
+
 		<files id="discord-rpc" />
 	</target>
 </xml>
