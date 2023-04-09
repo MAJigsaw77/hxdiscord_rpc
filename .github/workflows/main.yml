@@ -20,4 +20,4 @@ jobs:
       - name: Compiling 
         run: |
           haxelib --quiet git hxdiscord_rpc https://github.com/MAJigsaw77/hxdiscord_rpc.git
-          haxe -cp ./sample -D analyzer-optimize --library hxdiscord_rpc -main Main --cpp bin
+          haxe -cp sample -D analyzer-optimize --library hxdiscord_rpc -main Main --cpp bin
