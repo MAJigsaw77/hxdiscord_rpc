@@ -4,6 +4,21 @@
 
 Haxe/hxcpp @:native bindings for [Discord RPC](https://github.com/discord/discord-rpc)
 
+### Installation
+
+You can install it through `Haxelib`
+```bash
+haxelib install hxdiscord_rpc
+```
+Or through `Git`, if you want the latest updates
+```bash
+haxelib git hxdiscord_rpc https://github.com/MAJigsaw77/hxdiscord_rpc.git
+```
+
+### Usage Example
+
+Check out the [Sample Folder](sample/) for an example on how to use this library.
+
 ### Licensing
 
 **hxdiscord_rpc** is made available under the **MIT License**. Check [LICENSE](./LICENSE) for more information.
