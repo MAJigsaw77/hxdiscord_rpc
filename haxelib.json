@@ -8,8 +8,8 @@
 		"discord-rpc"
 	],
 	"description":"Haxe/hxcpp @:native bindings for Discord RPC.",
-	"version":"1.0.0",
-	"releasenote":"First Release.",
+	"version":"1.0.1",
+	"releasenote":"Small Fixes.",
 	"contributors":[
 		"MAJigsaw77"
 	],
