@@ -28,7 +28,7 @@ class Main
 	{
 		var requestPtr:cpp.Star<DiscordUser> = cpp.ConstPointer.fromRaw(request).ptr;
 
-		Sys.println('Discord: Connected to User ${requestPtr.username}#${requestPtr.discriminator}');
+		Sys.println('Discord: Connected to User ${cast(requestPtr.username, String)}#${cast(requestPtr.discriminator, String)}');
 
 		var discordPresence:DiscordRichPresence = DiscordRichPresence.create();
         	discordPresence.state = "West of House";
@@ -40,11 +40,11 @@ class Main
 
 	private static function onDisconnected(errorCode:Int, message:cpp.ConstCharStar):Void
 	{
-		Sys.println('Discord: Disconnected (' + errorCode + ': ' + message + ')');
+		Sys.println('Discord: Disconnected (' + errorCode + ': ' + cast(message, String) + ')');
 	}
 
 	private static function onError(errorCode:Int, message:cpp.ConstCharStar):Void
 	{
-		Sys.println('Discord: Error (' + errorCode + ': ' + message + ')');
+		Sys.println('Discord: Error (' + errorCode + ': ' + cast(message, String) + ')');
 	}
 }
