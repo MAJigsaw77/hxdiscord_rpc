@@ -1,0 +1,5 @@
+-cp ./
+-D analyzer-optimize
+-lib hxdiscord_rpc
+-main Main
+-cpp bin
