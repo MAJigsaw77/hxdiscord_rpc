@@ -8,8 +8,8 @@
 		"discord-rpc"
 	],
 	"description":"Haxe/hxcpp @:native bindings for Discord RPC.",
-	"version":"1.0.2",
-	"releasenote":"Using a Submodule for Discord's RPC source.",
+	"version":"1.0.3",
+	"releasenote":"Changed io thread define from `HXDISCORD_RPC_DISABLE_IO_THREAD` to `DISCORD_DISABLE_IO_THREAD`.",
 	"contributors":[
 		"MAJigsaw77"
 	],
