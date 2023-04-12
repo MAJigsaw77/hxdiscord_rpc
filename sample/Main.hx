@@ -28,7 +28,7 @@ class Main
 	{
 		var requestPtr:cpp.Star<DiscordUser> = cpp.ConstPointer.fromRaw(request).ptr;
 
-		Sys.println('Discord: Connected to User ${cast(requestPtr.username, String)}#${cast(requestPtr.discriminator, String)}');
+		Sys.println('Discord: Connected to User (' + cast(requestPtr.username, String) + '#' + cast(requestPtr.discriminator, String) + ')');
 
 		var discordPresence:DiscordRichPresence = DiscordRichPresence.create();
         	discordPresence.state = "West of House";
