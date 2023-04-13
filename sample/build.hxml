@@ -1,6 +1,5 @@
 -cp ./
 -D analyzer-optimize
--D DISCORD_DISABLE_IO_THREAD
 -lib hxdiscord_rpc
 -main Main
 -cpp bin
