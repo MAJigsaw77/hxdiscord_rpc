@@ -5,13 +5,13 @@
 	<files id="haxe">
 		<compilerflag value="-I${haxelib:hxdiscord_rpc}/project/discord-rpc/include" />
 
-		<compilerflag value="-DDISCORD_DISABLE_IO_THREAD" if="DISCORD_DISABLE_IO_THREAD" />
+		<include name="${haxelib:hxdiscord_rpc}/project/Defines.xml" />
 	</files>
 
 	<files id="__main__">
 		<compilerflag value="-I${haxelib:hxdiscord_rpc}/project/discord-rpc/include" />
 
-		<compilerflag value="-DDISCORD_DISABLE_IO_THREAD" if="DISCORD_DISABLE_IO_THREAD" />
+		<include name="${haxelib:hxdiscord_rpc}/project/Defines.xml" />
 	</files>
 
 	<files id="discord-rpc">
@@ -43,7 +43,7 @@
 			<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/discord_register_linux.cpp" />
 		</section>
 
-		<compilerflag value="-DDISCORD_DISABLE_IO_THREAD" if="DISCORD_DISABLE_IO_THREAD" />
+		<include name="${haxelib:hxdiscord_rpc}/project/Defines.xml" />
 	</files>
 
 	<target id="haxe">
