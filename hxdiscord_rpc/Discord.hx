@@ -13,19 +13,19 @@ import hxdiscord_rpc.Types;
 extern class Discord
 {
 	@:native('DISCORD_REPLY_NO')
-	static var REPLY_NO:Int;
+	static var REPLY_NO:cpp.Int32;
 
 	@:native('DISCORD_REPLY_YES')
-	static var REPLY_YES:Int;
+	static var REPLY_YES:cpp.Int32;
 
 	@:native('DISCORD_REPLY_IGNORE')
-	static var REPLY_IGNORE:Int;
+	static var REPLY_IGNORE:cpp.Int32;
 
 	@:native('DISCORD_PARTY_PRIVATE')
-	static var PARTY_PRIVATE:Int;
+	static var PARTY_PRIVATE:cpp.Int32;
 
 	@:native('DISCORD_PARTY_PUBLIC')
-	static var PARTY_PUBLIC:Int;
+	static var PARTY_PUBLIC:cpp.Int32;
 
 	@:native('Discord_Initialize')
 	static function Initialize(applicationId:cpp.ConstCharStar, handlers:cpp.RawPointer<DiscordEventHandlers>, autoRegister:Int, optionalSteamId:cpp.ConstCharStar):Void;
@@ -50,7 +50,7 @@ extern class Discord
 	static function ClearPresence():Void;
 
 	@:native('Discord_Respond')
-	static function Respond(userid:cpp.ConstCharStar, reply:Int):Void;
+	static function Respond(userid:cpp.ConstCharStar, reply:cpp.Int32):Void;
 
 	@:native('Discord_UpdateHandlers')
 	static function UpdateHandlers(handlers:cpp.RawPointer<DiscordEventHandlers>):Void;
