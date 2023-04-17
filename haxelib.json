@@ -8,8 +8,8 @@
 		"discord-rpc"
 	],
 	"description":"Haxe/hxcpp @:native bindings for Discord RPC.",
-	"version":"1.0.4",
-	"releasenote":"More polish in some places.",
+	"version":"1.0.5",
+	"releasenote":"Added Submodule files when you simply install the lib.",
 	"contributors":[
 		"MAJigsaw77"
 	],
