@@ -4,8 +4,9 @@
 	"license":"MIT",
 	"tags":[
 		"cpp",
+		"discord",
 		"haxe",
-		"discord-rpc"
+		"rpc"
 	],
 	"description":"Haxe/hxcpp @:native bindings for Discord RPC.",
 	"version":"1.0.5",
