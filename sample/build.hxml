@@ -1,5 +1,6 @@
 -cp ./
 -D analyzer-optimize
+A-D HXCPP_ARM64
 -lib hxdiscord_rpc
 -main Main
 -cpp bin
