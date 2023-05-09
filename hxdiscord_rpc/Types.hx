@@ -8,6 +8,7 @@ class Types {} // blank
 
 @:buildXml('<include name="${haxelib:hxdiscord_rpc}/project/Build.xml" />')
 @:include("discord_rpc.h")
+@:unreflective
 @:structAccess
 @:native("DiscordRichPresence")
 extern class DiscordRichPresence
@@ -35,6 +36,7 @@ extern class DiscordRichPresence
 
 @:buildXml('<include name="${haxelib:hxdiscord_rpc}/project/Build.xml" />')
 @:include("discord_rpc.h")
+@:unreflective
 @:structAccess
 @:native("DiscordUser")
 extern class DiscordUser
@@ -50,6 +52,7 @@ extern class DiscordUser
 
 @:buildXml('<include name="${haxelib:hxdiscord_rpc}/project/Build.xml" />')
 @:include("discord_rpc.h")
+@:unreflective
 @:structAccess
 @:native("DiscordEventHandlers")
 extern class DiscordEventHandlers
