@@ -16,7 +16,7 @@ class Main
 		while (true)
 		{
 			#if DISCORD_DISABLE_IO_THREAD
-                	Discord.UpdateConnection();
+			Discord.UpdateConnection();
 			#end
 			Discord.RunCallbacks();
 		}
@@ -31,11 +31,11 @@ class Main
 		Sys.println('Discord: Connected to User (' + cast(requestPtr.username, String) + '#' + cast(requestPtr.discriminator, String) + ')');
 
 		var discordPresence:DiscordRichPresence = DiscordRichPresence.create();
-        	discordPresence.state = "West of House";
-        	discordPresence.details = "Frustration";
-        	discordPresence.largeImageKey = "canary-large";
-        	discordPresence.smallImageKey = "ptb-small";
-        	Discord.UpdatePresence(cpp.RawConstPointer.addressOf(discordPresence));
+		discordPresence.state = "West of House";
+		discordPresence.details = "Frustration";
+		discordPresence.largeImageKey = "canary-large";
+		discordPresence.smallImageKey = "ptb-small";
+		Discord.UpdatePresence(cpp.RawConstPointer.addressOf(discordPresence));
 	}
 
 	private static function onDisconnected(errorCode:Int, message:cpp.ConstCharStar):Void
