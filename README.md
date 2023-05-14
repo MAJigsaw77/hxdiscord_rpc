@@ -23,6 +23,6 @@ Check out the [Sample Folder](sample/) for an example on how to use this library
 
 **hxdiscord_rpc** is made available under the **MIT License**. Check [LICENSE](./LICENSE) for more information.
 
-![](https://avatars.githubusercontent.com/u/1965106?s=200&v=4)
+![](https://raw.githubusercontent.com/github/explore/2a3ce46f963399611d8e2054bb0ce9a4b539296a/topics/discord/discord.png)
 
 **Discord RPC** is made available under the **MIT License**. Check [Discord's RPC LICENSE](https://github.com/discord/discord-rpc/blob/master/LICENSE) for more information.
