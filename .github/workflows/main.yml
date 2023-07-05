@@ -1,7 +1,7 @@
 name: Testing
 on:
   push:
-    branches: [ main ]
+    branches: main
   workflow_dispatch:
 jobs:
   Job:
@@ -19,6 +19,6 @@ jobs:
 
       - name: Compiling 
         run: |
-          haxelib git hxdiscord_rpc https://github.com/MAJigsaw77/hxdiscord_rpc.git --quiet
+          haxelib git hxdiscord_rpc https://github.com/MAJigsaw77/hxdiscord_rpc.git ${{github.ref_name}} --quiet
           cd sample
           haxe build.hxml
