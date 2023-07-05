@@ -3,3 +3,4 @@
 -lib hxdiscord_rpc
 -main Main
 -cpp bin
+-cmd bin/Main
