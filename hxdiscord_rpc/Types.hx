@@ -7,10 +7,10 @@ package hxdiscord_rpc;
 class Types {} // blank
 
 @:buildXml('<include name="${haxelib:hxdiscord_rpc}/project/Build.xml" />')
-@:include("discord_rpc.h")
+@:include('discord_rpc.h')
 @:unreflective
 @:structAccess
-@:native("DiscordRichPresence")
+@:native('DiscordRichPresence')
 extern class DiscordRichPresence
 {
 	@:native('DiscordRichPresence')
@@ -35,10 +35,10 @@ extern class DiscordRichPresence
 }
 
 @:buildXml('<include name="${haxelib:hxdiscord_rpc}/project/Build.xml" />')
-@:include("discord_rpc.h")
+@:include('discord_rpc.h')
 @:unreflective
 @:structAccess
-@:native("DiscordUser")
+@:native('DiscordUser')
 extern class DiscordUser
 {
 	@:native('DiscordUser')
@@ -51,10 +51,10 @@ extern class DiscordUser
 }
 
 @:buildXml('<include name="${haxelib:hxdiscord_rpc}/project/Build.xml" />')
-@:include("discord_rpc.h")
+@:include('discord_rpc.h')
 @:unreflective
 @:structAccess
-@:native("DiscordEventHandlers")
+@:native('DiscordEventHandlers')
 extern class DiscordEventHandlers
 {
 	@:native('DiscordEventHandlers')
