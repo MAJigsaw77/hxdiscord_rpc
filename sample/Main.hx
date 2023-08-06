@@ -8,7 +8,7 @@ class Main
 {
 	public static function main():Void
 	{
-		var handlers:DiscordEventHandlers = DiscordEventHandlers.create();
+		var handlers:DiscordEventHandlers = untyped __cpp__('new DiscordEventHandlers()');
 		handlers.ready = cpp.Function.fromStaticFunction(onReady);
 		handlers.disconnected = cpp.Function.fromStaticFunction(onDisconnected);
 		handlers.errored = cpp.Function.fromStaticFunction(onError);
@@ -33,7 +33,7 @@ class Main
 
 		Sys.println('Discord: Connected to User (' + cast(requestPtr.username, String) + '#' + cast(requestPtr.discriminator, String) + ')');
 
-		var discordPresence:DiscordRichPresence = DiscordRichPresence.create();
+		var discordPresence:DiscordRichPresence = untyped __cpp__('new DiscordRichPresence()');
 		discordPresence.state = "West of House";
 		discordPresence.details = "Frustration";
 		discordPresence.largeImageKey = "canary-large";
