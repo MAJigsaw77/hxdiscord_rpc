@@ -20,9 +20,9 @@ class Main
 			while (true)
 			{
 				#if DISCORD_DISABLE_IO_THREAD
-				RichPresence.UpdateConnection();
+				Discord.UpdateConnection();
 				#end
-				RichPresence.RunCallbacks();
+				Discord.RunCallbacks();
 			}
 		});
 
