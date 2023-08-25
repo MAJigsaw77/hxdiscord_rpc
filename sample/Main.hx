@@ -14,12 +14,16 @@ class Main
 		handlers.errored = cpp.Function.fromStaticFunction(onError);
 		Discord.Initialize("345229890980937739", cpp.RawPointer.addressOf(handlers), 1, null);
 
-		Thread.runWithEventLoop(function()
+		// Daemon Thread
+		Thread.create(function()
 		{
-			#if DISCORD_DISABLE_IO_THREAD
-			Discord.UpdateConnection();
-			#end
-			Discord.RunCallbacks();
+			while (true)
+			{
+				#if DISCORD_DISABLE_IO_THREAD
+				RichPresence.UpdateConnection();
+				#end
+				RichPresence.RunCallbacks();
+			}
 		});
 
 		Sys.sleep(20);
