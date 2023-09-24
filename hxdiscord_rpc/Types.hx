@@ -1,6 +1,6 @@
 package hxdiscord_rpc;
 
-#if (!cpp && macro)
+#if !cpp
 #error 'Discord RPC supports only C++ target platforms.'
 #end
 
