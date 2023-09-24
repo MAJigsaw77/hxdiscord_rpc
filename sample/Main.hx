@@ -23,6 +23,9 @@ class Main
 				Discord.UpdateConnection();
 				#end
 				Discord.RunCallbacks();
+
+				// Wait 2 seconds until the next loop...
+				Sys.sleep(2);
 			}
 		});
 
