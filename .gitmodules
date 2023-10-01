@@ -1,0 +1,6 @@
+[submodule "project/discord-rpc"]
+	path = project/discord-rpc
+	url = https://github.com/discord/discord-rpc.git
+[submodule "project/rapidjson"]
+	path = project/rapidjson
+	url = https://github.com/Tencent/rapidjson.git
