@@ -53,11 +53,11 @@ class Main
 
 	private static function onDisconnected(errorCode:Int, message:cpp.ConstCharStar):Void
 	{
-		Sys.println('Discord: Disconnected (' + errorCode + ': ' + cast(message, String) + ')');
+		Sys.println('Discord: Disconnected ($errorCode: ${cast(message, String)})');
 	}
 
 	private static function onError(errorCode:Int, message:cpp.ConstCharStar):Void
 	{
-		Sys.println('Discord: Error (' + errorCode + ': ' + cast(message, String) + ')');
+		Sys.println('Discord: Error ($errorCode: ${cast(message, String)})');
 	}
 }
