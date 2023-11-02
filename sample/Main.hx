@@ -24,8 +24,8 @@ class Main
 				#end
 				Discord.RunCallbacks();
 
-				// Wait 2 seconds until the next loop...
-				Sys.sleep(2);
+				// Wait 0.5 seconds until the next loop...
+				Sys.sleep(0.5);
 			}
 		});
 
