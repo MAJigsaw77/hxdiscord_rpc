@@ -2,7 +2,7 @@
 
 ![](https://img.shields.io/github/repo-size/MAJigsaw77/hxdiscord_rpc) ![](https://badgen.net/github/open-issues/MAJigsaw77/hxdiscord_rpc) ![](https://badgen.net/badge/license/MIT/green)
 
-Haxe/hxcpp @:native bindings for [Discord RPC](https://github.com/discord/discord-rpc)
+Haxe/hxcpp @:native bindings for [Discord RPC](https://github.com/discord/discord-rpc).
 
 ### Installation
 
