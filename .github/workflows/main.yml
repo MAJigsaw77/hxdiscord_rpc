@@ -19,6 +19,7 @@ jobs:
 
       - name: Compiling 
         run: |
-          haxelib git hxdiscord_rpc https://github.com/MAJigsaw77/hxdiscord_rpc.git ${{github.ref_name}} --quiet
+          haxelib install hxcpp --quiet
+          haxelib dev hxdiscord_rpc .
           cd sample
           haxe build.hxml
