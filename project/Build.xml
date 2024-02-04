@@ -52,7 +52,7 @@
 			<lib name="advapi32.lib" />
 		</section>
 
-		<section if="macos || linux">
+		<section if="mingw || macos || linux">
 			<lib name="-lpthread" />
 		</section>
 
