@@ -39,9 +39,9 @@ class Main
 		var requestPtr:cpp.Star<DiscordUser> = cpp.ConstPointer.fromRaw(request).ptr;
 
 		if (Std.parseInt(cast(requestPtr.discriminator, String)) != 0)
-			Sys.println('(Discord) Connected to User (${cast(requestPtr.username, String)}#${cast(requestPtr.discriminator, String)})');
+			Sys.println('Discord: Connected to user (${cast(requestPtr.username, String)}#${cast(requestPtr.discriminator, String)})');
 		else
-			Sys.println('(Discord) Connected to User (${cast(requestPtr.username, String)})');
+			Sys.println('Discord: Connected to user (${cast(requestPtr.username, String)})');
 
 		var discordPresence:DiscordRichPresence = DiscordRichPresence.create();
 		discordPresence.state = "West of House";
