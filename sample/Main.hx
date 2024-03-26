@@ -15,7 +15,7 @@ class Main
 		Discord.Initialize("345229890980937739", cpp.RawPointer.addressOf(handlers), 1, null);
 
 		// Daemon Thread
-		Thread.create(function()
+		Thread.create(function():Void
 		{
 			while (true)
 			{
