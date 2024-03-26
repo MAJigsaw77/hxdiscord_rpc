@@ -36,12 +36,10 @@ class Main
 
 	private static function onReady(request:cpp.RawConstPointer<DiscordUser>):Void
 	{
-		var requestPtr:cpp.Star<DiscordUser> = cpp.ConstPointer.fromRaw(request).ptr;
-
-		if (Std.parseInt(cast(requestPtr.discriminator, String)) != 0)
-			Sys.println('Discord: Connected to user (${cast(requestPtr.username, String)}#${cast(requestPtr.discriminator, String)})');
+		if (Std.parseInt(cast(request[0].discriminator, String)) != 0)
+			Sys.println('Discord: Connected to user (${cast(request[0].username, String)}#${cast(request[0].discriminator, String)})');
 		else
-			Sys.println('Discord: Connected to user (${cast(requestPtr.username, String)})');
+			Sys.println('Discord: Connected to user (${cast(request[0].username, String)})');
 
 		var discordPresence:DiscordRichPresence = DiscordRichPresence.create();
 		discordPresence.state = "West of House";
