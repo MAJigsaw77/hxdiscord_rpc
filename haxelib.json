@@ -1,20 +1,20 @@
 {
-	"name":"hxdiscord_rpc",
-	"url":"https://github.com/MAJigsaw77/hxdiscord_rpc",
-	"license":"MIT",
-	"tags":[
+	"name": "hxdiscord_rpc",
+	"url": "https://github.com/MAJigsaw77/hxdiscord_rpc",
+	"license": "MIT",
+	"tags": [
 		"cpp",
 		"discord",
 		"haxe",
 		"rpc"
 	],
-	"description":"Haxe/hxcpp @:native bindings for Discord RPC.",
-	"version":"1.1.1",
-	"releasenote":"Fixed issues with reflection and dce.",
-	"contributors":[
+	"description": "Haxe/hxcpp @:native bindings for Discord RPC.",
+	"version": "1.1.1",
+	"releasenote": "Fixed issues with reflection and dce.",
+	"contributors": [
 		"MAJigsaw77"
 	],
-	"dependencies":{
-		"hxcpp":""
+	"dependencies": {
+		"hxcpp": ""
 	}
 }
