@@ -34,7 +34,7 @@ class Main
 		Discord.Shutdown();
 	}
 
-	private static function onReady(request:cpp.RawConstPointer<DiscordUser>):cpp.Void
+	private static function onReady(request:cpp.RawConstPointer<DiscordUser>):Void
 	{
 		if (Std.parseInt(cast(request[0].discriminator, String)) != 0)
 			Sys.println('Discord: Connected to user (${cast(request[0].username, String)}#${cast(request[0].discriminator, String)})');
@@ -49,12 +49,12 @@ class Main
 		Discord.UpdatePresence(cpp.RawConstPointer.addressOf(discordPresence));
 	}
 
-	private static function onDisconnected(errorCode:Int, message:cpp.ConstCharStar):cpp.Void
+	private static function onDisconnected(errorCode:Int, message:cpp.ConstCharStar):Void
 	{
 		Sys.println('Discord: Disconnected ($errorCode: ${cast(message, String)})');
 	}
 
-	private static function onError(errorCode:Int, message:cpp.ConstCharStar):cpp.Void
+	private static function onError(errorCode:Int, message:cpp.ConstCharStar):Void
 	{
 		Sys.println('Discord: Error ($errorCode: ${cast(message, String)})');
 	}
