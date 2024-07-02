@@ -1,10 +1,12 @@
 package hxdiscord_rpc;
 
+/**
+ * Dummy class for importing Discord RPC types.
+ */
 #if !cpp
 #error 'Discord RPC supports only C++ target platforms.'
 #end
-
-class Types {} // blank
+class Types {}
 
 @:buildXml('<include name="${haxelib:hxdiscord_rpc}/project/Build.xml" />')
 @:include('discord_rpc.h')
@@ -16,21 +18,21 @@ extern class DiscordRichPresence
 	@:native('DiscordRichPresence')
 	static function create():DiscordRichPresence;
 
-	var state:cpp.ConstCharStar; /* max 128 bytes */
-	var details:cpp.ConstCharStar; /* max 128 bytes */
+	var state:cpp.ConstCharStar;
+	var details:cpp.ConstCharStar;
 	var startTimestamp:cpp.Int64;
 	var endTimestamp:cpp.Int64;
-	var largeImageKey:cpp.ConstCharStar; /* max 32 bytes */
-	var largeImageText:cpp.ConstCharStar; /* max 128 bytes */
-	var smallImageKey:cpp.ConstCharStar; /* max 32 bytes */
-	var smallImageText:cpp.ConstCharStar; /* max 128 bytes */
-	var partyId:cpp.ConstCharStar; /* max 128 bytes */
+	var largeImageKey:cpp.ConstCharStar;
+	var largeImageText:cpp.ConstCharStar;
+	var smallImageKey:cpp.ConstCharStar;
+	var smallImageText:cpp.ConstCharStar;
+	var partyId:cpp.ConstCharStar;
 	var partySize:Int;
 	var partyMax:Int;
 	var partyPrivacy:Int;
-	var matchSecret:cpp.ConstCharStar; /* max 128 bytes */
-	var joinSecret:cpp.ConstCharStar; /* max 128 bytes */
-	var spectateSecret:cpp.ConstCharStar; /* max 128 bytes */
+	var matchSecret:cpp.ConstCharStar;
+	var joinSecret:cpp.ConstCharStar;
+	var spectateSecret:cpp.ConstCharStar;
 	var instance:cpp.Int8;
 }
 
