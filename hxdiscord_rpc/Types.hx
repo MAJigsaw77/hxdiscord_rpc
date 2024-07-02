@@ -8,6 +8,7 @@ package hxdiscord_rpc;
 #end
 class Types {}
 
+@:dox(hide)
 @:buildXml('<include name="${haxelib:hxdiscord_rpc}/project/Build.xml" />')
 @:include('discord_rpc.h')
 @:unreflective
@@ -36,6 +37,7 @@ extern class DiscordRichPresence
 	var instance:cpp.Int8;
 }
 
+@:dox(hide)
 @:buildXml('<include name="${haxelib:hxdiscord_rpc}/project/Build.xml" />')
 @:include('discord_rpc.h')
 @:unreflective
@@ -52,6 +54,7 @@ extern class DiscordUser
 	var avatar:cpp.ConstCharStar;
 }
 
+@:dox(hide)
 @:buildXml('<include name="${haxelib:hxdiscord_rpc}/project/Build.xml" />')
 @:include('discord_rpc.h')
 @:unreflective
