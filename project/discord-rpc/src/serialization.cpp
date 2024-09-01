@@ -172,7 +172,7 @@ size_t JsonWriteRichPresenceObj(char* dest,
                 }
 
                 writer.Key("instance");
-                writer.Bool(presence->instance != 0);
+                writer.Bool(presence->instance);
             }
         }
     }
