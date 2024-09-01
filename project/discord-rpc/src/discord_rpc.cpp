@@ -39,10 +39,17 @@ struct User {
     // 32 unicode glyphs is max name size => 4 bytes per glyph in the worst case, +1 for null
     // terminator = 129
     char username[344];
+    // 32 unicode glyphs is max name size => 4 bytes per glyph in the worst case, +1 for null
+    // terminator = 129
+    char globalName[344];
     // 4 decimal digits + 1 null terminator = 5
     char discriminator[8];
     // optional 'a_' + md5 hex digest (32 bytes) + null terminator = 35
     char avatar[128];
+    // The premium type of the user.
+    DiscordPremiumType premiumType;
+    // Whether the user is a bot.
+    bool bot;
     // Rounded way up because I'm paranoid about games breaking from future changes in these sizes
 };
 
