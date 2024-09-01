@@ -53,7 +53,7 @@ typedef enum DiscordActivityJoinRequestReply {
 
 typedef struct DiscordRichPresence {
     DiscordActivityType type;
-    const char* url; /* max 512 bytes */
+    const char* url;     /* max 512 bytes */
     const char* state;   /* max 128 bytes */
     const char* details; /* max 128 bytes */
     int64_t startTimestamp;
