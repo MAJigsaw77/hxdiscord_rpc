@@ -205,7 +205,7 @@ extern class DiscordRichPresence
 	var type:DiscordActivityType;
 
 	/**
-	 * Stream URL of the rich presence (max 512 bytes).
+	 * Streaming activity URL of the rich presence (max 512 bytes).
 	 */
 	var url:cpp.ConstCharStar;
 
