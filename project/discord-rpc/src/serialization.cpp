@@ -105,6 +105,20 @@ size_t JsonWriteRichPresenceObj(char* dest,
             if (presence != nullptr) {
                 WriteObject activity(writer, "activity");
 
+                if (presence->type == DiscordActivityType_Streaming) {
+                    if (presence->url && strncmp(presence->url, "http", 4) == 0) {
+                        WriteKey(writer, "type");
+                        writer.Int(presence->type);
+
+                        WriteKey(writer, "url");
+                        writer.String(presence->url);
+                    }
+                }
+                else {
+                    WriteKey(writer, "type");
+                    writer.Int(presence->type);
+                }
+
                 WriteOptionalString(writer, "state", presence->state);
                 WriteOptionalString(writer, "details", presence->details);
 
@@ -134,7 +148,7 @@ size_t JsonWriteRichPresenceObj(char* dest,
                 }
 
                 if ((presence->partyId && presence->partyId[0]) || presence->partySize ||
-                    presence->partyMax || presence->partyPrivacy) {
+                    presence->partyMax) {
                     WriteObject party(writer, "party");
                     WriteOptionalString(writer, "id", presence->partyId);
                     if (presence->partySize && presence->partyMax) {
@@ -143,10 +157,8 @@ size_t JsonWriteRichPresenceObj(char* dest,
                         writer.Int(presence->partyMax);
                     }
 
-                    if (presence->partyPrivacy) {
-                        WriteKey(writer, "privacy");
-                        writer.Int(presence->partyPrivacy);
-                    }
+                    WriteKey(writer, "privacy");
+                    writer.Int(presence->partyPrivacy);
                 }
 
                 if ((presence->matchSecret && presence->matchSecret[0]) ||
@@ -159,7 +171,7 @@ size_t JsonWriteRichPresenceObj(char* dest,
                 }
 
                 writer.Key("instance");
-                writer.Bool(presence->instance != 0);
+                writer.Bool(presence->instance);
             }
         }
     }
@@ -220,7 +232,7 @@ size_t JsonWriteUnsubscribeCommand(char* dest, size_t maxLen, int nonce, const c
     return writer.Size();
 }
 
-size_t JsonWriteJoinReply(char* dest, size_t maxLen, const char* userId, int reply, int nonce)
+size_t JsonWriteJoinReply(char* dest, size_t maxLen, const char* userId, DiscordActivityJoinRequestReply reply, int nonce)
 {
     JsonWriter writer(dest, maxLen);
 
@@ -228,7 +240,7 @@ size_t JsonWriteJoinReply(char* dest, size_t maxLen, const char* userId, int rep
         WriteObject obj(writer);
 
         WriteKey(writer, "cmd");
-        if (reply == DISCORD_REPLY_YES) {
+        if (reply == DiscordActivityJoinRequestReply_Yes) {
             writer.String("SEND_ACTIVITY_JOIN_INVITE");
         }
         else {
