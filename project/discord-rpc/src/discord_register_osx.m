@@ -35,6 +35,11 @@ static void RegisterURL(const char* applicationId)
     snprintf(url, sizeof(url), "discord-%s", applicationId);
     CFStringRef cfURL = CFStringCreateWithCString(NULL, url, kCFStringEncodingUTF8);
 
+    if (!cfURL) {
+        fprintf(stderr, "Failure allocating URL CFString\n");
+        return;
+    }
+
     NSString* myBundleId = [[NSBundle mainBundle] bundleIdentifier];
     if (!myBundleId) {
         fprintf(stderr, "No bundle id found\n");
