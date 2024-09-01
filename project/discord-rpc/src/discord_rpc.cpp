@@ -210,12 +210,12 @@ static void Discord_UpdateConnection(void)
 
                         auto premiumType = GetIntMember(user, "premium_type");
                         if (premiumType) {
-                            joinReq.premiumType = premiumType;
+                            joinReq->premiumType = premiumType;
                         }
 
                         auto bot = GetBoolMember(user, "bot");
                         if (bot) {
-                            joinReq.bot = bot;
+                            joinReq->bot = bot;
                         }
 
                         JoinAskQueue.CommitAdd();
@@ -338,12 +338,12 @@ extern "C" DISCORD_EXPORT void Discord_Initialize(const char* applicationId,
 
             auto premiumType = GetIntMember(user, "premium_type");
             if (premiumType) {
-                connectedUser.premiumType = premiumType;
+                connectedUser->premiumType = premiumType;
             }
 
             auto bot = GetBoolMember(user, "bot");
             if (bot) {
-                connectedUser.bot = bot;
+                connectedUser->bot = bot;
             }
         }
         WasJustConnected.exchange(true);
