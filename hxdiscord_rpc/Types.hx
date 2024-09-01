@@ -20,16 +20,22 @@ extern enum abstract DiscordPremiumType(DiscordPremiumType_Impl)
 	var DiscordPremiumType_None;
 
 	/**
-	 * Tier 1 premium membership.
+	 * Nitro classic premium membership.
 	 */
-	@:native('DiscordPremiumType_Tier1')
-	var DiscordPremiumType_Tier1;
+	@:native('DiscordPremiumType_NitroClassic')
+	var DiscordPremiumType_NitroClassic;
 
 	/**
-	 * Tier 2 premium membership.
+	 * Nitro premium membership.
 	 */
-	@:native('DiscordPremiumType_Tier2')
-	var DiscordPremiumType_Tier2;
+	@:native('DiscordPremiumType_Nitro')
+	var DiscordPremiumType_Nitro;
+
+	/**
+	 * Nitro basic premium membership.
+	 */
+	@:native('DiscordPremiumType_NitroBasic')
+	var DiscordPremiumType_NitroBasic;
 
 	@:from
 	static public inline function fromInt(i:Int):DiscordPremiumType
