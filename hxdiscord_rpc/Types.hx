@@ -335,22 +335,22 @@ extern class DiscordUser
 	var globalName:cpp.ConstCharStar;
 
 	/**
-	 * Discriminator of the user.
+	 * Discord-tag of the user.
 	 */
 	var discriminator:cpp.ConstCharStar;
 
 	/**
-	 * Avatar of the user.
+	 * Avatar hash of the user.
 	 */
 	var avatar:cpp.ConstCharStar;
 
 	/**
-	 * Premium type of the user.
+	 * Type of Nitro subscription the user has.
 	 */
 	var premiumType:DiscordPremiumType;
 
 	/**
-	 * Whether the user is a bot.
+	 * Whether the user belongs to an OAuth2 application.
 	 */
 	var bot:Bool;
 }
