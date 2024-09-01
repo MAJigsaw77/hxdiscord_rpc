@@ -19,36 +19,6 @@ import hxdiscord_rpc.Types;
 extern class Discord
 {
 	/**
-	 * No reply constant.
-	 */
-	@:native('DISCORD_REPLY_NO')
-	static var REPLY_NO:Int;
-
-	/**
-	 * Yes reply constant.
-	 */
-	@:native('DISCORD_REPLY_YES')
-	static var REPLY_YES:Int;
-
-	/**
-	 * Ignore reply constant.
-	 */
-	@:native('DISCORD_REPLY_IGNORE')
-	static var REPLY_IGNORE:Int;
-
-	/**
-	 * Private party constant.
-	 */
-	@:native('DISCORD_PARTY_PRIVATE')
-	static var PARTY_PRIVATE:Int;
-
-	/**
-	 * Public party constant.
-	 */
-	@:native('DISCORD_PARTY_PUBLIC')
-	static var PARTY_PUBLIC:Int;
-
-	/**
 	 * Initializes the Discord RPC.
 	 *
 	 * @param applicationId The application ID for the Discord app.
@@ -99,10 +69,10 @@ extern class Discord
 	 * Responds to a user's request.
 	 *
 	 * @param userid The user ID to respond to.
-	 * @param reply The reply type (either REPLY_NO, REPLY_YES, or REPLY_IGNORE).
+	 * @param reply The reply type.
 	 */
 	@:native('Discord_Respond')
-	static function Respond(userid:cpp.ConstCharStar, reply:Int):Void;
+	static function Respond(userid:cpp.ConstCharStar, reply:DiscordActivityJoinRequestReply):Void;
 
 	/**
 	 * Updates the event handlers.
