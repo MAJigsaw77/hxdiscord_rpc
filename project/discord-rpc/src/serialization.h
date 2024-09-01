@@ -41,6 +41,18 @@ inline size_t StringCopy(char (&dest)[Len], const char* src)
     return copied - 1;
 }
 
+template <size_t Len>
+inline size_t StringCopyOptional(char (&dest)[Len], const char* src)
+{
+    if (src) {
+        return StringCopy(dest, src);
+    }
+    else {
+        dest[0] = 0;
+        return 0;
+    }
+}
+
 size_t JsonWriteHandshakeObj(char* dest, size_t maxLen, int version, const char* applicationId);
 
 // Commands

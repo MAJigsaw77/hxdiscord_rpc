@@ -193,21 +193,12 @@ static void Discord_UpdateConnection(void)
                     auto user = GetObjMember(data, "user");
                     auto userId = GetStrMember(user, "id");
                     auto username = GetStrMember(user, "username");
-                    auto avatar = GetStrMember(user, "avatar");
                     auto joinReq = JoinAskQueue.GetNextAddMessage();
                     if (userId && username && joinReq) {
                         StringCopy(joinReq->userId, userId);
                         StringCopy(joinReq->username, username);
-                        auto discriminator = GetStrMember(user, "discriminator");
-                        if (discriminator) {
-                            StringCopy(joinReq->discriminator, discriminator);
-                        }
-                        if (avatar) {
-                            StringCopy(joinReq->avatar, avatar);
-                        }
-                        else {
-                            joinReq->avatar[0] = 0;
-                        }
+                        StringCopyOptional(joinReq->discriminator, GetStrMember(user, "discriminator"));
+                        StringCopyOptional(joinReq->avatar, GetStrMember(user, "avatar"));
                         JoinAskQueue.CommitAdd();
                     }
                 }
@@ -319,20 +310,11 @@ extern "C" DISCORD_EXPORT void Discord_Initialize(const char* applicationId,
         auto user = GetObjMember(data, "user");
         auto userId = GetStrMember(user, "id");
         auto username = GetStrMember(user, "username");
-        auto avatar = GetStrMember(user, "avatar");
         if (userId && username) {
             StringCopy(connectedUser.userId, userId);
             StringCopy(connectedUser.username, username);
-            auto discriminator = GetStrMember(user, "discriminator");
-            if (discriminator) {
-                StringCopy(connectedUser.discriminator, discriminator);
-            }
-            if (avatar) {
-                StringCopy(connectedUser.avatar, avatar);
-            }
-            else {
-                connectedUser.avatar[0] = 0;
-            }
+            StringCopyOptional(connectedUser.discriminator, GetStrMember(user, "discriminator"));
+            StringCopyOptional(connectedUser.avatar, GetStrMember(user, "avatar"));
         }
         WasJustConnected.exchange(true);
         ReconnectTimeMs.reset();
