@@ -8,6 +8,102 @@ package hxdiscord_rpc;
 #end
 class Types {}
 
+extern enum abstract DiscordPremiumType(DiscordPremiumType_Impl)
+{
+	@:native('DiscordPremiumType_None')
+	var DiscordPremiumType_None;
+
+	@:native('DiscordPremiumType_Tier1')
+	var DiscordPremiumType_Tier1;
+
+	@:native('DiscordPremiumType_Tier2')
+	var DiscordPremiumType_Tier2;
+
+	@:from
+	static public inline function fromInt(i:Int):LibVLC_Audio_Output_Channel_T
+		return cast i;
+
+	@:to extern public inline function toInt():Int
+		return untyped this;
+}
+
+@:buildXml('<include name="${haxelib:hxdiscord_rpc}/project/Build.xml" />')
+@:include('discord_rpc.h')
+@:native('DiscordPremiumType')
+private extern class DiscordPremiumType_Impl {}
+
+extern enum abstract DiscordActivityPartyPrivacy(DiscordActivityPartyPrivacy_Impl)
+{
+	@:native('DiscordActivityPartyPrivacy_Private')
+	var DiscordActivityPartyPrivacy_Private;
+
+	@:native('DiscordActivityPartyPrivacy_Public')
+	var DiscordActivityPartyPrivacy_Public;
+
+	@:from
+	static public inline function fromInt(i:Int):DiscordActivityPartyPrivacy
+		return cast i;
+
+	@:to extern public inline function toInt():Int
+		return untyped this;
+}
+
+@:buildXml('<include name="${haxelib:hxdiscord_rpc}/project/Build.xml" />')
+@:include('discord_rpc.h')
+@:native('DiscordActivityPartyPrivacy')
+private extern class DiscordActivityPartyPrivacy_Impl {}
+
+extern enum abstract DiscordActivityType(DiscordActivityType_Impl)
+{
+	@:native('DiscordActivityType_Playing')
+	var DiscordActivityType_Playing;
+
+	@:native('DiscordActivityType_Streaming')
+	var DiscordActivityType_Streaming;
+
+	@:native('DiscordActivityType_Listening')
+	var DiscordActivityType_Listening;
+
+	@:native('DiscordActivityType_Watching')
+	var DiscordActivityType_Watching;
+
+	@:from
+	static public inline function fromInt(i:Int):DiscordActivityType
+		return cast i;
+
+	@:to extern public inline function toInt():Int
+		return untyped this;
+}
+
+@:buildXml('<include name="${haxelib:hxdiscord_rpc}/project/Build.xml" />')
+@:include('discord_rpc.h')
+@:native('DiscordActivityType')
+private extern class DiscordActivityType_Impl {}
+
+extern enum abstract DiscordActivityJoinRequestReply(DiscordActivityJoinRequestReply_Impl)
+{
+	@:native('DiscordActivityJoinRequestReply_No')
+	var DiscordActivityJoinRequestReply_No;
+
+	@:native('DiscordActivityJoinRequestReply_Yes')
+	var DiscordActivityJoinRequestReply_Yes;
+
+	@:native('DiscordActivityJoinRequestReply_Ignore')
+	var DiscordActivityJoinRequestReply_Ignore;
+
+	@:from
+	static public inline function fromInt(i:Int):DiscordActivityJoinRequestReply
+		return cast i;
+
+	@:to extern public inline function toInt():Int
+		return untyped this;
+}
+
+@:buildXml('<include name="${haxelib:hxdiscord_rpc}/project/Build.xml" />')
+@:include('discord_rpc.h')
+@:native('DiscordActivityJoinRequestReply')
+private extern class DiscordActivityJoinRequestReply_Impl {}
+
 /**
  * Represents rich presence information for Discord integration.
  */
@@ -25,6 +121,16 @@ extern class DiscordRichPresence
 	 */
 	@:native('DiscordRichPresence')
 	static function create():DiscordRichPresence;
+
+	/**
+	 * Type of activity of the rich presence.
+	 */
+	var type:DiscordActivityType;
+
+	/**
+	 * Stream URL of the rich presence (max 512 bytes).
+	 */
+	var url:cpp.ConstCharStar;
 
 	/**
 	 * State of the rich presence (max 128 bytes).
@@ -84,7 +190,7 @@ extern class DiscordRichPresence
 	/**
 	 * Privacy setting for the party.
 	 */
-	var partyPrivacy:Int;
+	var partyPrivacy:DiscordActivityPartyPrivacy;
 
 	/**
 	 * Secret for matching (max 128 bytes).
@@ -102,9 +208,9 @@ extern class DiscordRichPresence
 	var spectateSecret:cpp.ConstCharStar;
 
 	/**
-	 * Instance of the presence.
+	 * Whether this is an instance of the presence.
 	 */
-	var instance:cpp.Int8;
+	var instance:Bool;
 }
 
 /**
@@ -136,6 +242,11 @@ extern class DiscordUser
 	var username:cpp.ConstCharStar;
 
 	/**
+	 * Global name of the user.
+	 */
+	var globalName:cpp.ConstCharStar;
+
+	/**
 	 * Discriminator of the user.
 	 */
 	var discriminator:cpp.ConstCharStar;
@@ -144,6 +255,16 @@ extern class DiscordUser
 	 * Avatar of the user.
 	 */
 	var avatar:cpp.ConstCharStar;
+
+	/**
+	 * Premium type of the user.
+	 */
+	var premiumType:DiscordPremiumType;
+
+	/**
+	 * Whether the user is a bot.
+	 */
+	var bot:Bool;
 }
 
 /**
