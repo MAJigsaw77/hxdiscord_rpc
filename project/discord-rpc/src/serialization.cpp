@@ -161,7 +161,7 @@ size_t JsonWriteRichPresenceObj(char* dest,
                     writer.Int(presence->partyPrivacy);
                 }
 
-                if (presence->buttons && presence->buttons[0].label) {
+                if (presence->buttons[0].label && presence->buttons[0].label[0]) {
                     WriteArray buttons(writer, "buttons");
                     for (int i = 0; i < sizeof(((DiscordRichPresence *)0)->buttons) / sizeof(DiscordButton); i++) {
                         const DiscordButton button = presence->buttons[i];
