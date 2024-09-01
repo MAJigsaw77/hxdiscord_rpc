@@ -51,6 +51,11 @@ typedef enum DiscordActivityJoinRequestReply {
     DiscordActivityJoinRequestReply_Ignore,
 } DiscordActivityJoinRequestReply;
 
+typedef struct DiscordButton {
+    const char* label;
+    const char* url;
+} DiscordButton;
+
 typedef struct DiscordRichPresence {
     DiscordActivityType type;
     const char* url;     /* max 512 bytes */
@@ -66,6 +71,7 @@ typedef struct DiscordRichPresence {
     int partySize;
     int partyMax;
     DiscordActivityPartyPrivacy partyPrivacy;
+    const DiscordButton* buttons;
     const char* matchSecret;    /* max 128 bytes */
     const char* joinSecret;     /* max 128 bytes */
     const char* spectateSecret; /* max 128 bytes */
