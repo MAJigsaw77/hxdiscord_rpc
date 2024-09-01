@@ -71,7 +71,7 @@ typedef struct DiscordRichPresence {
     int partySize;
     int partyMax;
     DiscordActivityPartyPrivacy partyPrivacy;
-    const DiscordButton* buttons;
+    DiscordButton buttons[2];   /* max 2 elements */
     const char* matchSecret;    /* max 128 bytes */
     const char* joinSecret;     /* max 128 bytes */
     const char* spectateSecret; /* max 128 bytes */
