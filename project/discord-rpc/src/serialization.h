@@ -69,7 +69,7 @@ size_t JsonWriteSubscribeCommand(char* dest, size_t maxLen, int nonce, const cha
 
 size_t JsonWriteUnsubscribeCommand(char* dest, size_t maxLen, int nonce, const char* evtName);
 
-size_t JsonWriteJoinReply(char* dest, size_t maxLen, const char* userId, int reply, int nonce);
+size_t JsonWriteJoinReply(char* dest, size_t maxLen, const char* userId, DiscordActivityJoinRequestReply reply, int nonce);
 
 // I want to use as few allocations as I can get away with, and to do that with RapidJson, you need
 // to supply some of your own allocators for stuff rather than use the defaults
