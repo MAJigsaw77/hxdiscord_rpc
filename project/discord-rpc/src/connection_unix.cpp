@@ -53,10 +53,17 @@ bool BaseConnection::Open()
 {
     const char* tempPath = GetTempPath();
     auto self = reinterpret_cast<BaseConnectionUnix*>(this);
+#ifdef SOCK_CLOEXEC
+    self->sock = socket(AF_UNIX, SOCK_STREAM | SOCK_CLOEXEC, 0);
+#else
     self->sock = socket(AF_UNIX, SOCK_STREAM, 0);
+#endif
     if (self->sock == -1) {
         return false;
     }
+#ifndef SOCK_CLOEXEC
+    fcntl(self->sock, F_SETFD, FD_CLOEXEC);
+#endif
     fcntl(self->sock, F_SETFL, O_NONBLOCK);
 #ifdef SO_NOSIGPIPE
     int optval = 1;
