@@ -4,6 +4,7 @@
 #ifndef __cplusplus
 #include <stdbool.h>
 #endif
+#include "discord_rpc.h"
 
 #ifndef __MINGW32__
 #pragma warning(push)
