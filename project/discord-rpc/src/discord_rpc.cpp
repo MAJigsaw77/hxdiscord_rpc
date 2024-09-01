@@ -475,7 +475,7 @@ extern "C" DISCORD_EXPORT void Discord_RunCallbacks(void)
         {
             std::lock_guard<std::mutex> guard(HandlerMutex);
             if (Handlers.joinRequest) {
-                DiscordUser du{req->userId, req->username, req->discriminator, req->avatar};
+                DiscordUser du{req->userId, req->username, req->globalName, req->discriminator, req->avatar, req->premiumType, req->bot};
                 Handlers.joinRequest(&du);
             }
         }
