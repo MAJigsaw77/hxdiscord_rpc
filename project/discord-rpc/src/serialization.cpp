@@ -161,7 +161,23 @@ size_t JsonWriteRichPresenceObj(char* dest,
                     writer.Int(presence->partyPrivacy);
                 }
 
-                if ((presence->matchSecret && presence->matchSecret[0]) ||
+                if (presence->buttons && presence->buttons[0].label) {
+                    WriteArray buttons(writer, "buttons");
+                    for (int i = 0; i < sizeof(((DiscordRichPresence *)0)->buttons) / sizeof(DiscordButton); i++) {
+                        const DiscordButton button = presence->buttons[i];
+
+                        if (!button.label || !button.label[0]) {
+                            continue;
+                        }
+
+                        WriteObject object(writer);
+                        WriteKey(writer, "label");
+                        writer.String(button.label);
+
+                        WriteOptionalString(writer, "url", button.url);
+                    }
+                }
+                else if ((presence->matchSecret && presence->matchSecret[0]) ||
                     (presence->joinSecret && presence->joinSecret[0]) ||
                     (presence->spectateSecret && presence->spectateSecret[0])) {
                     WriteObject secrets(writer, "secrets");
