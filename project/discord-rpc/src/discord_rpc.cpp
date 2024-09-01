@@ -197,8 +197,20 @@ static void Discord_UpdateConnection(void)
                     if (userId && username && joinReq) {
                         StringCopy(joinReq->userId, userId);
                         StringCopy(joinReq->username, username);
+                        StringCopyOptional(joinReq->globalName, GetStrMember(user, "global_name"));
                         StringCopyOptional(joinReq->discriminator, GetStrMember(user, "discriminator"));
                         StringCopyOptional(joinReq->avatar, GetStrMember(user, "avatar"));
+
+                        auto premiumType = GetIntMember(user, "premium_type");
+                        if (premiumType) {
+                            joinReq.premiumType = premiumType;
+                        }
+
+                        auto bot = GetBoolMember(user, "bot");
+                        if (bot) {
+                            joinReq.bot = bot;
+                        }
+
                         JoinAskQueue.CommitAdd();
                     }
                 }
@@ -313,8 +325,19 @@ extern "C" DISCORD_EXPORT void Discord_Initialize(const char* applicationId,
         if (userId && username) {
             StringCopy(connectedUser.userId, userId);
             StringCopy(connectedUser.username, username);
-            StringCopyOptional(connectedUser.discriminator, GetStrMember(user, "discriminator"));
-            StringCopyOptional(connectedUser.avatar, GetStrMember(user, "avatar"));
+            StringCopyOptional(connectedUser->globalName, GetStrMember(user, "global_name"));
+            StringCopyOptional(connectedUser->discriminator, GetStrMember(user, "discriminator"));
+            StringCopyOptional(connectedUser->avatar, GetStrMember(user, "avatar"));
+
+            auto premiumType = GetIntMember(user, "premium_type");
+            if (premiumType) {
+                connectedUser.premiumType = premiumType;
+            }
+
+            auto bot = GetBoolMember(user, "bot");
+            if (bot) {
+                connectedUser.bot = bot;
+            }
         }
         WasJustConnected.exchange(true);
         ReconnectTimeMs.reset();
@@ -405,8 +428,11 @@ extern "C" DISCORD_EXPORT void Discord_RunCallbacks(void)
         if (Handlers.ready) {
             DiscordUser du{connectedUser.userId,
                            connectedUser.username,
+                           connectedUser.globalName,
                            connectedUser.discriminator,
-                           connectedUser.avatar};
+                           connectedUser.avatar,
+                           connectedUser.premiumType,
+                           connectedUser.bot};
             Handlers.ready(&du);
         }
     }
