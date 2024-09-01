@@ -29,26 +29,27 @@ extern "C" {
 
 typedef enum DiscordPremiumType {
     DiscordPremiumType_None,
-    DiscordPremiumType_Tier1,
-    DiscordPremiumType_Tier2,
+    DiscordPremiumType_NitroClassic,
+    DiscordPremiumType_Nitro,
+    DiscordPremiumType_NitroBasic
 } DiscordPremiumType;
 
 typedef enum DiscordActivityPartyPrivacy {
     DiscordActivityPartyPrivacy_Private,
-    DiscordActivityPartyPrivacy_Public,
+    DiscordActivityPartyPrivacy_Public
 } DiscordActivityPartyPrivacy;
 
 typedef enum DiscordActivityType {
     DiscordActivityType_Playing,
     DiscordActivityType_Streaming,
     DiscordActivityType_Listening,
-    DiscordActivityType_Watching,
+    DiscordActivityType_Watching
 } DiscordActivityType;
 
 typedef enum DiscordActivityJoinRequestReply {
     DiscordActivityJoinRequestReply_No,
     DiscordActivityJoinRequestReply_Yes,
-    DiscordActivityJoinRequestReply_Ignore,
+    DiscordActivityJoinRequestReply_Ignore
 } DiscordActivityJoinRequestReply;
 
 typedef struct DiscordButton {
