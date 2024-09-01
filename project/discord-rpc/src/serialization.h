@@ -1,6 +1,9 @@
 #pragma once
 
 #include <stdint.h>
+#ifndef __cplusplus
+#include <stdbool.h>
+#endif
 
 #ifndef __MINGW32__
 #pragma warning(push)
@@ -226,6 +229,17 @@ inline const char* GetStrMember(JsonValue* obj,
         auto member = obj->FindMember(name);
         if (member != obj->MemberEnd() && member->value.IsString()) {
             return member->value.GetString();
+        }
+    }
+    return notFoundDefault;
+}
+
+inline bool GetBoolMember(JsonValue* obj, const char* name, bool notFoundDefault = false)
+{
+    if (obj) {
+        auto member = obj->FindMember(name);
+        if (member != obj->MemberEnd() && member->value.IsBool()) {
+            return member->value.GetBool();
         }
     }
     return notFoundDefault;
