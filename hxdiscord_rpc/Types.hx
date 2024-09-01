@@ -8,14 +8,26 @@ package hxdiscord_rpc;
 #end
 class Types {}
 
+/**
+ * Represents different types of Discord premium memberships.
+ */
 extern enum abstract DiscordPremiumType(DiscordPremiumType_Impl)
 {
+	/**
+	 * No premium membership.
+	 */
 	@:native('DiscordPremiumType_None')
 	var DiscordPremiumType_None;
 
+	/**
+	 * Tier 1 premium membership.
+	 */
 	@:native('DiscordPremiumType_Tier1')
 	var DiscordPremiumType_Tier1;
 
+	/**
+	 * Tier 2 premium membership.
+	 */
 	@:native('DiscordPremiumType_Tier2')
 	var DiscordPremiumType_Tier2;
 
@@ -32,11 +44,20 @@ extern enum abstract DiscordPremiumType(DiscordPremiumType_Impl)
 @:native('DiscordPremiumType')
 private extern class DiscordPremiumType_Impl {}
 
+/**
+ * Represents the privacy settings for a Discord activity party.
+ */
 extern enum abstract DiscordActivityPartyPrivacy(DiscordActivityPartyPrivacy_Impl)
 {
+	/**
+	 * The party is private and only visible to invited users.
+	 */
 	@:native('DiscordActivityPartyPrivacy_Private')
 	var DiscordActivityPartyPrivacy_Private;
 
+	/**
+	 * The party is public and visible to everyone.
+	 */
 	@:native('DiscordActivityPartyPrivacy_Public')
 	var DiscordActivityPartyPrivacy_Public;
 
@@ -53,17 +74,32 @@ extern enum abstract DiscordActivityPartyPrivacy(DiscordActivityPartyPrivacy_Imp
 @:native('DiscordActivityPartyPrivacy')
 private extern class DiscordActivityPartyPrivacy_Impl {}
 
+/**
+ * Represents different types of Discord activities.
+ */
 extern enum abstract DiscordActivityType(DiscordActivityType_Impl)
 {
+	/**
+	 * The activity is playing a game.
+	 */
 	@:native('DiscordActivityType_Playing')
 	var DiscordActivityType_Playing;
 
+	/**
+	 * The activity is streaming a video.
+	 */
 	@:native('DiscordActivityType_Streaming')
 	var DiscordActivityType_Streaming;
 
+	/**
+	 * The activity is listening to music.
+	 */
 	@:native('DiscordActivityType_Listening')
 	var DiscordActivityType_Listening;
 
+	/**
+	 * The activity is watching a video.
+	 */
 	@:native('DiscordActivityType_Watching')
 	var DiscordActivityType_Watching;
 
@@ -80,14 +116,26 @@ extern enum abstract DiscordActivityType(DiscordActivityType_Impl)
 @:native('DiscordActivityType')
 private extern class DiscordActivityType_Impl {}
 
+/**
+ * Represents different replies to a Discord activity join request.
+ */
 extern enum abstract DiscordActivityJoinRequestReply(DiscordActivityJoinRequestReply_Impl)
 {
+	/**
+	 * The join request was denied.
+	 */
 	@:native('DiscordActivityJoinRequestReply_No')
 	var DiscordActivityJoinRequestReply_No;
 
+	/**
+	 * The join request was accepted.
+	 */
 	@:native('DiscordActivityJoinRequestReply_Yes')
 	var DiscordActivityJoinRequestReply_Yes;
 
+	/**
+	 * The join request was ignored.
+	 */
 	@:native('DiscordActivityJoinRequestReply_Ignore')
 	var DiscordActivityJoinRequestReply_Ignore;
 
