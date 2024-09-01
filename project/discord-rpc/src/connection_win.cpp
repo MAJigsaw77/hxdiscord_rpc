@@ -76,14 +76,12 @@ bool BaseConnection::Write(const void* data, size_t length)
         return true;
     }
     auto self = reinterpret_cast<BaseConnectionWin*>(this);
-    assert(self);
     if (!self) {
         return false;
     }
     if (self->pipe == INVALID_HANDLE_VALUE) {
         return false;
     }
-    assert(data);
     if (!data) {
         return false;
     }
@@ -95,12 +93,10 @@ bool BaseConnection::Write(const void* data, size_t length)
 
 bool BaseConnection::Read(void* data, size_t length)
 {
-    assert(data);
     if (!data) {
         return false;
     }
     auto self = reinterpret_cast<BaseConnectionWin*>(this);
-    assert(self);
     if (!self) {
         return false;
     }
@@ -113,7 +109,6 @@ bool BaseConnection::Read(void* data, size_t length)
             DWORD bytesToRead = (DWORD)length;
             DWORD bytesRead = 0;
             if (::ReadFile(self->pipe, data, bytesToRead, &bytesRead, nullptr) == TRUE) {
-                assert(bytesToRead == bytesRead);
                 return true;
             }
             else {
