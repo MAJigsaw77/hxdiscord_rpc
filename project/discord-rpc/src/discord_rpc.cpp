@@ -210,7 +210,7 @@ static void Discord_UpdateConnection(void)
 
                         auto premiumType = GetIntMember(user, "premium_type");
                         if (premiumType) {
-                            joinReq->premiumType = premiumType;
+                            joinReq->premiumType = (DiscordPremiumType) premiumType;
                         }
 
                         auto bot = GetBoolMember(user, "bot");
@@ -338,7 +338,7 @@ extern "C" DISCORD_EXPORT void Discord_Initialize(const char* applicationId,
 
             auto premiumType = GetIntMember(user, "premium_type");
             if (premiumType) {
-                connectedUser.premiumType = premiumType;
+                connectedUser.premiumType = (DiscordPremiumType) premiumType;
             }
 
             auto bot = GetBoolMember(user, "bot");
