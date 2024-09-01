@@ -109,6 +109,7 @@ size_t JsonWriteRichPresenceObj(char* dest,
                     if (presence->url && strncmp(presence->url, "http", 4) == 0) {
                         WriteKey(writer, "type");
                         writer.Int(presence->type);
+
                         WriteKey(writer, "url");
                         writer.String(presence->url);
                     }
@@ -147,7 +148,7 @@ size_t JsonWriteRichPresenceObj(char* dest,
                 }
 
                 if ((presence->partyId && presence->partyId[0]) || presence->partySize ||
-                    presence->partyMax || presence->partyPrivacy) {
+                    presence->partyMax) {
                     WriteObject party(writer, "party");
                     WriteOptionalString(writer, "id", presence->partyId);
                     if (presence->partySize && presence->partyMax) {
@@ -156,10 +157,8 @@ size_t JsonWriteRichPresenceObj(char* dest,
                         writer.Int(presence->partyMax);
                     }
 
-                    if (presence->partyPrivacy) {
-                        WriteKey(writer, "privacy");
-                        writer.Int(presence->partyPrivacy);
-                    }
+                    WriteKey(writer, "privacy");
+                    writer.Int(presence->partyPrivacy);
                 }
 
                 if ((presence->matchSecret && presence->matchSecret[0]) ||
