@@ -332,18 +332,18 @@ extern "C" DISCORD_EXPORT void Discord_Initialize(const char* applicationId,
         if (userId && username) {
             StringCopy(connectedUser.userId, userId);
             StringCopy(connectedUser.username, username);
-            StringCopyOptional(connectedUser->globalName, GetStrMember(user, "global_name"));
-            StringCopyOptional(connectedUser->discriminator, GetStrMember(user, "discriminator"));
-            StringCopyOptional(connectedUser->avatar, GetStrMember(user, "avatar"));
+            StringCopyOptional(connectedUser.globalName, GetStrMember(user, "global_name"));
+            StringCopyOptional(connectedUser.discriminator, GetStrMember(user, "discriminator"));
+            StringCopyOptional(connectedUser.avatar, GetStrMember(user, "avatar"));
 
             auto premiumType = GetIntMember(user, "premium_type");
             if (premiumType) {
-                connectedUser->premiumType = premiumType;
+                connectedUser.premiumType = premiumType;
             }
 
             auto bot = GetBoolMember(user, "bot");
             if (bot) {
-                connectedUser->bot = bot;
+                connectedUser.bot = bot;
             }
         }
         WasJustConnected.exchange(true);
