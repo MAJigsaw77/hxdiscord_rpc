@@ -364,7 +364,7 @@ extern "C" DISCORD_EXPORT void Discord_ClearPresence(void)
     Discord_UpdatePresence(nullptr);
 }
 
-extern "C" DISCORD_EXPORT void Discord_Respond(const char* userId, /* DISCORD_REPLY_ */ int reply)
+extern "C" DISCORD_EXPORT void Discord_Respond(const char* userId, DiscordActivityJoinRequestReply reply)
 {
     // if we are not connected, let's not batch up stale messages for later
     if (!Connection || !Connection->IsOpen()) {
