@@ -20,7 +20,7 @@ extern enum abstract DiscordPremiumType(DiscordPremiumType_Impl)
 	var DiscordPremiumType_Tier2;
 
 	@:from
-	static public inline function fromInt(i:Int):LibVLC_Audio_Output_Channel_T
+	static public inline function fromInt(i:Int):DiscordPremiumType
 		return cast i;
 
 	@:to extern public inline function toInt():Int
