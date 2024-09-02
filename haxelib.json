@@ -9,8 +9,8 @@
 		"rpc"
 	],
 	"description": "Haxe/hxcpp @:native bindings for Discord RPC.",
-	"version": "1.1.1",
-	"releasenote": "Fixed issues with reflection and dce.",
+	"version": "1.2.0",
+	"releasenote": "Added new features, fixed some issues with the discord rpc library and added documentation.",
 	"contributors": [
 		"MAJigsaw77"
 	],
