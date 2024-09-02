@@ -169,9 +169,9 @@ private extern class DiscordActivityJoinRequestReply_Impl {}
 extern class DiscordButton
 {
 	/**
-	 * Creates a new instance of `DiscordButton`.
+	 * Creates a new instance.
 	 *
-	 * @return A new instance of `DiscordButton`.
+	 * @return A new instance.
 	 */
 	@:native('DiscordButton')
 	static function create():DiscordButton;
