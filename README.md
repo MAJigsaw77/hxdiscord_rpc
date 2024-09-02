@@ -4,6 +4,9 @@
 
 Haxe/hxcpp @:native bindings for [Discord RPC](https://github.com/discord/discord-rpc).
 
+> [!NOTE]
+> These bindings are using a fork of Discord RPC, you can read more about it [here](https://github.com/MAJigsaw77/hxdiscord_rpc/tree/main/project/discord-rpc).
+
 ### Installation
 
 You can install it through `Haxelib`
