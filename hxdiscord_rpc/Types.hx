@@ -92,12 +92,6 @@ extern enum abstract DiscordActivityType(DiscordActivityType_Impl)
 	var DiscordActivityType_Playing;
 
 	/**
-	 * The activity is streaming a video.
-	 */
-	@:native('DiscordActivityType_Streaming')
-	var DiscordActivityType_Streaming;
-
-	/**
 	 * The activity is listening to music.
 	 */
 	@:native('DiscordActivityType_Listening')
@@ -108,6 +102,12 @@ extern enum abstract DiscordActivityType(DiscordActivityType_Impl)
 	 */
 	@:native('DiscordActivityType_Watching')
 	var DiscordActivityType_Watching;
+
+	/**
+	 * The activity is competing.
+	 */
+	@:native('DiscordActivityType_Competing')
+	var DiscordActivityType_Competing;
 
 	@:from
 	static public inline function fromInt(i:Int):DiscordActivityType
@@ -209,11 +209,6 @@ extern class DiscordRichPresence
 	 * Type of activity of the rich presence.
 	 */
 	var type:DiscordActivityType;
-
-	/**
-	 * Streaming activity URL of the rich presence (max 512 bytes).
-	 */
-	var url:cpp.ConstCharStar;
 
 	/**
 	 * State of the rich presence (max 128 bytes).

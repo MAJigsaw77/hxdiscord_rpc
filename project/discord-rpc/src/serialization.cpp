@@ -105,19 +105,8 @@ size_t JsonWriteRichPresenceObj(char* dest,
             if (presence != nullptr) {
                 WriteObject activity(writer, "activity");
 
-                if (presence->type == DiscordActivityType_Streaming) {
-                    if (presence->url && strncmp(presence->url, "http", 4) == 0) {
-                        WriteKey(writer, "type");
-                        writer.Int(presence->type);
-
-                        WriteKey(writer, "url");
-                        writer.String(presence->url);
-                    }
-                }
-                else {
-                    WriteKey(writer, "type");
-                    writer.Int(presence->type);
-                }
+                WriteKey(writer, "type");
+                writer.Int(presence->type);
 
                 WriteOptionalString(writer, "state", presence->state);
                 WriteOptionalString(writer, "details", presence->details);

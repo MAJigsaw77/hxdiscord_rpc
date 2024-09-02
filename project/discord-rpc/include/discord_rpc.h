@@ -40,10 +40,10 @@ typedef enum DiscordActivityPartyPrivacy {
 } DiscordActivityPartyPrivacy;
 
 typedef enum DiscordActivityType {
-    DiscordActivityType_Playing,
-    DiscordActivityType_Streaming,
-    DiscordActivityType_Listening,
-    DiscordActivityType_Watching
+    DiscordActivityType_Playing = 0,
+    DiscordActivityType_Listening = 2,
+    DiscordActivityType_Watching = 3,
+    DiscordActivityType_Competing = 5
 } DiscordActivityType;
 
 typedef enum DiscordActivityJoinRequestReply {
@@ -59,7 +59,6 @@ typedef struct DiscordButton {
 
 typedef struct DiscordRichPresence {
     DiscordActivityType type;
-    const char* url;     /* max 512 bytes */
     const char* state;   /* max 128 bytes */
     const char* details; /* max 128 bytes */
     int64_t startTimestamp;
