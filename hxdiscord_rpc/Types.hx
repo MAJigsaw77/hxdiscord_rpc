@@ -182,7 +182,7 @@ extern class DiscordButton
 	var label:cpp.ConstCharStar;
 
 	/**
-	 * The URL associated with the button. This can be inexistent, but the label will still be displayed.
+	 * The URL associated with the button.
 	 */
 	var url:cpp.ConstCharStar;
 }
