@@ -136,20 +136,6 @@ size_t JsonWriteRichPresenceObj(char* dest,
                     WriteOptionalString(writer, "small_text", presence->smallImageText);
                 }
 
-                if ((presence->partyId && presence->partyId[0]) || presence->partySize ||
-                    presence->partyMax) {
-                    WriteObject party(writer, "party");
-                    WriteOptionalString(writer, "id", presence->partyId);
-                    if (presence->partySize && presence->partyMax) {
-                        WriteArray size(writer, "size");
-                        writer.Int(presence->partySize);
-                        writer.Int(presence->partyMax);
-                    }
-
-                    WriteKey(writer, "privacy");
-                    writer.Int(presence->partyPrivacy);
-                }
-
                 if ((presence->buttons[0].label && presence->buttons[0].label[0]) && (presence->buttons[0].url && presence->buttons[0].url[0])) {
                     WriteArray buttons(writer, "buttons");
                     for (int i = 0; i < sizeof(((DiscordRichPresence *)0)->buttons) / sizeof(DiscordButton); i++) {
@@ -165,13 +151,31 @@ size_t JsonWriteRichPresenceObj(char* dest,
                         writer.EndObject();
                     }
                 }
-                else if ((presence->matchSecret && presence->matchSecret[0]) ||
-                    (presence->joinSecret && presence->joinSecret[0]) ||
-                    (presence->spectateSecret && presence->spectateSecret[0])) {
-                    WriteObject secrets(writer, "secrets");
-                    WriteOptionalString(writer, "match", presence->matchSecret);
-                    WriteOptionalString(writer, "join", presence->joinSecret);
-                    WriteOptionalString(writer, "spectate", presence->spectateSecret);
+                else
+                {
+                    if ((presence->partyId && presence->partyId[0]) || presence->partySize ||
+                        presence->partyMax) {
+                        WriteObject party(writer, "party");
+                        WriteOptionalString(writer, "id", presence->partyId);
+
+                        if (presence->partySize && presence->partyMax) {
+                            WriteArray size(writer, "size");
+                            writer.Int(presence->partySize);
+                            writer.Int(presence->partyMax);
+                        }
+
+                        WriteKey(writer, "privacy");
+                        writer.Int(presence->partyPrivacy);
+                    }
+
+                    if ((presence->matchSecret && presence->matchSecret[0]) ||
+                        (presence->joinSecret && presence->joinSecret[0]) ||
+                        (presence->spectateSecret && presence->spectateSecret[0])) {
+                        WriteObject secrets(writer, "secrets");
+                        WriteOptionalString(writer, "match", presence->matchSecret);
+                        WriteOptionalString(writer, "join", presence->joinSecret);
+                        WriteOptionalString(writer, "spectate", presence->spectateSecret);
+                    }
                 }
 
                 writer.Key("instance");
