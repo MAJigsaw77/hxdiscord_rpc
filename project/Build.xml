@@ -23,6 +23,10 @@
 		<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/serialization.cpp" />
 
 		<section if="windows">
+			<compilerflag value="-DWIN32_LEAN_AND_MEAN" />
+			<compilerflag value="-DNOMCX" />
+			<compilerflag value="-DNOSERVICE" />
+			<compilerflag value="-DNOIME" />
 			<compilerflag value="-DDISCORD_WINDOWS" />
 
 			<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/connection_win.cpp" />
