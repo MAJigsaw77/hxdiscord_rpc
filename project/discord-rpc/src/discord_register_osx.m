@@ -1,9 +1,9 @@
+#include "discord_rpc.h"
+
 #include <stdio.h>
 #include <sys/stat.h>
 
 #import <AppKit/AppKit.h>
-
-#include "discord_register.h"
 
 static void RegisterCommand(const char* applicationId, const char* command)
 {

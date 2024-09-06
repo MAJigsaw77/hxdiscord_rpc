@@ -14,10 +14,27 @@ import hxdiscord_rpc.Types;
  */
 @:buildXml('<include name="${haxelib:hxdiscord_rpc}/project/Build.xml" />')
 @:include('discord_rpc.h')
-@:include('discord_register.h')
 @:unreflective
 extern class Discord
 {
+	/**
+	 * Registers the application.
+	 *
+	 * @param applicationId The application ID for the Discord app.
+	 * @param command The command to register.
+	 */
+	@:native('Discord_Register')
+	static function Register(applicationId:cpp.ConstCharStar, command:cpp.ConstCharStar):Void;
+
+	/**
+	 * Registers a Steam game.
+	 *
+	 * @param applicationId The application ID for the Discord app.
+	 * @param steamId The Steam ID for the game.
+	 */
+	@:native('Discord_RegisterSteamGame')
+	static function RegisterSteamGame(applicationId:cpp.ConstCharStar, steamId:cpp.ConstCharStar):Void;
+
 	/**
 	 * Initializes the Discord RPC.
 	 *
@@ -81,22 +98,4 @@ extern class Discord
 	 */
 	@:native('Discord_UpdateHandlers')
 	static function UpdateHandlers(handlers:cpp.RawPointer<DiscordEventHandlers>):Void;
-
-	/**
-	 * Registers the application.
-	 *
-	 * @param applicationId The application ID for the Discord app.
-	 * @param command The command to register.
-	 */
-	@:native('Discord_Register')
-	static function Register(applicationId:cpp.ConstCharStar, command:cpp.ConstCharStar):Void;
-
-	/**
-	 * Registers a Steam game.
-	 *
-	 * @param applicationId The application ID for the Discord app.
-	 * @param steamId The Steam ID for the game.
-	 */
-	@:native('Discord_RegisterSteamGame')
-	static function RegisterSteamGame(applicationId:cpp.ConstCharStar, steamId:cpp.ConstCharStar):Void;
 }

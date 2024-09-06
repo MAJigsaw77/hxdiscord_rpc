@@ -1,5 +1,4 @@
 #include "discord_rpc.h"
-#include "discord_register.h"
 
 #define WIN32_LEAN_AND_MEAN
 #define NOMCX
@@ -26,8 +25,7 @@ static HRESULT StringCbPrintfW(LPWSTR pszDest, size_t cbDest, LPCWSTR pszFormat,
     HRESULT ret;
     va_list va;
     va_start(va, pszFormat);
-    cbDest /= 2; // Size is divided by 2 to convert from bytes to wide characters - causes segfault
-                 // othervise
+    cbDest /= 2; // Size is divided by 2 to convert from bytes to wide characters - causes segfault othervise
     ret = vsnwprintf(pszDest, cbDest, pszFormat, va);
     pszDest[cbDest - 1] = 0; // Terminate the string in case a buffer overflow; -1 will be returned
     va_end(va);
@@ -131,7 +129,7 @@ static void Discord_RegisterW(const wchar_t* applicationId, const wchar_t* comma
     RegCloseKey(key);
 }
 
-extern "C" DISCORD_EXPORT void Discord_Register(const char* applicationId, const char* command)
+extern "C"void Discord_Register(const char* applicationId, const char* command)
 {
     wchar_t appId[32];
     MultiByteToWideChar(CP_UTF8, 0, applicationId, -1, appId, 32);
@@ -147,7 +145,7 @@ extern "C" DISCORD_EXPORT void Discord_Register(const char* applicationId, const
     Discord_RegisterW(appId, wcommand);
 }
 
-extern "C" DISCORD_EXPORT void Discord_RegisterSteamGame(const char* applicationId,
+extern "C"void Discord_RegisterSteamGame(const char* applicationId,
                                                          const char* steamId)
 {
     wchar_t appId[32];

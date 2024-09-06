@@ -1,7 +1,6 @@
 #include "discord_rpc.h"
-#include "discord_register.h"
-#include <stdio.h>
 
+#include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>
 #include <string.h>
@@ -22,7 +21,7 @@ static bool Mkdir(const char* path)
 }
 
 // we want to register games so we can run them from Discord client as discord-<appid>://
-extern "C" DISCORD_EXPORT void Discord_Register(const char* applicationId, const char* command)
+extern "C"void Discord_Register(const char* applicationId, const char* command)
 {
     // Add a desktop file and update some mime handlers so that xdg-open does the right thing.
 
@@ -93,7 +92,7 @@ extern "C" DISCORD_EXPORT void Discord_Register(const char* applicationId, const
     }
 }
 
-extern "C" DISCORD_EXPORT void Discord_RegisterSteamGame(const char* applicationId,
+extern "C"void Discord_RegisterSteamGame(const char* applicationId,
                                                          const char* steamId)
 {
     char command[256];

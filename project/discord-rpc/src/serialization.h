@@ -1,9 +1,8 @@
 #pragma once
 
 #include <stdint.h>
-#ifndef __cplusplus
 #include <stdbool.h>
-#endif
+
 #include "discord_rpc.h"
 
 #ifndef __MINGW32__

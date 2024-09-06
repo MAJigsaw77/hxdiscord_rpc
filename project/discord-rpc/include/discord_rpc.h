@@ -1,27 +1,7 @@
 #pragma once
 
 #include <stdint.h>
-#ifndef __cplusplus
 #include <stdbool.h>
-#endif
-
-// clang-format off
-
-#if defined(DISCORD_DYNAMIC_LIB)
-#  if defined(_WIN32)
-#    if defined(DISCORD_BUILDING_SDK)
-#      define DISCORD_EXPORT __declspec(dllexport)
-#    else
-#      define DISCORD_EXPORT __declspec(dllimport)
-#    endif
-#  else
-#    define DISCORD_EXPORT __attribute__((visibility("default")))
-#  endif
-#else
-#  define DISCORD_EXPORT
-#endif
-
-// clang-format on
 
 #ifdef __cplusplus
 extern "C" {
@@ -97,19 +77,18 @@ typedef struct DiscordEventHandlers {
     void (*joinRequest)(const DiscordUser* request);
 } DiscordEventHandlers;
 
-DISCORD_EXPORT void Discord_Initialize(const char* applicationId,
-                                       DiscordEventHandlers* handlers,
-                                       int autoRegister,
-                                       const char* optionalSteamId);
-DISCORD_EXPORT void Discord_Shutdown(void);
-DISCORD_EXPORT void Discord_RunCallbacks(void);
+void Discord_Register(const char* applicationId, const char* command);
+void Discord_RegisterSteamGame(const char* applicationId, const char* steamId);
+void Discord_Initialize(const char* applicationId, DiscordEventHandlers* handlers, int autoRegister, const char* optionalSteamId);
+void Discord_Shutdown(void);
+void Discord_RunCallbacks(void);
 #ifdef DISCORD_DISABLE_IO_THREAD
-DISCORD_EXPORT void Discord_UpdateConnection(void);
+void Discord_UpdateConnection(void);
 #endif
-DISCORD_EXPORT void Discord_UpdatePresence(const DiscordRichPresence* presence);
-DISCORD_EXPORT void Discord_ClearPresence(void);
-DISCORD_EXPORT void Discord_Respond(const char* userid, DiscordActivityJoinRequestReply reply);
-DISCORD_EXPORT void Discord_UpdateHandlers(DiscordEventHandlers* handlers);
+void Discord_UpdatePresence(const DiscordRichPresence* presence);
+void Discord_ClearPresence(void);
+void Discord_Respond(const char* userid, DiscordActivityJoinRequestReply reply);
+void Discord_UpdateHandlers(DiscordEventHandlers* handlers);
 
 #ifdef __cplusplus
 } /* extern "C" */
