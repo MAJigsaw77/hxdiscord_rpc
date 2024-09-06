@@ -1,10 +1,5 @@
 #include "connection.h"
 
-#define WIN32_LEAN_AND_MEAN
-#define NOMCX
-#define NOSERVICE
-#define NOIME
-#include <assert.h>
 #include <windows.h>
 
 int GetProcessId()
