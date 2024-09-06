@@ -145,10 +145,9 @@ size_t JsonWriteRichPresenceObj(char* dest,
                             continue;
                         }
 
-                        writer.StartObject();
+                        WriteObject obj(writer);
                         WriteOptionalString(writer, "label", button.label);
                         WriteOptionalString(writer, "url", button.url);
-                        writer.EndObject();
                     }
                 }
                 else
