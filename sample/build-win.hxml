@@ -4,4 +4,4 @@
 -lib hxdiscord_rpc
 -main Main
 -cpp bin
--cmd start bin/Main.exe
+-cmd bin/Main.exe
