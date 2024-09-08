@@ -32,7 +32,7 @@ class Main
 
 		Sys.sleep(10);
 
-		Sys.println("Shutting down Discord RPC...");
+		Sys.println('Shutting down Discord RPC...');
 
 		Discord.ClearPresence();
 		Discord.Shutdown();
