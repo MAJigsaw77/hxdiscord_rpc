@@ -8,6 +8,8 @@ class Main
 {
 	public static function main():Void
 	{
+		Sys.println('Initializing Discord RPC...');
+
 		final handlers:DiscordEventHandlers = DiscordEventHandlers.create();
 		handlers.ready = cpp.Function.fromStaticFunction(onReady);
 		handlers.disconnected = cpp.Function.fromStaticFunction(onDisconnected);
@@ -29,6 +31,8 @@ class Main
 		});
 
 		Sys.sleep(10);
+
+		Sys.println("Shutting down Discord RPC...");
 
 		Discord.ClearPresence();
 		Discord.Shutdown();
