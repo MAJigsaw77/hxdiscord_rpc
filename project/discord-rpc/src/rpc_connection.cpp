@@ -6,14 +6,14 @@
 static const int RpcVersion = 1;
 static RpcConnection Instance;
 
-/*static*/ RpcConnection* RpcConnection::Create(const char* applicationId)
+RpcConnection* RpcConnection::Create(const char* applicationId)
 {
     Instance.connection = BaseConnection::Create();
     StringCopy(Instance.appId, applicationId);
     return &Instance;
 }
 
-/*static*/ void RpcConnection::Destroy(RpcConnection*& c)
+void RpcConnection::Destroy(RpcConnection*& c)
 {
     c->Close();
     BaseConnection::Destroy(c->connection);

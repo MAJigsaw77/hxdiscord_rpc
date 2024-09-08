@@ -13,12 +13,12 @@ struct BaseConnectionWin : public BaseConnection {
 
 static BaseConnectionWin Connection;
 
-/*static*/ BaseConnection* BaseConnection::Create()
+BaseConnection* BaseConnection::Create()
 {
     return &Connection;
 }
 
-/*static*/ void BaseConnection::Destroy(BaseConnection*& c)
+void BaseConnection::Destroy(BaseConnection*& c)
 {
     auto self = reinterpret_cast<BaseConnectionWin*>(c);
     self->Close();

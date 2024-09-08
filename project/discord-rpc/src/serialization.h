@@ -107,7 +107,6 @@ public:
     }
     static void Free(void* ptr)
     {
-        /* shrug */
         (void)ptr;
     }
 };

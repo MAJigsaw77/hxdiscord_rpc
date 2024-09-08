@@ -38,13 +38,13 @@ static const char* GetTempPath()
     return temp;
 }
 
-/*static*/ BaseConnection* BaseConnection::Create()
+BaseConnection* BaseConnection::Create()
 {
     PipeAddr.sun_family = AF_UNIX;
     return &Connection;
 }
 
-/*static*/ void BaseConnection::Destroy(BaseConnection*& c)
+void BaseConnection::Destroy(BaseConnection*& c)
 {
     auto self = reinterpret_cast<BaseConnectionUnix*>(c);
     self->Close();
