@@ -21,9 +21,15 @@ jobs:
         with:
           haxe-version: latest
 
-      - name: Compiling 
+      - name: Install Dependencies
         run: |
           haxelib install hxcpp --quiet
           haxelib dev hxdiscord_rpc .
-          cd sample
-          haxe build.hxml
+
+      - name: Build Unix
+        if: startsWith(matrix.os, 'macos') || startsWith(matrix.os, 'ubuntu')
+        run: cd sample && haxe build-unix.hxml
+
+      - name: Build Windows
+        if: startsWith(matrix.os, 'windows')
+        run: cd sample && haxe build-win.hxml
