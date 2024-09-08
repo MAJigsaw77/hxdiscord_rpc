@@ -32,8 +32,7 @@ bool BaseConnection::Open()
     pipeName[pipeDigit] = L'0';
     auto self = reinterpret_cast<BaseConnectionWin*>(this);
     for (;;) {
-        self->pipe = ::CreateFileW(
-          pipeName, GENERIC_READ | GENERIC_WRITE, 0, nullptr, OPEN_EXISTING, 0, nullptr);
+        self->pipe = ::CreateFileW(pipeName, GENERIC_READ | GENERIC_WRITE, 0, nullptr, OPEN_EXISTING, 0, nullptr);
         if (self->pipe != INVALID_HANDLE_VALUE) {
             self->isOpen = true;
             return true;
@@ -52,6 +51,7 @@ bool BaseConnection::Open()
             }
             continue;
         }
+
         return false;
     }
 }
@@ -70,20 +70,20 @@ bool BaseConnection::Write(const void* data, size_t length)
     if (length == 0) {
         return true;
     }
-    auto self = reinterpret_cast<BaseConnectionWin*>(this);
-    if (!self) {
-        return false;
-    }
-    if (self->pipe == INVALID_HANDLE_VALUE) {
-        return false;
-    }
+
     if (!data) {
         return false;
     }
+
+    auto self = reinterpret_cast<BaseConnectionWin*>(this);
+
+    if (!self || self->pipe == INVALID_HANDLE_VALUE) {
+        return false;
+    }
+
     const DWORD bytesLength = (DWORD)length;
     DWORD bytesWritten = 0;
-    return ::WriteFile(self->pipe, data, bytesLength, &bytesWritten, nullptr) == TRUE &&
-      bytesWritten == bytesLength;
+    return ::WriteFile(self->pipe, data, bytesLength, &bytesWritten, nullptr) == TRUE && bytesWritten == bytesLength;
 }
 
 bool BaseConnection::Read(void* data, size_t length)
@@ -91,13 +91,13 @@ bool BaseConnection::Read(void* data, size_t length)
     if (!data) {
         return false;
     }
+
     auto self = reinterpret_cast<BaseConnectionWin*>(this);
-    if (!self) {
+
+    if (!self || self->pipe == INVALID_HANDLE_VALUE) {
         return false;
     }
-    if (self->pipe == INVALID_HANDLE_VALUE) {
-        return false;
-    }
+
     DWORD bytesAvailable = 0;
     if (::PeekNamedPipe(self->pipe, nullptr, 0, nullptr, &bytesAvailable, nullptr)) {
         if (bytesAvailable >= length) {
@@ -114,5 +114,6 @@ bool BaseConnection::Read(void* data, size_t length)
     else {
         Close();
     }
+
     return false;
 }
