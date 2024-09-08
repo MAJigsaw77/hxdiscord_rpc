@@ -18,36 +18,33 @@
 		<compilerflag value="-I${haxelib:hxdiscord_rpc}/project/discord-rpc/include" />
 		<compilerflag value="-I${haxelib:hxdiscord_rpc}/project/rapidjson/include" />
 
-		<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/discord_rpc.cpp" />
-		<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/rpc_connection.cpp" />
-		<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/serialization.cpp" />
+		<compilerflag value="-DDISCORD_DISABLE_IO_THREAD" if="DISCORD_DISABLE_IO_THREAD" />
 
 		<section if="windows">
 			<compilerflag value="-DWIN32_LEAN_AND_MEAN" />
 			<compilerflag value="-DNOMCX" />
 			<compilerflag value="-DNOSERVICE" />
 			<compilerflag value="-DNOIME" />
-			<compilerflag value="-DDISCORD_WINDOWS" />
 
 			<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/connection_win.cpp" />
 			<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/discord_register_win.cpp" />
 		</section>
 
-		<section if="macos">
-			<compilerflag value="-DDISCORD_OSX" />
-
+		<section if="macos || linux">
 			<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/connection_unix.cpp" />
-			<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/discord_register_osx.m" />
+
+			<section if="macos">
+				<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/discord_register_osx.m" />
+			</section>
+
+			<section if="linux">
+				<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/discord_register_linux.cpp" />
+			</section>
 		</section>
 
-		<section if="linux">
-			<compilerflag value="-DDISCORD_LINUX" />
-
-			<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/connection_unix.cpp" />
-			<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/discord_register_linux.cpp" />
-		</section>
-
-		<compilerflag value="-DDISCORD_DISABLE_IO_THREAD" if="DISCORD_DISABLE_IO_THREAD" />
+		<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/discord_rpc.cpp" />
+		<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/rpc_connection.cpp" />
+		<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/serialization.cpp" />
 	</files>
 
 	<target id="haxe">
