@@ -14,7 +14,6 @@ class Main
 		handlers.errored = cpp.Function.fromStaticFunction(onError);
 		Discord.Initialize("345229890980937739", cpp.RawPointer.addressOf(handlers), 1, null);
 
-		// Daemon Thread
 		Thread.create(function():Void
 		{
 			while (true)
@@ -22,15 +21,16 @@ class Main
 				#if DISCORD_DISABLE_IO_THREAD
 				Discord.UpdateConnection();
 				#end
+
 				Discord.RunCallbacks();
 
-				// Wait 2 seconds until the next loop...
 				Sys.sleep(2);
 			}
 		});
 
-		Sys.sleep(20);
+		Sys.sleep(10);
 
+		Discord.ClearPresence();
 		Discord.Shutdown();
 	}
 
