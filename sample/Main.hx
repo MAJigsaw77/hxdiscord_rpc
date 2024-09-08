@@ -42,9 +42,9 @@ class Main
 	{
 		final username:String = request[0].username;
 		final globalName:String = request[0].username;
-		final discriminator:String = request[0].discriminator;
+		final discriminator:Int = Std.parseInt(request[0].discriminator);
 
-		if (Std.parseInt(cast(request[0].discriminator, String)) != 0)
+		if (discriminator != 0)
 			Sys.println('Discord: Connected to user ${username}#${discriminator} ($globalName)');
 		else
 			Sys.println('Discord: Connected to user @${username} ($globalName)');
