@@ -34,7 +34,6 @@ class Main
 
 		Sys.println('Shutting down Discord RPC...');
 
-		Discord.ClearPresence();
 		Discord.Shutdown();
 	}
 
@@ -50,6 +49,7 @@ class Main
 			Sys.println('Discord: Connected to user @${username} ($globalName)');
 
 		final discordPresence:DiscordRichPresence = DiscordRichPresence.create();
+		discordPresence.type = DiscordActivityType_Watching;
 		discordPresence.state = "West of House";
 		discordPresence.details = "Frustration";
 		discordPresence.largeImageKey = "canary-large";
