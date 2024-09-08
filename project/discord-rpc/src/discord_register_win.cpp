@@ -69,56 +69,48 @@ static void Discord_RegisterW(const wchar_t* applicationId, const wchar_t* comma
 
     wchar_t exeFilePath[MAX_PATH];
     DWORD exeLen = GetModuleFileNameW(nullptr, exeFilePath, MAX_PATH);
-    wchar_t openCommand[1024];
 
-    if (command && command[0]) {
-        StringCbPrintfW(openCommand, sizeof(openCommand), L"%s", command);
-    }
-    else {
-        // StringCbCopyW(openCommand, sizeof(openCommand), exeFilePath);
-        StringCbPrintfW(openCommand, sizeof(openCommand), L"%s", exeFilePath);
-    }
+    wchar_t openCommand[1024];
+    StringCbPrintfW(openCommand, sizeof(openCommand), L"%s", command && command[0] ? command : exeFilePath);
 
     wchar_t protocolName[64];
     StringCbPrintfW(protocolName, sizeof(protocolName), L"discord-%s", applicationId);
+
     wchar_t protocolDescription[128];
-    StringCbPrintfW(
-      protocolDescription, sizeof(protocolDescription), L"URL:Run game %s protocol", applicationId);
-    wchar_t urlProtocol = 0;
+    StringCbPrintfW(protocolDescription, sizeof(protocolDescription), L"URL:Run game %s protocol", applicationId);
 
     wchar_t keyName[256];
     StringCbPrintfW(keyName, sizeof(keyName), L"Software\\Classes\\%s", protocolName);
+
     HKEY key;
-    auto status =
-      RegCreateKeyExW(HKEY_CURRENT_USER, keyName, 0, nullptr, 0, KEY_WRITE, nullptr, &key, nullptr);
+    auto status = RegCreateKeyExW(HKEY_CURRENT_USER, keyName, 0, nullptr, 0, KEY_WRITE, nullptr, &key, nullptr);
     if (status != ERROR_SUCCESS) {
         fprintf(stderr, "Error creating key\n");
         return;
     }
+
     DWORD len;
     LSTATUS result;
     len = (DWORD)lstrlenW(protocolDescription) + 1;
-    result =
-      RegSetKeyValueW(key, nullptr, nullptr, REG_SZ, protocolDescription, len * sizeof(wchar_t));
+    result = RegSetKeyValueW(key, nullptr, nullptr, REG_SZ, protocolDescription, len * sizeof(wchar_t));
     if (FAILED(result)) {
         fprintf(stderr, "Error writing description\n");
     }
 
     len = (DWORD)lstrlenW(protocolDescription) + 1;
+    wchar_t urlProtocol = 0;
     result = RegSetKeyValueW(key, nullptr, L"URL Protocol", REG_SZ, &urlProtocol, sizeof(wchar_t));
     if (FAILED(result)) {
         fprintf(stderr, "Error writing description\n");
     }
 
-    result = RegSetKeyValueW(
-      key, L"DefaultIcon", nullptr, REG_SZ, exeFilePath, (exeLen + 1) * sizeof(wchar_t));
+    result = RegSetKeyValueW(key, L"DefaultIcon", nullptr, REG_SZ, exeFilePath, (exeLen + 1) * sizeof(wchar_t));
     if (FAILED(result)) {
         fprintf(stderr, "Error writing icon\n");
     }
 
     len = (DWORD)lstrlenW(openCommand) + 1;
-    result = RegSetKeyValueW(
-      key, L"shell\\open\\command", nullptr, REG_SZ, openCommand, len * sizeof(wchar_t));
+    result = RegSetKeyValueW(key, L"shell\\open\\command", nullptr, REG_SZ, openCommand, len * sizeof(wchar_t));
     if (FAILED(result)) {
         fprintf(stderr, "Error writing command\n");
     }
@@ -175,6 +167,5 @@ extern "C" void Discord_RegisterSteamGame(const char* applicationId,
 
     wchar_t command[1024];
     StringCbPrintfW(command, sizeof(command), L"\"%s\" steam://rungameid/%s", steamPath, wSteamId);
-
     Discord_RegisterW(appId, command);
 }
