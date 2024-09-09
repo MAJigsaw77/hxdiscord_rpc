@@ -1,20 +1,29 @@
-BasedOnStyle: llvm         # Base on LLVM style
-IndentWidth: 8             # Number of spaces per indentation level
-TabWidth: 8                # Width of tab character
-UseTab: Always             # Use tabs for indentation
-BreakBeforeBraces: Allman   # Braces on new lines for functions, classes, etc.
+BasedOnStyle: llvm          # Base on LLVM style
+IndentWidth: 8              # Number of spaces per indentation level
+TabWidth: 8                 # Width of tab character
+UseTab: Always              # Use tabs for indentation
+BreakBeforeBraces: Allman    # Braces on new lines for functions, classes, etc.
 AllowShortFunctionsOnASingleLine: Empty # Allow `{}` for empty function bodies
+
+# Configuration for braces and alignment
 BraceWrapping:
-  AfterFunction: true      # Place opening brace of functions on a new line
-  AfterClass: true         # Place opening brace of classes on a new line
+  AfterFunction: true       # Place opening brace of functions on a new line
+  AfterClass: true          # Place opening brace of classes on a new line
   AfterControlStatement: true # Place opening brace of control statements (if, for, etc.) on a new line
-  AfterEnum: true          # Place opening brace of enums on a new line
-  BeforeElse: true         # Place `else` on a new line after `if` closing brace
-  BeforeCatch: true        # Place `catch` on a new line after `try` closing brace
-  AfterNamespace: true     # Place opening brace of namespaces on a new line
+  AfterEnum: true           # Place opening brace of enums on a new line
+  BeforeElse: true          # Place `else` on a new line after `if` closing brace
+  BeforeCatch: true         # Place `catch` on a new line after `try` closing brace
+  AfterNamespace: true      # Place opening brace of namespaces on a new line
   SplitEmptyFunction: false # Ensure empty functions use `{}` on a single line
-  SplitEmptyRecord: false  # Ensure empty structs/classes use `{}` on a single line
+  SplitEmptyRecord: false   # Ensure empty structs/classes use `{}` on a single line
   SplitEmptyNamespace: false # Ensure empty namespaces use `{}` on a single line
+
+# Additional settings to improve formatting
+IndentCaseLabels: false    # Do not indent case labels
+IndentWidth: 0             # No indentation for typedefs and function declarations
 AlignAfterOpenBracket: Align # Align parameters and arguments after opening bracket
-AlignOperands: true         # Align operators in multi-line expressions
+AlignOperands: true        # Align operators in multi-line expressions
 AlignTrailingComments: true # Align comments at the end of lines
+BinPackParameters: false   # Do not bin-pack function parameters
+BreakBeforeBinaryOperators: NonAssignment # Break before binary operators, except for assignment
+BreakBeforeBraces: Custom  # Customizes brace placement
