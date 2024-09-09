@@ -5,7 +5,7 @@ UseTab: Always
 BreakBeforeBraces: Allman
 AllowShortFunctionsOnASingleLine: Empty
 ColumnLimit: 120
-AccessModifierOffset: 0
+AccessModifierOffset: -8
 AlignAfterOpenBracket: Align
 AlignOperands: true
 AlignTrailingComments: true
