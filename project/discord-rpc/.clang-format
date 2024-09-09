@@ -5,7 +5,6 @@ UseTab: Always
 BreakBeforeBraces: Allman
 AllowShortFunctionsOnASingleLine: Empty
 ColumnLimit: 120
-AccessModifierOffset: -8
 AlignAfterOpenBracket: Align
 AlignOperands: true
 AlignTrailingComments: true
@@ -22,7 +21,5 @@ BraceWrapping:
 IncludeIsMainRegex: '.*'
 IncludeBlocks: Preserve
 IncludeCategories:
-  - Regex: '^("|<)stdafx\.h(pp)?("|>)'
-    Priority: -1
   - Regex: '^<(W|w)indows.h>'
     Priority: 1
