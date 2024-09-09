@@ -1,9 +1,13 @@
 BasedOnStyle: llvm          # Base on LLVM style
-IndentWidth: 8              # Number of spaces per indentation level
+IndentWidth: 8              # Number of spaces per indentation level (tabs in your case)
 TabWidth: 8                 # Width of tab character
 UseTab: Always              # Use tabs for indentation
 BreakBeforeBraces: Allman    # Braces on new lines for functions, classes, etc.
 AllowShortFunctionsOnASingleLine: Empty # Allow `{}` for empty function bodies
+
+# Indentation adjustments to prevent unwanted indentation in typedefs
+AccessModifierOffset: -8    # Remove indent for access modifiers (e.g., public, private)
+IndentAccessSpecifiers: false # Do not indent access specifiers (like typedef or struct)
 
 # Configuration for braces and alignment
 BraceWrapping:
@@ -20,10 +24,8 @@ BraceWrapping:
 
 # Additional settings to improve formatting
 IndentCaseLabels: false    # Do not indent case labels
-IndentWidth: 0             # No indentation for typedefs and function declarations
 AlignAfterOpenBracket: Align # Align parameters and arguments after opening bracket
 AlignOperands: true        # Align operators in multi-line expressions
 AlignTrailingComments: true # Align comments at the end of lines
 BinPackParameters: false   # Do not bin-pack function parameters
 BreakBeforeBinaryOperators: NonAssignment # Break before binary operators, except for assignment
-BreakBeforeBraces: Custom  # Customizes brace placement
