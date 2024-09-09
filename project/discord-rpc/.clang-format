@@ -1,13 +1,12 @@
 BasedOnStyle: llvm          # Base on LLVM style
-IndentWidth: 8              # Number of spaces per indentation level (tabs in your case)
+IndentWidth: 8              # Number of spaces per indentation level (or tab width since you are using tabs)
 TabWidth: 8                 # Width of tab character
 UseTab: Always              # Use tabs for indentation
 BreakBeforeBraces: Allman    # Braces on new lines for functions, classes, etc.
 AllowShortFunctionsOnASingleLine: Empty # Allow `{}` for empty function bodies
 
-# Indentation adjustments to prevent unwanted indentation in typedefs
+# Indentation adjustments
 AccessModifierOffset: -8    # Remove indent for access modifiers (e.g., public, private)
-IndentAccessSpecifiers: false # Do not indent access specifiers (like typedef or struct)
 
 # Configuration for braces and alignment
 BraceWrapping:
