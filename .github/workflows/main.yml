@@ -2,6 +2,13 @@ name: Testing
 on:
   push:
     branches: main
+    paths-ignore:
+      - '.github/workflows/clang-formatter.yml'
+      - 'project/discord-rpc/.clang-format'
+      - 'LICENSE'
+      - 'README.md'
+      - 'haxelib.json'
+      - 'hxformat.json'
   workflow_dispatch:
 jobs:
   Job:
