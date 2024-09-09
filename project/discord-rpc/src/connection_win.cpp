@@ -35,8 +35,7 @@ bool BaseConnection::Open()
 	for (;;)
 	{
 		self->pipe =
-		    ::CreateFileW(pipeName, GENERIC_READ | GENERIC_WRITE, 0,
-				  nullptr, OPEN_EXISTING, 0, nullptr);
+		    ::CreateFileW(pipeName, GENERIC_READ | GENERIC_WRITE, 0, nullptr, OPEN_EXISTING, 0, nullptr);
 		if (self->pipe != INVALID_HANDLE_VALUE)
 		{
 			self->isOpen = true;
@@ -95,8 +94,7 @@ bool BaseConnection::Write(const void *data, size_t length)
 
 	const DWORD bytesLength = (DWORD)length;
 	DWORD bytesWritten = 0;
-	return ::WriteFile(self->pipe, data, bytesLength, &bytesWritten,
-			   nullptr) == TRUE &&
+	return ::WriteFile(self->pipe, data, bytesLength, &bytesWritten, nullptr) == TRUE &&
 	       bytesWritten == bytesLength;
 }
 
@@ -115,15 +113,13 @@ bool BaseConnection::Read(void *data, size_t length)
 	}
 
 	DWORD bytesAvailable = 0;
-	if (::PeekNamedPipe(self->pipe, nullptr, 0, nullptr, &bytesAvailable,
-			    nullptr))
+	if (::PeekNamedPipe(self->pipe, nullptr, 0, nullptr, &bytesAvailable, nullptr))
 	{
 		if (bytesAvailable >= length)
 		{
 			DWORD bytesToRead = (DWORD)length;
 			DWORD bytesRead = 0;
-			if (::ReadFile(self->pipe, data, bytesToRead,
-				       &bytesRead, nullptr) == TRUE)
+			if (::ReadFile(self->pipe, data, bytesToRead, &bytesRead, nullptr) == TRUE)
 			{
 				return true;
 			}

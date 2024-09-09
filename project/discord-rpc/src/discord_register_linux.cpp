@@ -38,8 +38,7 @@ extern "C" void Discord_Register(const char *applicationId, const char *command)
 	char exePath[1024];
 	if (!command || !command[0])
 	{
-		ssize_t size =
-		    readlink("/proc/self/exe", exePath, sizeof(exePath));
+		ssize_t size = readlink("/proc/self/exe", exePath, sizeof(exePath));
 		if (size <= 0 || size >= (ssize_t)sizeof(exePath))
 		{
 			return;
@@ -48,26 +47,23 @@ extern "C" void Discord_Register(const char *applicationId, const char *command)
 		command = exePath;
 	}
 
-	const char *desktopFileFormat =
-	    "[Desktop Entry]\n"
-	    "Name=Game %s\n"
-	    "Exec=%s %%u\n" // note: it really wants that %u in there
-	    "Type=Application\n"
-	    "NoDisplay=true\n"
-	    "Categories=Discord;Games;\n"
-	    "MimeType=x-scheme-handler/discord-%s;\n";
+	const char *desktopFileFormat = "[Desktop Entry]\n"
+					"Name=Game %s\n"
+					"Exec=%s %%u\n" // note: it really wants that %u in there
+					"Type=Application\n"
+					"NoDisplay=true\n"
+					"Categories=Discord;Games;\n"
+					"MimeType=x-scheme-handler/discord-%s;\n";
 	char desktopFile[2048];
 	int fileLen =
-	    snprintf(desktopFile, sizeof(desktopFile), desktopFileFormat,
-		     applicationId, command, applicationId);
+	    snprintf(desktopFile, sizeof(desktopFile), desktopFileFormat, applicationId, command, applicationId);
 	if (fileLen <= 0)
 	{
 		return;
 	}
 
 	char desktopFilename[256];
-	snprintf(desktopFilename, sizeof(desktopFilename),
-		 "/discord-%s.desktop", applicationId);
+	snprintf(desktopFilename, sizeof(desktopFilename), "/discord-%s.desktop", applicationId);
 
 	char desktopFilePath[1024];
 	snprintf(desktopFilePath, sizeof(desktopFilePath), "%s/.local", home);
@@ -99,18 +95,18 @@ extern "C" void Discord_Register(const char *applicationId, const char *command)
 	}
 
 	char xdgMimeCommand[1024];
-	snprintf(
-	    xdgMimeCommand, sizeof(xdgMimeCommand),
-	    "xdg-mime default discord-%s.desktop x-scheme-handler/discord-%s",
-	    applicationId, applicationId);
+	snprintf(xdgMimeCommand,
+		 sizeof(xdgMimeCommand),
+		 "xdg-mime default discord-%s.desktop x-scheme-handler/discord-%s",
+		 applicationId,
+		 applicationId);
 	if (system(xdgMimeCommand) < 0)
 	{
 		fprintf(stderr, "Failed to register mime handler\n");
 	}
 }
 
-extern "C" void Discord_RegisterSteamGame(const char *applicationId,
-					  const char *steamId)
+extern "C" void Discord_RegisterSteamGame(const char *applicationId, const char *steamId)
 {
 	char command[256];
 	sprintf(command, "xdg-open steam://rungameid/%s", steamId);

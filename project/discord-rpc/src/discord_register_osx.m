@@ -20,33 +20,25 @@ static void RegisterCommand(const char *applicationId, const char *command)
 		return;
 	}
 
-	NSString *path = [[[[[[home stringByAppendingPathComponent:@"Library"]
-	    stringByAppendingPathComponent:@"Application Support"]
-	    stringByAppendingPathComponent:@"discord"]
-	    stringByAppendingPathComponent:@"games"]
-	    stringByAppendingPathComponent:
-		[NSString stringWithUTF8String:applicationId]]
-	    stringByAppendingPathExtension:@"json"];
-	[[NSFileManager defaultManager]
-		  createDirectoryAtPath:[path stringByDeletingLastPathComponent]
-	    withIntermediateDirectories:YES
-			     attributes:nil
-				  error:nil];
+	NSString *path =
+	    [[[[[[home stringByAppendingPathComponent:@"Library"] stringByAppendingPathComponent:@"Application Support"]
+		stringByAppendingPathComponent:@"discord"] stringByAppendingPathComponent:@"games"]
+		stringByAppendingPathComponent:[NSString stringWithUTF8String:applicationId]]
+		stringByAppendingPathExtension:@"json"];
+	[[NSFileManager defaultManager] createDirectoryAtPath:[path stringByDeletingLastPathComponent]
+				  withIntermediateDirectories:YES
+						   attributes:nil
+							error:nil];
 
-	NSString *jsonBuffer =
-	    [NSString stringWithFormat:@"{\"command\": \"%s\"}", command];
-	[jsonBuffer writeToFile:path
-		     atomically:NO
-		       encoding:NSUTF8StringEncoding
-			  error:nil];
+	NSString *jsonBuffer = [NSString stringWithFormat:@"{\"command\": \"%s\"}", command];
+	[jsonBuffer writeToFile:path atomically:NO encoding:NSUTF8StringEncoding error:nil];
 }
 
 static void RegisterURL(const char *applicationId)
 {
 	char url[256];
 	snprintf(url, sizeof(url), "discord-%s", applicationId);
-	CFStringRef cfURL =
-	    CFStringCreateWithCString(NULL, url, kCFStringEncodingUTF8);
+	CFStringRef cfURL = CFStringCreateWithCString(NULL, url, kCFStringEncodingUTF8);
 
 	if (!cfURL)
 	{
@@ -70,13 +62,10 @@ static void RegisterURL(const char *applicationId)
 		return;
 	}
 
-	OSStatus status = LSSetDefaultHandlerForURLScheme(
-	    cfURL, (__bridge CFStringRef)myBundleId);
+	OSStatus status = LSSetDefaultHandlerForURLScheme(cfURL, (__bridge CFStringRef)myBundleId);
 	if (status != noErr)
 	{
-		fprintf(stderr,
-			"Error in LSSetDefaultHandlerForURLScheme: %d\n",
-			(int)status);
+		fprintf(stderr, "Error in LSSetDefaultHandlerForURLScheme: %d\n", (int)status);
 		CFRelease(cfURL);
 		return;
 	}

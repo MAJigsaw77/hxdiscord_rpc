@@ -12,7 +12,7 @@ template <typename ElementType, size_t QueueSize> class MsgQueue
 	std::atomic_uint nextSend_{0};
 	std::atomic_uint pendingSends_{0};
 
-      public:
+public:
 	MsgQueue() {}
 
 	ElementType *GetNextAddMessage()

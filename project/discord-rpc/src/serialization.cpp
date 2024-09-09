@@ -68,8 +68,7 @@ struct WriteArray
 	}
 };
 
-template <typename T>
-void WriteOptionalString(JsonWriter &w, T &k, const char *value)
+template <typename T> void WriteOptionalString(JsonWriter &w, T &k, const char *value)
 {
 	if (value && value[0])
 	{
@@ -86,8 +85,7 @@ static void JsonWriteNonce(JsonWriter &writer, int nonce)
 	writer.String(nonceBuffer);
 }
 
-size_t JsonWriteRichPresenceObj(char *dest, size_t maxLen, int nonce, int pid,
-				const DiscordRichPresence *presence)
+size_t JsonWriteRichPresenceObj(char *dest, size_t maxLen, int nonce, int pid, const DiscordRichPresence *presence)
 {
 	JsonWriter writer(dest, maxLen);
 
@@ -112,136 +110,86 @@ size_t JsonWriteRichPresenceObj(char *dest, size_t maxLen, int nonce, int pid,
 				WriteKey(writer, "type");
 				writer.Int(presence->type);
 
-				WriteOptionalString(writer, "state",
-						    presence->state);
-				WriteOptionalString(writer, "details",
-						    presence->details);
+				WriteOptionalString(writer, "state", presence->state);
+				WriteOptionalString(writer, "details", presence->details);
 
-				if (presence->startTimestamp ||
-				    presence->endTimestamp)
+				if (presence->startTimestamp || presence->endTimestamp)
 				{
-					WriteObject timestamps(writer,
-							       "timestamps");
+					WriteObject timestamps(writer, "timestamps");
 
 					if (presence->startTimestamp)
 					{
 						WriteKey(writer, "start");
-						writer.Int64(
-						    presence->startTimestamp);
+						writer.Int64(presence->startTimestamp);
 					}
 
 					if (presence->endTimestamp)
 					{
 						WriteKey(writer, "end");
-						writer.Int64(
-						    presence->endTimestamp);
+						writer.Int64(presence->endTimestamp);
 					}
 				}
 
-				if ((presence->largeImageKey &&
-				     presence->largeImageKey[0]) ||
-				    (presence->largeImageText &&
-				     presence->largeImageText[0]) ||
-				    (presence->smallImageKey &&
-				     presence->smallImageKey[0]) ||
-				    (presence->smallImageText &&
-				     presence->smallImageText[0]))
+				if ((presence->largeImageKey && presence->largeImageKey[0]) ||
+				    (presence->largeImageText && presence->largeImageText[0]) ||
+				    (presence->smallImageKey && presence->smallImageKey[0]) ||
+				    (presence->smallImageText && presence->smallImageText[0]))
 				{
 					WriteObject assets(writer, "assets");
-					WriteOptionalString(
-					    writer, "large_image",
-					    presence->largeImageKey);
-					WriteOptionalString(
-					    writer, "large_text",
-					    presence->largeImageText);
-					WriteOptionalString(
-					    writer, "small_image",
-					    presence->smallImageKey);
-					WriteOptionalString(
-					    writer, "small_text",
-					    presence->smallImageText);
+					WriteOptionalString(writer, "large_image", presence->largeImageKey);
+					WriteOptionalString(writer, "large_text", presence->largeImageText);
+					WriteOptionalString(writer, "small_image", presence->smallImageKey);
+					WriteOptionalString(writer, "small_text", presence->smallImageText);
 				}
 
-				if ((presence->buttons[0].label &&
-				     presence->buttons[0].label[0]) &&
-				    (presence->buttons[0].url &&
-				     presence->buttons[0].url[0]))
+				if ((presence->buttons[0].label && presence->buttons[0].label[0]) &&
+				    (presence->buttons[0].url && presence->buttons[0].url[0]))
 				{
 					WriteArray buttons(writer, "buttons");
 					for (int i = 0;
-					     i <
-					     sizeof(((DiscordRichPresence *)0)
-							->buttons) /
-						 sizeof(DiscordButton);
+					     i < sizeof(((DiscordRichPresence *)0)->buttons) / sizeof(DiscordButton);
 					     i++)
 					{
-						const DiscordButton button =
-						    presence->buttons[i];
+						const DiscordButton button = presence->buttons[i];
 
-						if ((!button.label ||
-						     !button.label[0]) ||
-						    (!button.url ||
-						     !button.url[0]))
+						if ((!button.label || !button.label[0]) ||
+						    (!button.url || !button.url[0]))
 						{
 							continue;
 						}
 
 						WriteObject obj(writer);
-						WriteOptionalString(
-						    writer, "label",
-						    button.label);
-						WriteOptionalString(
-						    writer, "url", button.url);
+						WriteOptionalString(writer, "label", button.label);
+						WriteOptionalString(writer, "url", button.url);
 					}
 				}
 				else
 				{
-					if ((presence->partyId &&
-					     presence->partyId[0]) ||
-					    presence->partySize ||
+					if ((presence->partyId && presence->partyId[0]) || presence->partySize ||
 					    presence->partyMax)
 					{
-						WriteObject party(writer,
-								  "party");
-						WriteOptionalString(
-						    writer, "id",
-						    presence->partyId);
+						WriteObject party(writer, "party");
+						WriteOptionalString(writer, "id", presence->partyId);
 
-						if (presence->partySize &&
-						    presence->partyMax)
+						if (presence->partySize && presence->partyMax)
 						{
-							WriteArray size(writer,
-									"size");
-							writer.Int(
-							    presence
-								->partySize);
-							writer.Int(
-							    presence->partyMax);
+							WriteArray size(writer, "size");
+							writer.Int(presence->partySize);
+							writer.Int(presence->partyMax);
 						}
 
 						WriteKey(writer, "privacy");
-						writer.Int(
-						    presence->partyPrivacy);
+						writer.Int(presence->partyPrivacy);
 					}
 
-					if ((presence->matchSecret &&
-					     presence->matchSecret[0]) ||
-					    (presence->joinSecret &&
-					     presence->joinSecret[0]) ||
-					    (presence->spectateSecret &&
-					     presence->spectateSecret[0]))
+					if ((presence->matchSecret && presence->matchSecret[0]) ||
+					    (presence->joinSecret && presence->joinSecret[0]) ||
+					    (presence->spectateSecret && presence->spectateSecret[0]))
 					{
-						WriteObject secrets(writer,
-								    "secrets");
-						WriteOptionalString(
-						    writer, "match",
-						    presence->matchSecret);
-						WriteOptionalString(
-						    writer, "join",
-						    presence->joinSecret);
-						WriteOptionalString(
-						    writer, "spectate",
-						    presence->spectateSecret);
+						WriteObject secrets(writer, "secrets");
+						WriteOptionalString(writer, "match", presence->matchSecret);
+						WriteOptionalString(writer, "join", presence->joinSecret);
+						WriteOptionalString(writer, "spectate", presence->spectateSecret);
 					}
 				}
 
@@ -254,8 +202,7 @@ size_t JsonWriteRichPresenceObj(char *dest, size_t maxLen, int nonce, int pid,
 	return writer.Size();
 }
 
-size_t JsonWriteHandshakeObj(char *dest, size_t maxLen, int version,
-			     const char *applicationId)
+size_t JsonWriteHandshakeObj(char *dest, size_t maxLen, int version, const char *applicationId)
 {
 	JsonWriter writer(dest, maxLen);
 
@@ -270,8 +217,7 @@ size_t JsonWriteHandshakeObj(char *dest, size_t maxLen, int version,
 	return writer.Size();
 }
 
-size_t JsonWriteSubscribeCommand(char *dest, size_t maxLen, int nonce,
-				 const char *evtName)
+size_t JsonWriteSubscribeCommand(char *dest, size_t maxLen, int nonce, const char *evtName)
 {
 	JsonWriter writer(dest, maxLen);
 
@@ -290,8 +236,7 @@ size_t JsonWriteSubscribeCommand(char *dest, size_t maxLen, int nonce,
 	return writer.Size();
 }
 
-size_t JsonWriteUnsubscribeCommand(char *dest, size_t maxLen, int nonce,
-				   const char *evtName)
+size_t JsonWriteUnsubscribeCommand(char *dest, size_t maxLen, int nonce, const char *evtName)
 {
 	JsonWriter writer(dest, maxLen);
 
@@ -310,8 +255,8 @@ size_t JsonWriteUnsubscribeCommand(char *dest, size_t maxLen, int nonce,
 	return writer.Size();
 }
 
-size_t JsonWriteJoinReply(char *dest, size_t maxLen, const char *userId,
-			  DiscordActivityJoinRequestReply reply, int nonce)
+size_t
+JsonWriteJoinReply(char *dest, size_t maxLen, const char *userId, DiscordActivityJoinRequestReply reply, int nonce)
 {
 	JsonWriter writer(dest, maxLen);
 

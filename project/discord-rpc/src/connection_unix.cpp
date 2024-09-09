@@ -71,23 +71,21 @@ bool BaseConnection::Open()
 	fcntl(self->sock, F_SETFL, O_NONBLOCK);
 #ifdef SO_NOSIGPIPE
 	int optval = 1;
-	setsockopt(self->sock, SOL_SOCKET, SO_NOSIGPIPE, &optval,
-		   sizeof(optval));
+	setsockopt(self->sock, SOL_SOCKET, SO_NOSIGPIPE, &optval, sizeof(optval));
 #endif
 
-	std::vector<std::string> basePaths = {
-	    std::string(tempPath) + "/snap.discord", tempPath};
+	std::vector<std::string> basePaths = {std::string(tempPath) + "/snap.discord", tempPath};
 
 	for (const auto &basePath : basePaths)
 	{
 		for (int pipeNum = 0; pipeNum < 10; ++pipeNum)
 		{
-			snprintf(PipeAddr.sun_path, sizeof(PipeAddr.sun_path),
-				 "%s/discord-ipc-%d", basePath.c_str(),
+			snprintf(PipeAddr.sun_path,
+				 sizeof(PipeAddr.sun_path),
+				 "%s/discord-ipc-%d",
+				 basePath.c_str(),
 				 pipeNum);
-			int err =
-			    connect(self->sock, (const sockaddr *)&PipeAddr,
-				    sizeof(PipeAddr));
+			int err = connect(self->sock, (const sockaddr *)&PipeAddr, sizeof(PipeAddr));
 			if (err == 0)
 			{
 				self->isOpen = true;
