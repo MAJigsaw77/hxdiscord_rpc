@@ -1,0 +1,7 @@
+BasedOnStyle: llvm         # You can base this on any style (e.g., google, llvm, etc.).
+IndentWidth: 8             # Number of spaces per indentation level.
+TabWidth: 8                # Width of tab character.
+UseTab: Always             # Use tabs for indentation.
+BreakBeforeBraces: Allman   # Braces on new lines for functions, classes, etc.
+AllowShortFunctionsOnASingleLine: Empty # Allow `{}` for empty function bodies.
+EmptyBody: false           # Compact empty function or control body braces as `{}`.
