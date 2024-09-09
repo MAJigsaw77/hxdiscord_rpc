@@ -1,7 +1,7 @@
 #include "discord_rpc.h"
 
-#include <cstdio>
 #include <windows.h>
+#include <cstdio>
 #include <psapi.h>
 
 /**
