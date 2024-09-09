@@ -3,7 +3,6 @@ on: workflow_dispatch
 jobs:
   Job:
     runs-on: ubuntu-24.04
-    permissions: write-all
     steps:
       - name: Checkout
         uses: actions/checkout@main
@@ -17,12 +16,9 @@ jobs:
       - name: Verify Formatting
         run: git status --short
 
-      - name: Push formatted files
-        run: |
-          git config --local user.name "github-actions"
-          git config --local user.email "github-actions@github.com"
-          git add .
-          git diff --quiet || git commit -m "Apply clang-format changes"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload Artifact
+        uses: actions/upload-artifact@main
+        with:
+          name: formattedFiles
+          path: ./project/discord-rpc
+          if-no-files-found: error
