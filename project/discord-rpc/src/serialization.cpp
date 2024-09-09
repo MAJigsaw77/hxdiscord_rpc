@@ -146,9 +146,8 @@ size_t JsonWriteRichPresenceObj(char *dest, size_t maxLen, int nonce, int pid, c
 				    (presence->buttons[0].url && presence->buttons[0].url[0]))
 				{
 					WriteArray buttons(writer, "buttons");
-					for (int i = 0;
-					     i < sizeof(((DiscordRichPresence *)0)->buttons) / sizeof(DiscordButton);
-					     i++)
+
+					for (int i = 0; i < sizeof(presence->buttons) / sizeof(DiscordButton); i++)
 					{
 						const DiscordButton button = presence->buttons[i];
 
@@ -208,8 +207,10 @@ size_t JsonWriteHandshakeObj(char *dest, size_t maxLen, int version, const char 
 
 	{
 		WriteObject obj(writer);
+
 		WriteKey(writer, "v");
 		writer.Int(version);
+
 		WriteKey(writer, "client_id");
 		writer.String(applicationId);
 	}
@@ -264,19 +265,12 @@ JsonWriteJoinReply(char *dest, size_t maxLen, const char *userId, DiscordActivit
 		WriteObject obj(writer);
 
 		WriteKey(writer, "cmd");
-		if (reply == DiscordActivityJoinRequestReply_Yes)
-		{
-			writer.String("SEND_ACTIVITY_JOIN_INVITE");
-		}
-		else
-		{
-			writer.String("CLOSE_ACTIVITY_JOIN_REQUEST");
-		}
+		writer.String(reply == DiscordActivityJoinRequestReply_Yes ? "SEND_ACTIVITY_JOIN_INVITE" : "CLOSE_ACTIVITY_JOIN_REQUEST");
 
 		WriteKey(writer, "args");
+
 		{
 			WriteObject args(writer);
-
 			WriteKey(writer, "user_id");
 			writer.String(userId);
 		}
