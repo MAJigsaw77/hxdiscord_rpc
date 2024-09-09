@@ -1,29 +1,28 @@
-BasedOnStyle: llvm            # Base style
-IndentWidth: 8                # Indentation level in tabs (8 spaces)
-TabWidth: 8                   # Tab width
-UseTab: Always                # Always use tabs for indentation
-BreakBeforeBraces: Allman      # Place braces on a new line (Allman style)
-AllowShortFunctionsOnASingleLine: Empty  # Allow empty bodies to use `{}`
-
-# Set column limit to 120 to allow longer lines before wrapping
-ColumnLimit: 120              # Limit line length to 120 characters
-
-# Ensure typedefs, structs, and function declarations align correctly
-AccessModifierOffset: -8       # Prevent indenting access specifiers (public, private, etc.)
-AlignAfterOpenBracket: Align   # Align parameters after the opening bracket
-AlignOperands: true            # Align operators in multi-line expressions
-AlignTrailingComments: true    # Align comments at the end of lines
-
-# Ensure function parameters and arguments are not bin-packed
-BinPackParameters: false       # Do not bin-pack function parameters
-BinPackArguments: false        # Do not bin-pack function arguments
-
-# Brace wrapping rules for various structures
+BasedOnStyle: llvm
+IndentWidth: 8
+TabWidth: 8
+UseTab: Always
+BreakBeforeBraces: Allman
+AllowShortFunctionsOnASingleLine: Empty
+ColumnLimit: 120
+AccessModifierOffset: -8
+AlignAfterOpenBracket: Align
+AlignOperands: true
+AlignTrailingComments: true
+BinPackParameters: false
+BinPackArguments: false
 BraceWrapping:
-  AfterFunction: true          # Place opening brace of functions on a new line
-  AfterClass: true             # Place opening brace of classes on a new line
-  AfterEnum: true              # Place opening brace of enums on a new line
-  AfterControlStatement: true  # Place opening brace of control statements on a new line
-  SplitEmptyFunction: false    # Ensure empty functions use `{}` on a single line
-  SplitEmptyRecord: false      # Ensure empty structs/classes use `{}` on a single line
-  SplitEmptyNamespace: false   # Ensure empty namespaces use `{}` on a single line
+  AfterFunction: true
+  AfterClass: true
+  AfterEnum: true
+  AfterControlStatement: true
+  SplitEmptyFunction: false
+  SplitEmptyRecord: false
+  SplitEmptyNamespace: false
+IncludeIsMainRegex: '.*'
+IncludeBlocks: Preserve
+IncludeCategories:
+  - Regex: '^("|<)stdafx\.h(pp)?("|>)'
+    Priority: -1
+  - Regex: '^<(W|w)indows.h>'
+    Priority: 1
