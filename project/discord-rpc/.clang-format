@@ -1,30 +1,29 @@
-BasedOnStyle: llvm          # Base on LLVM style
-IndentWidth: 8              # Number of spaces per indentation level (or tab width since you are using tabs)
-TabWidth: 8                 # Width of tab character
-UseTab: Always              # Use tabs for indentation
-BreakBeforeBraces: Allman    # Braces on new lines for functions, classes, etc.
-AllowShortFunctionsOnASingleLine: Empty # Allow `{}` for empty function bodies
+BasedOnStyle: llvm            # Base style
+IndentWidth: 8                # Indentation level in tabs (8 spaces)
+TabWidth: 8                   # Tab width
+UseTab: Always                # Always use tabs for indentation
+BreakBeforeBraces: Allman      # Place braces on a new line (Allman style)
+AllowShortFunctionsOnASingleLine: Empty  # Allow empty bodies to use `{}`
 
-# Indentation adjustments
-AccessModifierOffset: -8    # Remove indent for access modifiers (e.g., public, private)
+# Set column limit to 120 to allow longer lines before wrapping
+ColumnLimit: 120              # Limit line length to 120 characters
 
-# Configuration for braces and alignment
+# Ensure typedefs, structs, and function declarations align correctly
+AccessModifierOffset: -8       # Prevent indenting access specifiers (public, private, etc.)
+AlignAfterOpenBracket: Align   # Align parameters after the opening bracket
+AlignOperands: true            # Align operators in multi-line expressions
+AlignTrailingComments: true    # Align comments at the end of lines
+
+# Ensure function parameters and arguments are not bin-packed
+BinPackParameters: false       # Do not bin-pack function parameters
+BinPackArguments: false        # Do not bin-pack function arguments
+
+# Brace wrapping rules for various structures
 BraceWrapping:
-  AfterFunction: true       # Place opening brace of functions on a new line
-  AfterClass: true          # Place opening brace of classes on a new line
-  AfterControlStatement: true # Place opening brace of control statements (if, for, etc.) on a new line
-  AfterEnum: true           # Place opening brace of enums on a new line
-  BeforeElse: true          # Place `else` on a new line after `if` closing brace
-  BeforeCatch: true         # Place `catch` on a new line after `try` closing brace
-  AfterNamespace: true      # Place opening brace of namespaces on a new line
-  SplitEmptyFunction: false # Ensure empty functions use `{}` on a single line
-  SplitEmptyRecord: false   # Ensure empty structs/classes use `{}` on a single line
-  SplitEmptyNamespace: false # Ensure empty namespaces use `{}` on a single line
-
-# Additional settings to improve formatting
-IndentCaseLabels: false    # Do not indent case labels
-AlignAfterOpenBracket: Align # Align parameters and arguments after opening bracket
-AlignOperands: true        # Align operators in multi-line expressions
-AlignTrailingComments: true # Align comments at the end of lines
-BinPackParameters: false   # Do not bin-pack function parameters
-BreakBeforeBinaryOperators: NonAssignment # Break before binary operators, except for assignment
+  AfterFunction: true          # Place opening brace of functions on a new line
+  AfterClass: true             # Place opening brace of classes on a new line
+  AfterEnum: true              # Place opening brace of enums on a new line
+  AfterControlStatement: true  # Place opening brace of control statements on a new line
+  SplitEmptyFunction: false    # Ensure empty functions use `{}` on a single line
+  SplitEmptyRecord: false      # Ensure empty structs/classes use `{}` on a single line
+  SplitEmptyNamespace: false   # Ensure empty namespaces use `{}` on a single line
