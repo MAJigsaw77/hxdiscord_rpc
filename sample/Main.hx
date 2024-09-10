@@ -1,8 +1,8 @@
 package;
 
+import haxe.EntryPoint;
 import hxdiscord_rpc.Discord;
 import hxdiscord_rpc.Types;
-import sys.thread.Thread;
 
 class Main
 {
@@ -16,7 +16,7 @@ class Main
 		handlers.errored = cpp.Function.fromStaticFunction(onError);
 		Discord.Initialize("345229890980937739", cpp.RawPointer.addressOf(handlers), 1, null);
 
-		Thread.create(function():Void
+		EntryPoint.addThread(function():Void
 		{
 			while (true)
 			{
