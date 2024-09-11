@@ -13,7 +13,7 @@
 
 int GetProcessId()
 {
-	return ::getpid();
+	return getpid();
 }
 
 struct BaseConnectionUnix : public BaseConnection
@@ -23,11 +23,6 @@ struct BaseConnectionUnix : public BaseConnection
 
 static BaseConnectionUnix Connection;
 static sockaddr_un PipeAddr{};
-#ifdef MSG_NOSIGNAL
-static int MsgFlags = MSG_NOSIGNAL;
-#else
-static int MsgFlags = 0;
-#endif
 
 static const char *GetTempPath()
 {
@@ -55,22 +50,30 @@ void BaseConnection::Destroy(BaseConnection *&c)
 bool BaseConnection::Open()
 {
 	const char *tempPath = GetTempPath();
+
+	if (!tempPath)
+		return;
+
 	auto self = reinterpret_cast<BaseConnectionUnix *>(this);
+
 #ifdef SOCK_CLOEXEC
 	self->sock = socket(AF_UNIX, SOCK_STREAM | SOCK_CLOEXEC, 0);
 #else
 	self->sock = socket(AF_UNIX, SOCK_STREAM, 0);
 #endif
+
 	if (self->sock == -1)
-	{
 		return false;
-	}
+
 #ifndef SOCK_CLOEXEC
 	fcntl(self->sock, F_SETFD, FD_CLOEXEC);
 #endif
+
 	fcntl(self->sock, F_SETFL, O_NONBLOCK);
+
 #ifdef SO_NOSIGPIPE
 	int optval = 1;
+
 	setsockopt(self->sock, SOL_SOCKET, SO_NOSIGPIPE, &optval, sizeof(optval));
 #endif
 
@@ -80,12 +83,10 @@ bool BaseConnection::Open()
 	{
 		for (int pipeNum = 0; pipeNum < 10; ++pipeNum)
 		{
-			snprintf(PipeAddr.sun_path,
-				 sizeof(PipeAddr.sun_path),
-				 "%s/discord-ipc-%d",
-				 basePath.c_str(),
-				 pipeNum);
+			snprintf(PipeAddr.sun_path, sizeof(PipeAddr.sun_path), "%s/discord-ipc-%d", basePath.c_str(), pipeNum);
+
 			int err = connect(self->sock, (const sockaddr *)&PipeAddr, sizeof(PipeAddr));
+
 			if (err == 0)
 			{
 				self->isOpen = true;
@@ -93,20 +94,24 @@ bool BaseConnection::Open()
 			}
 		}
 	}
+
 	self->Close();
+
 	return false;
 }
 
 bool BaseConnection::Close()
 {
 	auto self = reinterpret_cast<BaseConnectionUnix *>(this);
+
 	if (self->sock == -1)
-	{
 		return false;
-	}
+
 	close(self->sock);
+
 	self->sock = -1;
 	self->isOpen = false;
+
 	return true;
 }
 
@@ -115,15 +120,17 @@ bool BaseConnection::Write(const void *data, size_t length)
 	auto self = reinterpret_cast<BaseConnectionUnix *>(this);
 
 	if (self->sock == -1)
-	{
 		return false;
-	}
 
-	ssize_t sentBytes = send(self->sock, data, length, MsgFlags);
+#ifdef MSG_NOSIGNAL
+	ssize_t sentBytes = send(self->sock, data, length, MSG_NOSIGNAL);
+#else
+	ssize_t sentBytes = send(self->sock, data, length, 0);
+#endif
+
 	if (sentBytes < 0)
-	{
 		Close();
-	}
+
 	return sentBytes == (ssize_t)length;
 }
 
@@ -132,22 +139,23 @@ bool BaseConnection::Read(void *data, size_t length)
 	auto self = reinterpret_cast<BaseConnectionUnix *>(this);
 
 	if (self->sock == -1)
-	{
 		return false;
-	}
 
-	int res = (int)recv(self->sock, data, length, MsgFlags);
+#ifdef MSG_NOSIGNAL
+	ssize_t res = recv(self->sock, data, length, MSG_NOSIGNAL);
+#else
+	ssize_t res = recv(self->sock, data, length, 0);
+#endif
+
 	if (res < 0)
 	{
 		if (errno == EAGAIN)
-		{
 			return false;
-		}
+
 		Close();
 	}
 	else if (res == 0)
-	{
 		Close();
-	}
-	return res == (int)length;
+
+	return res == (ssize_t)length;
 }
