@@ -144,7 +144,8 @@ static void Discord_UpdateConnection(void)
 	{
 		if (std::chrono::system_clock::now() >= NextConnect)
 		{
-			NextConnect = std::chrono::system_clock::now() + std::chrono::duration<int64_t, std::milli>{ReconnectTimeMs.nextDelay()};
+			NextConnect =
+			    std::chrono::system_clock::now() + std::chrono::duration<int64_t, std::milli>{ReconnectTimeMs.nextDelay()};
 
 			Connection->Open();
 		}
@@ -212,10 +213,8 @@ static void Discord_UpdateConnection(void)
 					{
 						StringCopy(joinReq->userId, userId);
 						StringCopy(joinReq->username, username);
-						StringCopyOptional(joinReq->globalName,
-								   GetStrMember(user, "global_name"));
-						StringCopyOptional(joinReq->discriminator,
-								   GetStrMember(user, "discriminator"));
+						StringCopyOptional(joinReq->globalName, GetStrMember(user, "global_name"));
+						StringCopyOptional(joinReq->discriminator, GetStrMember(user, "discriminator"));
 						StringCopyOptional(joinReq->avatar, GetStrMember(user, "avatar"));
 
 						auto premiumType = GetIntMember(user, "premium_type");
@@ -247,7 +246,7 @@ static void Discord_UpdateConnection(void)
 			if (!Connection->Write(local.buffer, local.length))
 			{
 				std::lock_guard<std::mutex> guard(PresenceMutex);
-	
+
 				QueuedPresence.Copy(local);
 
 				UpdatePresence.exchange(true);
@@ -301,10 +300,7 @@ static bool DeregisterForEvent(const char *evtName)
 	return false;
 }
 
-void Discord_Initialize(const char *applicationId,
-				   DiscordEventHandlers *handlers,
-				   int autoRegister,
-				   const char *optionalSteamId)
+void Discord_Initialize(const char *applicationId, DiscordEventHandlers *handlers, int autoRegister, const char *optionalSteamId)
 {
 	IoThread = new (std::nothrow) IoThreadHolder();
 
@@ -410,7 +406,8 @@ void Discord_UpdatePresence(const DiscordRichPresence *presence)
 {
 	{
 		std::lock_guard<std::mutex> guard(PresenceMutex);
-		QueuedPresence.length = JsonWriteRichPresenceObj(QueuedPresence.buffer, sizeof(QueuedPresence.buffer), Nonce++, Pid, presence);
+		QueuedPresence.length =
+		    JsonWriteRichPresenceObj(QueuedPresence.buffer, sizeof(QueuedPresence.buffer), Nonce++, Pid, presence);
 		UpdatePresence.exchange(true);
 	}
 

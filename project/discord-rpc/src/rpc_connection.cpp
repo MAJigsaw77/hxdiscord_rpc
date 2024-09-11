@@ -1,5 +1,5 @@
-#include "discord_rpc.h"
 #include "rpc_connection.h"
+#include "discord_rpc.h"
 #include "serialization.h"
 
 #include <atomic>
@@ -46,7 +46,8 @@ void RpcConnection::Open()
 	else
 	{
 		sendFrame.opcode = Opcode::Handshake;
-		sendFrame.length = (uint32_t)JsonWriteHandshakeObj(sendFrame.message, sizeof(sendFrame.message), DISCORD_RPC_VERSION, appId);
+		sendFrame.length =
+		    (uint32_t)JsonWriteHandshakeObj(sendFrame.message, sizeof(sendFrame.message), DISCORD_RPC_VERSION, appId);
 
 		if (connection->Write(&sendFrame, sizeof(MessageFrameHeader) + sendFrame.length))
 			state = State::SentHandshake;
@@ -114,36 +115,36 @@ bool RpcConnection::Read(JsonDocument &message)
 				Close();
 				return false;
 			}
-	
+
 			readFrame.message[readFrame.length] = 0;
 		}
 
 		switch (readFrame.opcode)
 		{
-			case Opcode::Close:
-				message.ParseInsitu(readFrame.message);
-				lastErrorCode = GetIntMember(&message, "code");
-				StringCopy(lastErrorMessage, GetStrMember(&message, "message", ""));
-				Close();
-				return false;
-			case Opcode::Frame:
-				message.ParseInsitu(readFrame.message);
-				return true;
-			case Opcode::Ping:
-				readFrame.opcode = Opcode::Pong;
+		case Opcode::Close:
+			message.ParseInsitu(readFrame.message);
+			lastErrorCode = GetIntMember(&message, "code");
+			StringCopy(lastErrorMessage, GetStrMember(&message, "message", ""));
+			Close();
+			return false;
+		case Opcode::Frame:
+			message.ParseInsitu(readFrame.message);
+			return true;
+		case Opcode::Ping:
+			readFrame.opcode = Opcode::Pong;
 
-				if (!connection->Write(&readFrame, sizeof(MessageFrameHeader) + readFrame.length))
-					Close();
-
-				break;
-			case Opcode::Pong:
-				break;
-			case Opcode::Handshake:
-			default:
-				lastErrorCode = (int)ErrorCode::ReadCorrupt;
-				StringCopy(lastErrorMessage, "Bad ipc frame");
+			if (!connection->Write(&readFrame, sizeof(MessageFrameHeader) + readFrame.length))
 				Close();
-				return false;
+
+			break;
+		case Opcode::Pong:
+			break;
+		case Opcode::Handshake:
+		default:
+			lastErrorCode = (int)ErrorCode::ReadCorrupt;
+			StringCopy(lastErrorMessage, "Bad ipc frame");
+			Close();
+			return false;
 		}
 	}
 }

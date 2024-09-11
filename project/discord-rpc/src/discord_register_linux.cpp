@@ -76,7 +76,11 @@ void Discord_Register(const char *applicationId, const char *command)
 		return;
 
 	char xdgMimeCommand[1024];
-	snprintf(xdgMimeCommand, sizeof(xdgMimeCommand), "xdg-mime default discord-%s.desktop x-scheme-handler/discord-%s", applicationId, applicationId);
+	snprintf(xdgMimeCommand,
+		 sizeof(xdgMimeCommand),
+		 "xdg-mime default discord-%s.desktop x-scheme-handler/discord-%s",
+		 applicationId,
+		 applicationId);
 
 	if (system(xdgMimeCommand) < 0)
 		fprintf(stderr, "Failed to register mime handler\n");

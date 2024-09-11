@@ -127,8 +127,7 @@ public:
 	StackAllocator stackAlloc_;
 
 	JsonWriter(char *dest, size_t maxLen)
-	    : JsonWriterBase(stringBuffer_, &stackAlloc_, WriterNestingLevels), stringBuffer_(dest, maxLen),
-	      stackAlloc_()
+	    : JsonWriterBase(stringBuffer_, &stackAlloc_, WriterNestingLevels), stringBuffer_(dest, maxLen), stackAlloc_()
 	{
 	}
 
@@ -149,10 +148,8 @@ public:
 	StackAllocator stackAllocator_;
 
 	JsonDocument()
-	    : JsonDocumentBase(
-		  rapidjson::kObjectType, &poolAllocator_, sizeof(stackAllocator_.fixedBuffer_), &stackAllocator_),
-	      poolAllocator_(parseBuffer_, sizeof(parseBuffer_), 32768, &mallocAllocator_),
-	      stackAllocator_()
+	    : JsonDocumentBase(rapidjson::kObjectType, &poolAllocator_, sizeof(stackAllocator_.fixedBuffer_), &stackAllocator_),
+	      poolAllocator_(parseBuffer_, sizeof(parseBuffer_), 32768, &mallocAllocator_), stackAllocator_()
 	{
 	}
 };

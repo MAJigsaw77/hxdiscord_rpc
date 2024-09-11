@@ -19,10 +19,7 @@ struct Backoff
 		return randDistribution(randGenerator);
 	}
 
-	Backoff(int64_t min, int64_t max)
-	    : minAmount(min), maxAmount(max), current(min), fails(0), randGenerator((uint64_t)time(0))
-	{
-	}
+	Backoff(int64_t min, int64_t max) : minAmount(min), maxAmount(max), current(min), fails(0), randGenerator((uint64_t)time(0)) {}
 
 	void reset()
 	{

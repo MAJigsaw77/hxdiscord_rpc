@@ -4,7 +4,7 @@
 
 int GetProcessId()
 {
-	return (int) GetCurrentProcessId();
+	return (int)GetCurrentProcessId();
 }
 
 struct BaseConnectionWin : public BaseConnection

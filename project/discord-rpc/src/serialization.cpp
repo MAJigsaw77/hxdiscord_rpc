@@ -153,8 +153,7 @@ size_t JsonWriteRichPresenceObj(char *dest, size_t maxLen, int nonce, int pid, c
 					{
 						const DiscordButton button = presence->buttons[i];
 
-						if ((!button.label || !button.label[0]) ||
-						    (!button.url || !button.url[0]))
+						if ((!button.label || !button.label[0]) || (!button.url || !button.url[0]))
 						{
 							continue;
 						}
@@ -166,8 +165,7 @@ size_t JsonWriteRichPresenceObj(char *dest, size_t maxLen, int nonce, int pid, c
 				}
 				else
 				{
-					if ((presence->partyId && presence->partyId[0]) || presence->partySize ||
-					    presence->partyMax)
+					if ((presence->partyId && presence->partyId[0]) || presence->partySize || presence->partyMax)
 					{
 						WriteObject party(writer, "party");
 						WriteOptionalString(writer, "id", presence->partyId);
