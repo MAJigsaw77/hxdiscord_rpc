@@ -37,7 +37,7 @@
 			<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/connection_unix.cpp" />
 
 			<section if="macos">
-				<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/discord_register_osx.m" />
+				<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/discord_register_macos.mm" />
 			</section>
 
 			<section if="linux">
