@@ -36,7 +36,7 @@ static void RegisterURL(const char *applicationId)
 
 	if (!cfURL)
 	{
-		fprintf(stderr, "Failure allocating URL CFString\n");
+		NSLog(@"Failure allocating URL CFString\n");
 		return;
 	}
 
@@ -44,7 +44,7 @@ static void RegisterURL(const char *applicationId)
 
 	if (!myBundleId)
 	{
-		fprintf(stderr, "No bundle id found\n");
+		NSLog(@"No bundle id found\n");
 		CFRelease(cfURL);
 		return;
 	}
@@ -53,7 +53,7 @@ static void RegisterURL(const char *applicationId)
 
 	if (!myURL)
 	{
-		fprintf(stderr, "No bundle url found\n");
+		NSLog(@"No bundle url found\n");
 		CFRelease(cfURL);
 		return;
 	}
@@ -62,7 +62,7 @@ static void RegisterURL(const char *applicationId)
 
 	if (status != noErr)
 	{
-		fprintf(stderr, "Error in LSSetDefaultHandlerForURLScheme: %d\n", (int)status);
+		NSLog(@"Error in LSSetDefaultHandlerForURLScheme: %d\n", (int)status);
 		CFRelease(cfURL);
 		return;
 	}
@@ -70,7 +70,7 @@ static void RegisterURL(const char *applicationId)
 	status = LSRegisterURL((__bridge CFURLRef)myURL, true);
 
 	if (status != noErr)
-		fprintf(stderr, "Error in LSRegisterURL: %d\n", (int)status);
+		NSLog(@"Error in LSRegisterURL: %d\n", (int)status);
 
 	CFRelease(cfURL);
 }
