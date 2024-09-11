@@ -18,6 +18,12 @@ import hxdiscord_rpc.Types;
 extern class Discord
 {
 	/**
+	 * Version of the rich presence.
+	 */
+	@:native('DISCORD_RPC_VERSION')
+	static var RPC_VERSION:Int;
+
+	/**
 	 * Registers the application.
 	 *
 	 * @param applicationId The application ID for the Discord app.
