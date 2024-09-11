@@ -1,9 +1,9 @@
+#include "discord_rpc.h"
 #include "rpc_connection.h"
 #include "serialization.h"
 
 #include <atomic>
 
-static const int RpcVersion = 1;
 static RpcConnection Instance;
 
 RpcConnection *RpcConnection::Create(const char *applicationId)
@@ -46,7 +46,7 @@ void RpcConnection::Open()
 	else
 	{
 		sendFrame.opcode = Opcode::Handshake;
-		sendFrame.length = (uint32_t)JsonWriteHandshakeObj(sendFrame.message, sizeof(sendFrame.message), RpcVersion, appId);
+		sendFrame.length = (uint32_t)JsonWriteHandshakeObj(sendFrame.message, sizeof(sendFrame.message), DISCORD_RPC_VERSION, appId);
 
 		if (connection->Write(&sendFrame, sizeof(MessageFrameHeader) + sendFrame.length))
 			state = State::SentHandshake;
@@ -61,6 +61,7 @@ void RpcConnection::Close()
 		onDisconnect(lastErrorCode, lastErrorMessage);
 
 	connection->Close();
+
 	state = State::Disconnected;
 }
 
