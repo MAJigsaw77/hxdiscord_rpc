@@ -13,7 +13,7 @@ import hxdiscord_rpc.Types;
  * and managing connection settings.
  */
 @:buildXml('<include name="${haxelib:hxdiscord_rpc}/project/Build.xml" />')
-@:include('discord_rpc.h')
+@:include('discord_rpc.hpp')
 @:unreflective
 extern class Discord
 {
