@@ -319,7 +319,10 @@ extern "C" void Discord_Initialize(const char *applicationId,
 	{
 		std::lock_guard<std::mutex> guard(HandlerMutex);
 
-		QueuedHandlers = handlers ? (*handlers) : {};
+		if (handlers)
+			QueuedHandlers = (*handlers);
+		else
+			QueuedHandlers = {};
 
 		Handlers = {};
 	}
