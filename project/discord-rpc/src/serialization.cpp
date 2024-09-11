@@ -10,11 +10,13 @@ template <typename T> void NumberToString(char *dest, T number)
 		*dest++ = 0;
 		return;
 	}
+
 	if (number < 0)
 	{
 		*dest++ = '-';
 		number = -number;
 	}
+
 	char temp[32];
 	int place = 0;
 	while (number)
@@ -23,14 +25,13 @@ template <typename T> void NumberToString(char *dest, T number)
 		number = number / 10;
 		temp[place++] = '0' + (char)digit;
 	}
+
 	for (--place; place >= 0; --place)
-	{
 		*dest++ = temp[place];
-	}
+
 	*dest = 0;
 }
 
-// it's ever so slightly faster to not have to strlen the key
 template <typename T> void WriteKey(JsonWriter &w, T &k)
 {
 	w.Key(k, sizeof(T) - 1);
@@ -80,6 +81,7 @@ template <typename T> void WriteOptionalString(JsonWriter &w, T &k, const char *
 static void JsonWriteNonce(JsonWriter &writer, int nonce)
 {
 	WriteKey(writer, "nonce");
+
 	char nonceBuffer[32];
 	NumberToString(nonceBuffer, nonce);
 	writer.String(nonceBuffer);
