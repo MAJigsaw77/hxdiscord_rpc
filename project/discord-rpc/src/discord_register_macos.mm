@@ -10,7 +10,7 @@ static void RegisterCommand(const char *applicationId, const char *command)
 	// Note: will not work for sandboxed apps
 	NSString *home = NSHomeDirectory();
 
-	if (!home)
+	if (!home || [home length] == 0)
 		return;
 
 	NSString *path =
@@ -36,7 +36,7 @@ static void RegisterURL(const char *applicationId)
 
 	if (!cfURL)
 	{
-		NSLog(@"Failure allocating URL CFString\n");
+		NSLog(@"Failure allocating URL CFString");
 		return;
 	}
 
@@ -44,7 +44,7 @@ static void RegisterURL(const char *applicationId)
 
 	if (!myBundleId)
 	{
-		NSLog(@"No bundle id found\n");
+		NSLog(@"No bundle id found");
 		CFRelease(cfURL);
 		return;
 	}
@@ -53,7 +53,7 @@ static void RegisterURL(const char *applicationId)
 
 	if (!myURL)
 	{
-		NSLog(@"No bundle url found\n");
+		NSLog(@"No bundle url found");
 		CFRelease(cfURL);
 		return;
 	}
@@ -62,7 +62,7 @@ static void RegisterURL(const char *applicationId)
 
 	if (status != noErr)
 	{
-		NSLog(@"Error in LSSetDefaultHandlerForURLScheme: %d\n", (int)status);
+		NSLog(@"Error in LSSetDefaultHandlerForURLScheme: %d", (int)status);
 		CFRelease(cfURL);
 		return;
 	}
@@ -70,7 +70,7 @@ static void RegisterURL(const char *applicationId)
 	status = LSRegisterURL((__bridge CFURLRef)myURL, true);
 
 	if (status != noErr)
-		NSLog(@"Error in LSRegisterURL: %d\n", (int)status);
+		NSLog(@"Error in LSRegisterURL: %d", (int)status);
 
 	CFRelease(cfURL);
 }

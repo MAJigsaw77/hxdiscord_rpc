@@ -17,7 +17,7 @@ void Discord_Register(const char *applicationId, const char *command)
 {
 	const char *home = getenv("HOME");
 
-	if (!home)
+	if (!home || !home[0])
 		return;
 
 	char exePath[1024];
