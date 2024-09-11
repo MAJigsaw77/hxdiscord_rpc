@@ -3,11 +3,6 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
-
 	#define DISCORD_RPC_VERSION 1
 
 	typedef enum DiscordPremiumType
@@ -103,7 +98,3 @@ extern "C"
 	void Discord_ClearPresence(void);
 	void Discord_Respond(const char *userid, DiscordActivityJoinRequestReply reply);
 	void Discord_UpdateHandlers(DiscordEventHandlers *handlers);
-
-#ifdef __cplusplus
-} /* extern "C" */
-#endif
