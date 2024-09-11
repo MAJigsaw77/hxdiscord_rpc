@@ -258,8 +258,7 @@ size_t JsonWriteUnsubscribeCommand(char *dest, size_t maxLen, int nonce, const c
 	return writer.Size();
 }
 
-size_t
-JsonWriteJoinReply(char *dest, size_t maxLen, const char *userId, DiscordActivityJoinRequestReply reply, int nonce)
+size_t JsonWriteJoinReply(char *dest, size_t maxLen, const char *userId, DiscordActivityJoinRequestReply reply, int nonce)
 {
 	JsonWriter writer(dest, maxLen);
 
