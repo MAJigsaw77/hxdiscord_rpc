@@ -16,9 +16,11 @@ class Main
 		handlers.errored = cpp.Function.fromStaticFunction(onError);
 		Discord.Initialize("345229890980937739", cpp.RawPointer.addressOf(handlers), 1, null);
 
+		var running:Bool = true;
+
 		EntryPoint.addThread(function():Void
 		{
-			while (true)
+			while (running)
 			{
 				#if DISCORD_DISABLE_IO_THREAD
 				Discord.UpdateConnection();
@@ -35,6 +37,8 @@ class Main
 		Sys.println('Shutting down Discord RPC...');
 
 		Discord.Shutdown();
+
+		running = false;
 	}
 
 	private static function onReady(request:cpp.RawConstPointer<DiscordUser>):Void
