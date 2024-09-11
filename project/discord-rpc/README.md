@@ -3,7 +3,7 @@ This is a **fork** of Discord RPC within the project, featuring several importan
 ### Bug Fixes
 
 - Fixed a memory leak in `RegisterURL` on `MacOS`.
-- Removed an unnecessary `lock_guard` to optimise performance.
+- Removed some unnecessary `lock_guard` to optimise performance.
 - Implemented a check for `CFStringCreateWithCString` failures.
 - Added `SOCK_CLOEXEC` and `FD_CLOEXEC` for Unix connections to enhance security.
 - Added support for Discord's Snap package on Linux.
