@@ -36,9 +36,9 @@ class Main
 
 		Sys.println('Shutting down Discord RPC...');
 
-		Discord.Shutdown();
-
 		running = false;
+
+		Discord.Shutdown();
 	}
 
 	private static function onReady(request:cpp.RawConstPointer<DiscordUser>):Void
