@@ -132,7 +132,7 @@ public:
 static IoThreadHolder *IoThread{nullptr};
 
 #ifdef DISCORD_DISABLE_IO_THREAD
-void Discord_UpdateConnection(void)
+extern void Discord_UpdateConnection(void)
 #else
 static void Discord_UpdateConnection(void)
 #endif
@@ -301,7 +301,7 @@ static bool DeregisterForEvent(const char *evtName)
 	return false;
 }
 
-void Discord_Initialize(const char *applicationId,
+extern void Discord_Initialize(const char *applicationId,
 				   DiscordEventHandlers *handlers,
 				   int autoRegister,
 				   const char *optionalSteamId)
@@ -383,7 +383,7 @@ void Discord_Initialize(const char *applicationId,
 	IoThread->Start();
 }
 
-void Discord_Shutdown(void)
+extern void Discord_Shutdown(void)
 {
 	if (!Connection)
 		return;
@@ -406,7 +406,7 @@ void Discord_Shutdown(void)
 	RpcConnection::Destroy(Connection);
 }
 
-void Discord_UpdatePresence(const DiscordRichPresence *presence)
+extern void Discord_UpdatePresence(const DiscordRichPresence *presence)
 {
 	{
 		std::lock_guard<std::mutex> guard(PresenceMutex);
@@ -417,12 +417,12 @@ void Discord_UpdatePresence(const DiscordRichPresence *presence)
 	SignalIOActivity();
 }
 
-void Discord_ClearPresence(void)
+extern void Discord_ClearPresence(void)
 {
 	Discord_UpdatePresence(nullptr);
 }
 
-void Discord_Respond(const char *userId, DiscordActivityJoinRequestReply reply)
+extern void Discord_Respond(const char *userId, DiscordActivityJoinRequestReply reply)
 {
 	if (!Connection || !Connection->IsOpen())
 		return;
@@ -437,7 +437,7 @@ void Discord_Respond(const char *userId, DiscordActivityJoinRequestReply reply)
 	}
 }
 
-void Discord_RunCallbacks(void)
+extern void Discord_RunCallbacks(void)
 {
 	// Note on some weirdness: internally we might connect, get other
 	// signals, disconnect any number of times inbetween calls here.
@@ -539,7 +539,7 @@ void Discord_RunCallbacks(void)
 	}
 }
 
-void Discord_UpdateHandlers(DiscordEventHandlers *newHandlers)
+extern void Discord_UpdateHandlers(DiscordEventHandlers *newHandlers)
 {
 	if (newHandlers)
 	{

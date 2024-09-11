@@ -13,7 +13,7 @@ static bool Mkdir(const char *path)
 	return mkdir(path, 0755) == 0 || errno == EEXIST;
 }
 
-void Discord_Register(const char *applicationId, const char *command)
+extern void Discord_Register(const char *applicationId, const char *command)
 {
 	const char *home = getenv("HOME");
 
@@ -82,7 +82,7 @@ void Discord_Register(const char *applicationId, const char *command)
 		fprintf(stderr, "Failed to register mime handler\n");
 }
 
-void Discord_RegisterSteamGame(const char *applicationId, const char *steamId)
+extern void Discord_RegisterSteamGame(const char *applicationId, const char *steamId)
 {
 	char command[256];
 	sprintf(command, "xdg-open steam://rungameid/%s", steamId);

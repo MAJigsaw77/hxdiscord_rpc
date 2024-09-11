@@ -81,7 +81,7 @@ static void Discord_RegisterW(const wchar_t *applicationId, const wchar_t *comma
 	RegCloseKey(key);
 }
 
-void Discord_Register(const char *applicationId, const char *command)
+extern void Discord_Register(const char *applicationId, const char *command)
 {
 	wchar_t appId[32];
 
@@ -101,7 +101,7 @@ void Discord_Register(const char *applicationId, const char *command)
 	Discord_RegisterW(appId, wcommand);
 }
 
-void Discord_RegisterSteamGame(const char *applicationId, const char *steamId)
+extern void Discord_RegisterSteamGame(const char *applicationId, const char *steamId)
 {
 	wchar_t appId[32];
 	MultiByteToWideChar(CP_UTF8, 0, applicationId, -1, appId, 32);
