@@ -1,8 +1,8 @@
 package;
 
-import haxe.MainLoop;
 import hxdiscord_rpc.Discord;
 import hxdiscord_rpc.Types;
+import sys.thread.Thread;
 
 class Main
 {
@@ -16,11 +16,9 @@ class Main
 		handlers.errored = cpp.Function.fromStaticFunction(onError);
 		Discord.Initialize("345229890980937739", cpp.RawPointer.addressOf(handlers), 1, null);
 
-		var running:Bool = true;
-
-		MainLoop.addThread(function():Void
+		Thread.create(function():Void
 		{
-			while (running)
+			while (true)
 			{
 				#if DISCORD_DISABLE_IO_THREAD
 				Discord.UpdateConnection();
@@ -35,8 +33,6 @@ class Main
 		Sys.sleep(10);
 
 		Sys.println('Shutting down Discord RPC...');
-
-		running = false;
 
 		Discord.Shutdown();
 	}
