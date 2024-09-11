@@ -4,7 +4,7 @@ TabWidth: 8
 UseTab: Always
 BreakBeforeBraces: Allman
 AllowShortFunctionsOnASingleLine: Empty
-ColumnLimit: 120
+ColumnLimit: 140
 AccessModifierOffset: -8
 AlignAfterOpenBracket: Align
 AlignOperands: true
