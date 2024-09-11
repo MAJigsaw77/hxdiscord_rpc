@@ -436,17 +436,13 @@ void Discord_Respond(const char *userId, DiscordActivityJoinRequestReply reply)
 
 void Discord_RunCallbacks(void)
 {
-	// Note on some weirdness: internally we might connect, get other
-	// signals, disconnect any number of times inbetween calls here.
-	// Externally, we want the sequence to seem sane, so any other signals
-	// are book-ended by calls to ready and disconnect.
-
 	if (!Connection)
 		return;
 
+	bool wasDisconnected = WasJustDisconnected.exchange(false);
 	bool isConnected = Connection->IsOpen();
 
-	if (isConnected && WasJustDisconnected.exchange(false))
+	if (isConnected && wasDisconnected)
 	{
 		std::lock_guard<std::mutex> guard(HandlerMutex);
 
@@ -496,13 +492,6 @@ void Discord_RunCallbacks(void)
 			Handlers.spectateGame(SpectateGameSecret);
 	}
 
-	// Right now this batches up any requests and sends them all in a burst;
-	// I could imagine a world where the implementer would rather
-	// sequentially accept/reject each one before the next invite is sent. I
-	// left it this way because I could also imagine wanting to process
-	// these all and maybe show them in one common dialog and/or start
-	// fetching the avatars in parallel, and if not it should be trivial for
-	// the implementer to make a queue themselves.
 	while (JoinAskQueue.HavePendingSends())
 	{
 		auto req = JoinAskQueue.GetNextSendMessage();
@@ -527,7 +516,7 @@ void Discord_RunCallbacks(void)
 		JoinAskQueue.CommitSend();
 	}
 
-	if (!isConnected && WasJustDisconnected.exchange(false))
+	if (!isConnected && wasDisconnected)
 	{
 		std::lock_guard<std::mutex> guard(HandlerMutex);
 
