@@ -77,7 +77,7 @@ static void RegisterURL(const char *applicationId)
 
 void Discord_Register(const char *applicationId, const char *command)
 {
-	if (command && command[0])
+	if (command)
 		RegisterCommand(applicationId, command);
 	else
 	{
