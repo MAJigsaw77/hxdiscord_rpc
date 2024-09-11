@@ -52,7 +52,7 @@ bool BaseConnection::Open()
 	const char *tempPath = GetTempPath();
 
 	if (!tempPath)
-		return;
+		return false;
 
 	auto self = reinterpret_cast<BaseConnectionUnix *>(this);
 
