@@ -1,6 +1,6 @@
 package;
 
-import haxe.EntryPoint;
+import haxe.MainLoop;
 import hxdiscord_rpc.Discord;
 import hxdiscord_rpc.Types;
 
@@ -18,7 +18,7 @@ class Main
 
 		var running:Bool = true;
 
-		EntryPoint.addThread(function():Void
+		MainLoop.addThread(function():Void
 		{
 			while (running)
 			{
