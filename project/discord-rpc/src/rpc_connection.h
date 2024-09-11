@@ -3,10 +3,6 @@
 #include "connection.h"
 #include "serialization.h"
 
-// I took this from the buffer size libuv uses for named pipes; I suspect ours
-// would usually be much smaller.
-constexpr size_t MaxRpcFrameSize = 64 * 1024;
-
 struct RpcConnection
 {
 	enum class ErrorCode : int
@@ -33,7 +29,7 @@ struct RpcConnection
 
 	struct MessageFrame : public MessageFrameHeader
 	{
-		char message[MaxRpcFrameSize - sizeof(MessageFrameHeader)];
+		char message[32768 - sizeof(MessageFrameHeader)];
 	};
 
 	enum class State : uint32_t
