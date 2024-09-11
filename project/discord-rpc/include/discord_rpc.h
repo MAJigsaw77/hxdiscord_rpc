@@ -8,6 +8,8 @@ extern "C"
 {
 #endif
 
+	#define DISCORD_RPC_VERSION 1
+
 	typedef enum DiscordPremiumType
 	{
 		DiscordPremiumType_None,
