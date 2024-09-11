@@ -7,24 +7,18 @@
 
 static void RegisterCommand(const char *applicationId, const char *command)
 {
-	// There does not appear to be a way to register arbitrary commands on
-	// OSX, so instead we'll save the command to a file in the Discord
-	// config path, and when it is needed, Discord can try to load the file
-	// there, open the command therein (will pass to js's window.open, so
-	// requires a url-like thing)
-
 	// Note: will not work for sandboxed apps
 	NSString *home = NSHomeDirectory();
+
 	if (!home)
-	{
 		return;
-	}
 
 	NSString *path =
 	    [[[[[[home stringByAppendingPathComponent:@"Library"] stringByAppendingPathComponent:@"Application Support"]
 		stringByAppendingPathComponent:@"discord"] stringByAppendingPathComponent:@"games"]
 		stringByAppendingPathComponent:[NSString stringWithUTF8String:applicationId]]
 		stringByAppendingPathExtension:@"json"];
+
 	[[NSFileManager defaultManager] createDirectoryAtPath:[path stringByDeletingLastPathComponent]
 				  withIntermediateDirectories:YES
 						   attributes:nil
@@ -47,6 +41,7 @@ static void RegisterURL(const char *applicationId)
 	}
 
 	NSString *myBundleId = [[NSBundle mainBundle] bundleIdentifier];
+
 	if (!myBundleId)
 	{
 		fprintf(stderr, "No bundle id found\n");
@@ -55,6 +50,7 @@ static void RegisterURL(const char *applicationId)
 	}
 
 	NSURL *myURL = [[NSBundle mainBundle] bundleURL];
+
 	if (!myURL)
 	{
 		fprintf(stderr, "No bundle url found\n");
@@ -63,6 +59,7 @@ static void RegisterURL(const char *applicationId)
 	}
 
 	OSStatus status = LSSetDefaultHandlerForURLScheme(cfURL, (__bridge CFStringRef)myBundleId);
+
 	if (status != noErr)
 	{
 		fprintf(stderr, "Error in LSSetDefaultHandlerForURLScheme: %d\n", (int)status);
@@ -71,23 +68,19 @@ static void RegisterURL(const char *applicationId)
 	}
 
 	status = LSRegisterURL((__bridge CFURLRef)myURL, true);
+
 	if (status != noErr)
-	{
 		fprintf(stderr, "Error in LSRegisterURL: %d\n", (int)status);
-	}
 
 	CFRelease(cfURL);
 }
 
 void Discord_Register(const char *applicationId, const char *command)
 {
-	if (command)
-	{
+	if (command && command[0])
 		RegisterCommand(applicationId, command);
-	}
 	else
 	{
-		// raii lite
 		@autoreleasepool
 		{
 			RegisterURL(applicationId);
