@@ -2,9 +2,6 @@
 
 #include <atomic>
 
-// A simple queue. No locks, but only works with a single thread as producer and
-// a single thread as a consumer. Mutex up as needed.
-
 template <typename ElementType, size_t QueueSize> class MsgQueue
 {
 	ElementType queue_[QueueSize];
@@ -17,19 +14,17 @@ public:
 
 	ElementType *GetNextAddMessage()
 	{
-		// if we are falling behind, bail
 		if (pendingSends_.load() >= QueueSize)
-		{
 			return nullptr;
-		}
+
 		auto index = (nextAdd_++) % QueueSize;
+
 		return &queue_[index];
 	}
 	void CommitAdd()
 	{
 		++pendingSends_;
 	}
-
 	bool HavePendingSends() const
 	{
 		return pendingSends_.load() != 0;
@@ -37,6 +32,7 @@ public:
 	ElementType *GetNextSendMessage()
 	{
 		auto index = (nextSend_++) % QueueSize;
+
 		return &queue_[index];
 	}
 	void CommitSend()
