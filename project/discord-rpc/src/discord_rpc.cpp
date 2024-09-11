@@ -132,7 +132,7 @@ public:
 static IoThreadHolder *IoThread{nullptr};
 
 #ifdef DISCORD_DISABLE_IO_THREAD
-extern "C" void Discord_UpdateConnection(void)
+void Discord_UpdateConnection(void)
 #else
 static void Discord_UpdateConnection(void)
 #endif
@@ -301,7 +301,7 @@ static bool DeregisterForEvent(const char *evtName)
 	return false;
 }
 
-extern "C" void Discord_Initialize(const char *applicationId,
+void Discord_Initialize(const char *applicationId,
 				   DiscordEventHandlers *handlers,
 				   int autoRegister,
 				   const char *optionalSteamId)
@@ -383,7 +383,7 @@ extern "C" void Discord_Initialize(const char *applicationId,
 	IoThread->Start();
 }
 
-extern "C" void Discord_Shutdown(void)
+void Discord_Shutdown(void)
 {
 	if (!Connection)
 		return;
@@ -406,7 +406,7 @@ extern "C" void Discord_Shutdown(void)
 	RpcConnection::Destroy(Connection);
 }
 
-extern "C" void Discord_UpdatePresence(const DiscordRichPresence *presence)
+void Discord_UpdatePresence(const DiscordRichPresence *presence)
 {
 	{
 		std::lock_guard<std::mutex> guard(PresenceMutex);
@@ -417,12 +417,12 @@ extern "C" void Discord_UpdatePresence(const DiscordRichPresence *presence)
 	SignalIOActivity();
 }
 
-extern "C" void Discord_ClearPresence(void)
+void Discord_ClearPresence(void)
 {
 	Discord_UpdatePresence(nullptr);
 }
 
-extern "C" void Discord_Respond(const char *userId, DiscordActivityJoinRequestReply reply)
+void Discord_Respond(const char *userId, DiscordActivityJoinRequestReply reply)
 {
 	if (!Connection || !Connection->IsOpen())
 		return;
@@ -437,7 +437,7 @@ extern "C" void Discord_Respond(const char *userId, DiscordActivityJoinRequestRe
 	}
 }
 
-extern "C" void Discord_RunCallbacks(void)
+void Discord_RunCallbacks(void)
 {
 	// Note on some weirdness: internally we might connect, get other
 	// signals, disconnect any number of times inbetween calls here.
@@ -539,7 +539,7 @@ extern "C" void Discord_RunCallbacks(void)
 	}
 }
 
-extern "C" void Discord_UpdateHandlers(DiscordEventHandlers *newHandlers)
+void Discord_UpdateHandlers(DiscordEventHandlers *newHandlers)
 {
 	if (newHandlers)
 	{
