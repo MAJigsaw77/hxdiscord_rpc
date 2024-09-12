@@ -11,7 +11,7 @@ jobs:
         run: sudo apt-get install clang-format -y
 
       - name: Formatting files
-        run: find ./project/discord-rpc -name '*.cpp' -o -name '*.m' -o -name '*.h' | xargs clang-format -i
+        run: find ./project/discord-rpc -name '*.c' -o -name '*.cpp' -o -name '*.m' -o -name '*.mm' -o -name '*.h' -o -name '*.hpp' | xargs clang-format -i
 
       - name: Verify Formatting
         run: git status --short
