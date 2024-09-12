@@ -1,7 +1,7 @@
 #pragma once
 
-#include "connection.h"
-#include "serialization.h"
+#include "connection.hpp"
+#include "serialization.hpp"
 
 struct RpcConnection
 {

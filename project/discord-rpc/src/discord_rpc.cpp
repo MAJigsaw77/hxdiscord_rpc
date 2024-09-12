@@ -1,8 +1,8 @@
-#include "discord_rpc.h"
-#include "backoff.h"
-#include "msg_queue.h"
-#include "rpc_connection.h"
-#include "serialization.h"
+#include "discord_rpc.hpp"
+#include "backoff.hpp"
+#include "msg_queue.hpp"
+#include "rpc_connection.hpp"
+#include "serialization.hpp"
 
 #include <atomic>
 #include <chrono>

@@ -1,4 +1,4 @@
-#include "connection.h"
+#include "connection.hpp"
 
 #include <windows.h>
 

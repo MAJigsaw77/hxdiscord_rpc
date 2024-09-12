@@ -1,6 +1,6 @@
-#include "rpc_connection.h"
-#include "discord_rpc.h"
-#include "serialization.h"
+#include "rpc_connection.hpp"
+#include "discord_rpc.hpp"
+#include "serialization.hpp"
 
 #include <atomic>
 
