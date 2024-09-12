@@ -9,8 +9,8 @@
 		"rpc"
 	],
 	"description": "Haxe/hxcpp @:native bindings for Discord RPC.",
-	"version": "1.2.2",
-	"releasenote": "Some misc fixes.",
+	"version": "1.2.3",
+	"releasenote": "Convert discord_rpc headers to C++.",
 	"contributors": [
 		"MAJigsaw77"
 	],
