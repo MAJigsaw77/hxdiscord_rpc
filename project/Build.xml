@@ -29,8 +29,8 @@
 			<compilerflag value="-DNOSERVICE" />
 			<compilerflag value="-DNOIME" />
 
-			<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/connection_win.cpp" />
-			<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/discord_register_win.cpp" />
+			<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/connection_windows.cpp" />
+			<file name="${haxelib:hxdiscord_rpc}/project/discord-rpc/src/discord_register_windows.cpp" />
 		</section>
 
 		<section if="macos || linux">
