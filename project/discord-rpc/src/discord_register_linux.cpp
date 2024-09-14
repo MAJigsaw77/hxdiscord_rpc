@@ -1,6 +1,7 @@
 #include "discord_rpc.hpp"
 
 #include <errno.h>
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -20,17 +21,20 @@ void Discord_Register(const char *applicationId, const char *command)
 	if (!home || !home[0])
 		return;
 
-	char exePath[1024];
-
 	if (!command || !command[0])
 	{
-		ssize_t size = readlink("/proc/self/exe", exePath, sizeof(exePath));
+		char exePath[PATH_MAX];
 
-		if (size <= 0 || size >= (ssize_t)sizeof(exePath))
-			return;
+		ssize_t length = readlink("/proc/self/exe", exePath, sizeof(exePath) - 1);
 
-		exePath[size] = '\0';
-		command = exePath;
+		if (length < 0)
+			command = getenv("_");
+		else
+		{
+			exePath[length] = '\0';
+
+			command = exePath;
+		}
 	}
 
 	const char *desktopFileFormat = "[Desktop Entry]\n"
