@@ -170,11 +170,8 @@ extern class DiscordButton
 {
 	/**
 	 * Creates a new instance.
-	 *
-	 * @return A new instance.
 	 */
-	@:native('DiscordButton')
-	static function create():DiscordButton;
+	function new():Void;
 
 	/**
 	 * The label of the button that is displayed to users.
@@ -199,11 +196,8 @@ extern class DiscordRichPresence
 {
 	/**
 	 * Creates a new instance.
-	 *
-	 * @return A new instance.
 	 */
-	@:native('DiscordRichPresence')
-	static function create():DiscordRichPresence;
+	function new():Void;
 
 	/**
 	 * Type of activity of the rich presence.
@@ -308,11 +302,8 @@ extern class DiscordUser
 {
 	/**
 	 * Creates a new instance.
-	 *
-	 * @return A new instance.
 	 */
-	@:native('DiscordUser')
-	static function create():DiscordUser;
+	function new():Void;
 
 	/**
 	 * ID of the user.
@@ -362,11 +353,8 @@ extern class DiscordEventHandlers
 {
 	/**
 	 * Creates a new instance.
-	 *
-	 * @return A new instance.
 	 */
-	@:native('DiscordEventHandlers')
-	static function create():DiscordEventHandlers;
+	function new():Void;
 
 	/**
 	 * Callback for when the client becomes ready.

@@ -50,7 +50,7 @@ extern class Discord
 	 * @param optionalSteamId Optional Steam ID if using Steam.
 	 */
 	@:native('Discord_Initialize')
-	static function Initialize(applicationId:cpp.ConstCharStar, handlers:cpp.RawPointer<DiscordEventHandlers>, autoRegister:Int,
+	static function Initialize(applicationId:cpp.ConstCharStar, handlers:cpp.RawPointer<DiscordEventHandlers>, autoRegister:Bool,
 		optionalSteamId:cpp.ConstCharStar):Void;
 
 	/**

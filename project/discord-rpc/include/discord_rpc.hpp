@@ -85,7 +85,7 @@ typedef struct DiscordEventHandlers
 
 void Discord_Register(const char *applicationId, const char *command);
 void Discord_RegisterSteamGame(const char *applicationId, const char *steamId);
-void Discord_Initialize(const char *applicationId, DiscordEventHandlers *handlers, int autoRegister, const char *optionalSteamId);
+void Discord_Initialize(const char *applicationId, DiscordEventHandlers *handlers, bool autoRegister, const char *optionalSteamId);
 void Discord_Shutdown(void);
 void Discord_RunCallbacks(void);
 #ifdef DISCORD_DISABLE_IO_THREAD

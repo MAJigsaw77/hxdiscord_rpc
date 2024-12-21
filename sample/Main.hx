@@ -10,11 +10,11 @@ class Main
 	{
 		Sys.println('Initializing Discord RPC...');
 
-		final handlers:DiscordEventHandlers = DiscordEventHandlers.create();
+		final handlers:DiscordEventHandlers = new DiscordEventHandlers();
 		handlers.ready = cpp.Function.fromStaticFunction(onReady);
 		handlers.disconnected = cpp.Function.fromStaticFunction(onDisconnected);
 		handlers.errored = cpp.Function.fromStaticFunction(onError);
-		Discord.Initialize("345229890980937739", cpp.RawPointer.addressOf(handlers), 1, null);
+		Discord.Initialize("345229890980937739", cpp.RawPointer.addressOf(handlers), true, null);
 
 		Thread.create(function():Void
 		{
@@ -48,19 +48,19 @@ class Main
 		else
 			Sys.println('Discord: Connected to user @${username} ($globalName)');
 
-		final discordPresence:DiscordRichPresence = DiscordRichPresence.create();
+		final discordPresence:DiscordRichPresence = new DiscordRichPresence();
 		discordPresence.type = DiscordActivityType_Watching;
 		discordPresence.state = "West of House";
 		discordPresence.details = "Frustration";
 		discordPresence.largeImageKey = "canary-large";
 		discordPresence.smallImageKey = "ptb-small";
 
-		final button:DiscordButton = DiscordButton.create();
+		final button:DiscordButton = new DiscordButton();
 		button.label = "Test 1";
 		button.url = "https://example.com";
 		discordPresence.buttons[0] = button;
 
-		final button:DiscordButton = DiscordButton.create();
+		final button:DiscordButton = new DiscordButton();
 		button.label = "Test 2";
 		button.url = "https://discord.gg/fortnite";
 		discordPresence.buttons[1] = button;

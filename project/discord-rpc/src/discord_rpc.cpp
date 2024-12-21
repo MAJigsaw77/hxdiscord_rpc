@@ -300,7 +300,7 @@ static bool DeregisterForEvent(const char *evtName)
 	return false;
 }
 
-void Discord_Initialize(const char *applicationId, DiscordEventHandlers *handlers, int autoRegister, const char *optionalSteamId)
+void Discord_Initialize(const char *applicationId, DiscordEventHandlers *handlers, bool autoRegister, const char *optionalSteamId)
 {
 	IoThread = new (std::nothrow) IoThreadHolder();
 
