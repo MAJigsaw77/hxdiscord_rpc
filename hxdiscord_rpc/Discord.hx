@@ -46,7 +46,7 @@ extern class Discord
 	 *
 	 * @param applicationId The application ID for the Discord app.
 	 * @param handlers Pointer to a DiscordEventHandlers struct containing event callbacks.
-	 * @param autoRegister Indicates whether to automatically register the application.
+	 * @param autoRegister Indicates whether to automatically register the application to Steam.
 	 * @param optionalSteamId Optional Steam ID if using Steam.
 	 */
 	@:native('Discord_Initialize')
