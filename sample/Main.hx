@@ -14,7 +14,7 @@ class Main
 		handlers.ready = cpp.Function.fromStaticFunction(onReady);
 		handlers.disconnected = cpp.Function.fromStaticFunction(onDisconnected);
 		handlers.errored = cpp.Function.fromStaticFunction(onError);
-		Discord.Initialize("345229890980937739", cpp.RawPointer.addressOf(handlers), true, null);
+		Discord.Initialize("345229890980937739", cpp.RawPointer.addressOf(handlers), false, null);
 
 		Thread.create(function():Void
 		{
